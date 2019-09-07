@@ -16,22 +16,47 @@
 
 생성된 라인을 클릭하면 우측에 해당 action 의 속성들이 나타납니다.
 
-![](img/action-destination-attribute.png){: width="300" height="550"}
+![](img/action-destination-attribute.png)
+
+### kotlin code
+
+등록하기만 해서 동작이 되는 것은 아닙니다.  
+원하는 시점에 정의해놓은 action 의 id 를 코드에서 호출해주어야 트랜잭션이 실행됩니다.  
+4가지 방법이 있습니다.
 
 ```kotlin
+// 1. default
 NavHostFragment.findNavController(this).navigate(R.id.action_in_game_to_results_winner)
+
+// 3. ktx    
+findNavController().navigate(R.id.action_home_dest_to_home_dialog_dest)
+
+// 2. View.onClickListener 반환
+view.findViewById<View>(R.id.next_button)
+    .setOnClickListener(
+        Navigation.createNavigateOnClickListener(R.id.next_action)
+    )
+
+// 4. FragmentActions
+val action = HomeFragmentDirections.nextAction()
+findNavController().navigate(action)
 ```
+
+`HomeFragmentDirections` 는 action 설정시 자동으로 생성되는 클래스 입니다.  
+생성된 클래스에서 action 의 key 를 알고 있어서 메서드 호출로 전환이 가능합니다.
 
 ### xml code
 
 ```xml
 <action
     android:id="@+id/action_in_game_to_results_winner"
-    app:destination="@id/results_winner" />
+    app:destination="@id/results_winner" 
+    app:launchSingleTop="true" />
 ```
 
 `android:id` : 해당 action 의 식별 키가 됩니다.  
 `app:destination` : navigation graph 에 선언된 이동하려는 fragment 의 id 를 넣어주게 됩니다.
+`app:launchSingleTop` : Activity 의 singleTop 과 같이 동작합니다.
 
 ```xml
 <action
