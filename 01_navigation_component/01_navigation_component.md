@@ -3,12 +3,11 @@
 * 싱글 액티비티로 개발하기를 권장합니다.
 
 ### 왜 싱글액티비티인가?
->네비게이션 컴포넌트는 Activity의 역할을 기존과 다르게 바라볼 것을 요구합니다. 
-원래 Activity는 화면의 Entry Point 이면서도 Content와 Navigation Method를 들고있는 Owner 였습니다.  
-하지만 네비게이션 컴포넌트를 활용하기 위해서는 Entry Point로서의 역할만 보아야 합니다. 
-Content와 Navigation Method는 모두 NavHost 라는 Fragment에게 위임합니다. 
+>네비게이션 컴포넌트는 Activity의 역할을 기존과 다르게 바라볼 것을 요구합니다.   
+원래 Activity는 화면의 Entry Point 이면서도 Content와 Navigation Method를 들고있는 Owner 였습니다.    
+하지만 네비게이션 컴포넌트를 활용하기 위해서는 Entry Point로서의 역할만 보아야 합니다.   
+Content와 Navigation Method는 모두 NavHost 라는 Fragment에게 위임합니다.  
 그리고 이는 대부분의 화면을 Single Activity로 설계해야 함을 의미합니다.  
-<br>
 [Navigation Components in Android Jetpack (1) — Introduction](https://medium.com/@maryangmin/navigation-components-in-android-jetpack-1-introduction-e38442f70f)
 
 ### 이점
