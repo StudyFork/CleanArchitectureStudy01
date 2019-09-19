@@ -1,2 +1,2 @@
-include ':app'
+include Modules.app
 rootProject.name='GitHubSampleApp'
