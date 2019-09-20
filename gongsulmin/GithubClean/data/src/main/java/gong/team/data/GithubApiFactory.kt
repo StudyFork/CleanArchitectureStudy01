@@ -22,7 +22,11 @@ object GithubApiFactory {
 
     private fun providerOkhttpClient() =
         OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor())
+                    .addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
+                    )
                     .build()
 
 }
