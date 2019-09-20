@@ -1,7 +1,12 @@
 package gong.team.domain.repository
 
+import gong.team.domain.entity.GithubSearchResultModel
+import io.reactivex.Single
+
 interface GithubRepository {
     fun getGithubSearchResult(
-        query: String
-    )
+        query: String ,
+        page: String ,
+        per_page: String
+    ): Single<List<GithubSearchResultModel>>
 }
