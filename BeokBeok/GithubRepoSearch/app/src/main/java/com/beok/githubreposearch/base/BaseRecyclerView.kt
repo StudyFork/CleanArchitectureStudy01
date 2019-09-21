@@ -58,6 +58,15 @@ open class BaseRecyclerView {
             holder: BaseViewHolder<VDB>,
             position: Int
         ) = holder.onBind(items[position])
+
+        fun replaceItems(item: List<A>?) {
+            if (item != null) {
+                items.run {
+                    clear()
+                    addAll(item)
+                }
+            }
+        }
     }
 
 }
