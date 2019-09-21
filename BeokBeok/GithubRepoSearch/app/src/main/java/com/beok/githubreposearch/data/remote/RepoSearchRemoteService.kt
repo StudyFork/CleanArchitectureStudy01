@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface RepoSearchRemoteService {
 
-    @GET("users/{user}/repo")
+    @GET("users/{user}/repos")
     suspend fun getRepoList(
         @Path("user")
         user: String

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GithubRepoSearch</string>
+    <string name="msg_forked">forked</string>
     <string name="hint_input_user_to_search">검색할 유저를 입력해주세요.</string>
 </resources>
