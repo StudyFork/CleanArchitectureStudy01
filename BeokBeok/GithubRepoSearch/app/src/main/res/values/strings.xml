@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GithubRepoSearch</string>
-    <string name="msg_forked">forked</string>
     <string name="hint_input_user_to_search">검색할 유저를 입력해주세요.</string>
     <string name="url_star_img">https://kids-code-games.github.io/variables-war/images/star.png</string>
     <string name="url_fork_img">https://cdn0.iconfinder.com/data/icons/hippicons-technology/64/code-fork-512.png</string>
