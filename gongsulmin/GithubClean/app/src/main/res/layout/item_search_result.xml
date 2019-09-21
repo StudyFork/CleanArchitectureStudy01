@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+                name="item"
+                type="gong.team.domain.entity.GithubSearchResultModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@{item.ownerModel.profileUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_profilename"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                />
+
+        <TextView
+                android:id="@+id/txt_profilename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.ownerModel.loginName}"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/img_profile"
+                app:layout_constraintEnd_toStartOf="@+id/txt_star"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txt_htmlurl"
+                />
+
+        <TextView
+                android:id="@+id/txt_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(item.stargazersCount)}"
+                app:layout_constraintStart_toEndOf="@+id/txt_profilename"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_profilename"/>
+
+        <TextView
+                android:id="@+id/txt_htmlurl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.ownerModel.htmlUrl}"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/txt_profilename"
+                app:layout_constraintTop_toBottomOf="@+id/txt_profilename"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
