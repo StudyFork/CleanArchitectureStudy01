@@ -17,7 +17,6 @@ class LocalRepoDataSourceImpl(
     override fun insertRepo(repo: Repo): Completable =
         repoDao.insert(repoMapper.toRepoEntity(repo))
             .subscribeOn(scheduler.io())
-            .observeOn(scheduler.ui())
 
     override fun insertAllRepo(repos: List<Repo>): Completable {
         val repoEntities = repos.map(repoMapper::toRepoEntity)
@@ -25,7 +24,6 @@ class LocalRepoDataSourceImpl(
         // https://github.com/kotlin-korea/Study-Log/issues/12
         return repoDao.insert(*repoEntities.toTypedArray())
             .subscribeOn(scheduler.io())
-            .observeOn(scheduler.ui())
     }
 
     override fun getRepos(userName: String): Maybe<List<Repo>> =
