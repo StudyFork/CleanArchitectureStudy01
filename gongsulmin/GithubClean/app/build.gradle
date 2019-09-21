@@ -40,4 +40,20 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    implementation libs.recyclerview
+    implementation libs.aac_lifecycle_viewmodel
+    implementation libs.aac_lifecycle_extensions
+    implementation libs.rxandroid
+    implementation libs.rxjava
+    implementation libs.rxkotlin
+    implementation libs.koin_core
+    implementation libs.koin_android_viewmodel
+    implementation libs.koin_android
+    implementation libs.koin_test
+    implementation libs.glide
+    annotationProcessor libs.glide_kapt
+
+
 }
