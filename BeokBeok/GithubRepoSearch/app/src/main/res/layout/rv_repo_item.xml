@@ -28,7 +28,6 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/tv_repo_forked"
-            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Repo Name" />
@@ -51,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{repos.htmlUrl}"
-            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_repo_name"
             tools:text="url" />
@@ -123,7 +121,6 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
             android:contentDescription="@null"
             android:visibility="@{repos.license.name.length() == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toStartOf="@id/tv_repo_license"
@@ -134,10 +131,9 @@
             android:id="@+id/tv_repo_license"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
             android:text="@{repos.license.name}"
-            app:layout_constraintEnd_toStartOf="@id/tv_repo_updated_at"
             app:layout_constraintStart_toEndOf="@id/iv_repo_license"
             app:layout_constraintTop_toBottomOf="@id/tv_repo_url"
             tools:text="MIT License" />
@@ -147,9 +143,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{repos.updateAt}"
-            app:layout_constraintStart_toEndOf="@id/tv_repo_license"
-            app:layout_constraintTop_toBottomOf="@id/tv_repo_url"
+            android:text="@{@string/msg_updated_date(repos.updateAt)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_repo_license"
             tools:text="Updated 8 hours ago" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
