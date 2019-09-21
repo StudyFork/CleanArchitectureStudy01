@@ -2,7 +2,9 @@ package com.beok.githubreposearch.data.remote
 
 import com.beok.githubreposearch.data.RepoSearchDataSource
 import com.beok.githubreposearch.data.model.Repos
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RepoSearchRemoteDataSource private constructor(
@@ -14,13 +16,18 @@ class RepoSearchRemoteDataSource private constructor(
         onSuccess: (List<Repos>) -> Unit,
         onFail: (Throwable) -> Unit
     ) {
-        var repoList = listOf<Repos>()
-        withContext(Dispatchers.IO) {
-            repoList = retrofit.getRepoList(user)
-        }
-        withContext(Dispatchers.Main) {
-            if (repoList.isNotEmpty()) onSuccess(repoList)
-            else onFail(IllegalStateException("data is empty"))
+        CoroutineScope(Dispatchers.IO).launch {
+            val repoList: List<Repos> = try {
+                retrofit.getRepoList(user)
+            } catch (e: Exception) {
+                return@launch withContext(Dispatchers.Main) {
+                    onFail(e)
+                }
+            }
+            withContext(Dispatchers.Main) {
+                if (repoList.isEmpty()) onFail(IllegalStateException("Data is empty"))
+                else onSuccess(repoList)
+            }
         }
     }
 

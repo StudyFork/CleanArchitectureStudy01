@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -44,4 +45,14 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
 
     protected fun addDisposable(disposable: Disposable) =
         compositeDisposable.add(disposable)
+
+    protected fun showSnackBar(msg: String?) {
+        val view = this.view ?: return
+
+        Snackbar.make(
+            view,
+            msg ?: "",
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
 }

@@ -2,6 +2,7 @@ package com.beok.githubreposearch.reposearch
 
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -45,6 +46,7 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
         initBinding()
         initRecyclerView()
         setTextChangedListener()
+        setObserve()
     }
 
     private fun initBinding() {
@@ -90,6 +92,15 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
                     binding.vm?.searchUserRepo(it.toString())
                 }, {
                 })
+        )
+    }
+
+    private fun setObserve() {
+        binding.vm?.errMsg?.observe(
+            this,
+            Observer {
+                showSnackBar(it.message)
+            }
         )
     }
 }
