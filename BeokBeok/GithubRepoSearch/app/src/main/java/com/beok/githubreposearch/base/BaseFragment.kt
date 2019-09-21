@@ -18,7 +18,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
 
     protected lateinit var binding: VDB
     protected abstract val viewModel: VM
-    protected val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
