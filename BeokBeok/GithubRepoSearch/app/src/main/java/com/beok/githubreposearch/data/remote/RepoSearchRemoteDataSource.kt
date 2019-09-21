@@ -28,7 +28,7 @@ class RepoSearchRemoteDataSource private constructor(
         private var instance: RepoSearchRemoteDataSource? = null
 
         operator fun invoke(
-            retrofit: RepoSearchRemoteDataSource
+            retrofit: RepoSearchRemoteService
         ): RepoSearchRemoteDataSource = instance ?: RepoSearchRemoteDataSource(retrofit)
             .apply { instance = this }
     }
