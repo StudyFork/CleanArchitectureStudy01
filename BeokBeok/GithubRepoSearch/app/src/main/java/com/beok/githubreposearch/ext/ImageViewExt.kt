@@ -2,7 +2,7 @@ package com.beok.githubreposearch.ext
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.beok.githubreposearch.Wrapper.GlideWrapper
+import com.beok.githubreposearch.wrapper.GlideWrapper
 
 @BindingAdapter("srcWithGlide")
 fun ImageView.srcWithGlide(url: String) {

@@ -1,4 +1,4 @@
-package com.beok.githubreposearch.Wrapper
+package com.beok.githubreposearch.wrapper
 
 import android.content.Context
 import android.widget.ImageView
