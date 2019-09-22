@@ -3,7 +3,7 @@ package com.beok.githubreposearch.custom
 import android.text.Editable
 import android.text.TextWatcher
 
-open class TextWatcher : TextWatcher {
+abstract class TextWatcher : TextWatcher {
 
     override fun afterTextChanged(editable: Editable?) {
         // NO OP

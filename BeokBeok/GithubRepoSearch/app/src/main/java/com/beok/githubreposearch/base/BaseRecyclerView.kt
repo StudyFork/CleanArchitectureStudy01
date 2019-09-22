@@ -7,9 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-open class BaseRecyclerView {
+abstract class BaseRecyclerView {
 
-    open class BaseViewHolder<VDB : ViewDataBinding>(
+    abstract class BaseViewHolder<VDB : ViewDataBinding>(
         @LayoutRes
         private val layoutRes: Int,
         parent: ViewGroup,
@@ -35,7 +35,7 @@ open class BaseRecyclerView {
         }
     }
 
-    open class BaseAdapter<A : Any, VDB : ViewDataBinding>(
+    abstract class BaseAdapter<A : Any, VDB : ViewDataBinding>(
         @LayoutRes
         private val layoutRes: Int,
         private val bindingId: Int?
