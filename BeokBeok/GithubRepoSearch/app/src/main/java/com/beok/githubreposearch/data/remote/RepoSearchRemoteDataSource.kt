@@ -1,35 +1,27 @@
 package com.beok.githubreposearch.data.remote
 
 import com.beok.githubreposearch.data.RepoSearchDataSource
+import com.beok.githubreposearch.data.Result
+import com.beok.githubreposearch.data.Result.Error
+import com.beok.githubreposearch.data.Result.Success
 import com.beok.githubreposearch.data.model.Repos
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RepoSearchRemoteDataSource private constructor(
-    private val retrofit: RepoSearchRemoteService
+    private val retrofit: RepoSearchRemoteService,
+    private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO
 ) : RepoSearchDataSource {
 
-    override suspend fun getRepoList(
-        user: String,
-        onSuccess: (List<Repos>) -> Unit,
-        onFail: (Throwable) -> Unit
-    ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val repoList: List<Repos> = try {
-                retrofit.getRepoList(user)
+    override suspend fun getRepoList(user: String): Result<List<Repos>> =
+        withContext(ioDispatchers) {
+            return@withContext try {
+                Success(retrofit.getRepoList(user))
             } catch (e: Exception) {
-                return@launch withContext(Dispatchers.Main) {
-                    onFail(e)
-                }
-            }
-            withContext(Dispatchers.Main) {
-                if (repoList.isEmpty()) onFail(IllegalStateException("Data is empty"))
-                else onSuccess(repoList)
+                Error(e)
             }
         }
-    }
 
     companion object {
         private var instance: RepoSearchRemoteDataSource? = null
