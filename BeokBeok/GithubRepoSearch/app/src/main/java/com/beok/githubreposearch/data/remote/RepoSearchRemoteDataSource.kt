@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RepoSearchRemoteDataSource private constructor(
+class RepoSearchRemoteDataSource(
     private val retrofit: RepoSearchRemoteService,
     private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO
 ) : RepoSearchDataSource {
@@ -23,12 +23,4 @@ class RepoSearchRemoteDataSource private constructor(
             }
         }
 
-    companion object {
-        private var instance: RepoSearchRemoteDataSource? = null
-
-        operator fun invoke(
-            retrofit: RepoSearchRemoteService
-        ): RepoSearchRemoteDataSource = instance ?: RepoSearchRemoteDataSource(retrofit)
-            .apply { instance = this }
-    }
 }

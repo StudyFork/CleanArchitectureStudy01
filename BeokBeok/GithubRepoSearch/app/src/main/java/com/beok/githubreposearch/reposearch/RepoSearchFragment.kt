@@ -3,43 +3,24 @@ package com.beok.githubreposearch.reposearch
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.beok.githubreposearch.BR
 import com.beok.githubreposearch.R
 import com.beok.githubreposearch.base.BaseFragment
 import com.beok.githubreposearch.base.BaseRecyclerView
 import com.beok.githubreposearch.custom.TextWatcher
-import com.beok.githubreposearch.data.RepoSearchRepository
 import com.beok.githubreposearch.data.model.Repos
-import com.beok.githubreposearch.data.remote.RepoSearchRemoteDataSource
-import com.beok.githubreposearch.data.remote.RepoSearchRetrofit
 import com.beok.githubreposearch.databinding.FragmentRepoSearchBinding
 import com.beok.githubreposearch.databinding.RvRepoItemBinding
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
 class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchViewModel>(
     R.layout.fragment_repo_search
 ) {
 
-    override val viewModel by lazy {
-        ViewModelProviders.of(
-            this,
-            object : ViewModelProvider.Factory {
-
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-                    RepoSearchViewModel(
-                        RepoSearchRepository(
-                            RepoSearchRemoteDataSource(RepoSearchRetrofit.service)
-                        )
-                    ) as T
-            }
-        )[RepoSearchViewModel::class.java]
-    }
+    override val viewModel by viewModel<RepoSearchViewModel>()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

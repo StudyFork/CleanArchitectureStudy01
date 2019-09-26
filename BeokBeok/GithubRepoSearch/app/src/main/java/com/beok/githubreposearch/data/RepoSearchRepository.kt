@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RepoSearchRepository private constructor(
+class RepoSearchRepository(
     private val repoSearchRemoteDataSource: RepoSearchRemoteDataSource,
     private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO
 ) : RepoSearchDataSource {
@@ -16,12 +16,4 @@ class RepoSearchRepository private constructor(
             repoSearchRemoteDataSource.getRepoList(user)
         }
 
-    companion object {
-        private var instance: RepoSearchRepository? = null
-
-        operator fun invoke(
-            repoSearchRemoteDataSource: RepoSearchRemoteDataSource
-        ): RepoSearchRepository = instance ?: RepoSearchRepository(repoSearchRemoteDataSource)
-            .apply { instance = this }
-    }
 }
