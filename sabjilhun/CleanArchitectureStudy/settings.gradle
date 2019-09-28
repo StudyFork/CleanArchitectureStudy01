@@ -1,2 +1,2 @@
-include ':app', ':home', ':common'
+include ':app', ':features:home', ':common'
 rootProject.name='CleanArchitectureStudy'

@@ -31,7 +31,7 @@ object Modules {
 
     const val common = ":common"
 
-    const val home = ":home"
+    const val home = ":features:home"
 }
 
 object Libraries {
