@@ -1,0 +1,20 @@
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libraries.kotlinStdLib
+    implementation Libraries.appCompat
+    implementation Libraries.constraintLayout
+    implementation Libraries.materialComponents
+
+    testImplementation TestLibraries.junit4
+    androidTestImplementation TestLibraries.runner
+    androidTestImplementation TestLibraries.espresso
+
+    // AAC
+    implementation Libraries.archLifecycle
+
+    // Dagger
+    implementation Libraries.dagger
+    implementation Libraries.daggerSupport
+    kapt Libraries.daggerAndroidAnnotation
+    kapt Libraries.daggerCompiler
+}
