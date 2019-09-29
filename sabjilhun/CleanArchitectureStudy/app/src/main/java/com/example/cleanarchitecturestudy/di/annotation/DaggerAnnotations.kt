@@ -9,6 +9,10 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ActivityScope
 
+@Scope
+@Retention(AnnotationRetention.RUNTIME)
+annotation class ApplicationScope
+
 @Target(
     AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER
 )
