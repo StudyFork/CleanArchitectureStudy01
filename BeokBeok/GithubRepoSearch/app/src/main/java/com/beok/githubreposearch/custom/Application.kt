@@ -3,6 +3,7 @@ package com.beok.githubreposearch.custom
 import android.app.Application
 import com.beok.githubreposearch.di.dataSourceModule
 import com.beok.githubreposearch.di.injectRemoteServiceModule
+import com.beok.githubreposearch.di.useCaseModule
 import com.beok.githubreposearch.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -19,6 +20,7 @@ class Application : Application() {
             modules(
                 listOf(
                     viewModelModule,
+                    useCaseModule,
                     dataSourceModule,
                     injectRemoteServiceModule("https://api.github.com/")
                 )
