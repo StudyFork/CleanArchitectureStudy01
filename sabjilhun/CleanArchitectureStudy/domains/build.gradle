@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-kapt'
 
-apply from: '../../android_commons.gradle'
+apply from: '../android_commons.gradle'
 
-apply from: '../../android_libs_commons.gradle'
+apply from: '../android_libs_commons.gradle'
 
 android {
     dataBinding {
@@ -14,5 +14,4 @@ android {
 
 dependencies {
     implementation project(Modules.common)
-    implementation project(Modules.domains)
 }

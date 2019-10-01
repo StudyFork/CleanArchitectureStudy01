@@ -32,6 +32,8 @@ object Modules {
     const val common = ":common"
 
     const val home = ":features:home"
+
+    const val domains = ":domains"
 }
 
 object Libraries {
