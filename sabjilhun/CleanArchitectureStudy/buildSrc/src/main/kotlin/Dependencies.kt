@@ -34,6 +34,8 @@ object Modules {
     const val home = ":features:home"
 
     const val domains = ":domains"
+
+    const val data = ":data"
 }
 
 object Libraries {
@@ -42,6 +44,7 @@ object Libraries {
         const val constraintLayout = "2.0.0-alpha3"
         const val material = "1.0.0"
         const val retrofit = "2.6.1"
+        const val okhttp = "3.8.1"
         const val ktx = "1.1.0-alpha04"
         const val archLifecycle = "2.2.0-alpha04"
         const val rxJava = "2.2.9"
@@ -58,6 +61,9 @@ object Libraries {
     // For Networking
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitRxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    const val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
 
     // For KTX
     const val ktxCore = "androidx.core:core-ktx:${Versions.ktx}"

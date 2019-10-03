@@ -18,5 +18,20 @@ android {
 
 dependencies {
     implementation project(Modules.common)
+
+    implementation project(Modules.data)
+    implementation project(Modules.domains)
+
+    // features
     implementation project(Modules.home)
+
+
+    implementation Libraries.rxJava
+    implementation Libraries.rxAndroid
+
+    implementation Libraries.retrofit
+    implementation Libraries.gson
+    implementation Libraries.retrofitRxJavaAdapter
+    implementation Libraries.okhttp
+    implementation Libraries.okhttpInterceptor
 }

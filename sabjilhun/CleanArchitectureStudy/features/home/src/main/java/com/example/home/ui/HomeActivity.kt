@@ -12,5 +12,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getViewModel(HomeViewModel::class)
+
+        binding.tv.setOnClickListener {
+            viewModel.test()
+        }
     }
 }
