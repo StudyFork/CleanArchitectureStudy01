@@ -14,4 +14,10 @@ android {
 
 dependencies {
     implementation project(Modules.domains)
+
+    implementation Libraries.retrofit
+    implementation Libraries.gson
+    implementation Libraries.retrofitRxJavaAdapter
+    implementation Libraries.okhttp
+    implementation Libraries.okhttpInterceptor
 }

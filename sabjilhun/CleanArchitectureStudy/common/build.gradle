@@ -13,7 +13,4 @@ android {
 }
 
 dependencies {
-    // RxJava, RxAndroid
-    implementation Libraries.rxJava
-    implementation Libraries.rxAndroid
 }

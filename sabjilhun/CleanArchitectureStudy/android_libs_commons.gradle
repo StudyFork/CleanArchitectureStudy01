@@ -17,4 +17,8 @@ dependencies {
     implementation Libraries.daggerSupport
     kapt Libraries.daggerAndroidAnnotation
     kapt Libraries.daggerCompiler
+
+    // RxJava
+    implementation Libraries.rxJava
+    implementation Libraries.rxAndroid
 }

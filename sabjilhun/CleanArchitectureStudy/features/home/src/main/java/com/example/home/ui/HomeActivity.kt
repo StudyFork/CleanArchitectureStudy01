@@ -14,7 +14,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         viewModel = getViewModel(HomeViewModel::class)
 
         binding.tv.setOnClickListener {
-            viewModel.test()
+            viewModel.searchRepositories("PaymentCalculate")
         }
     }
 }

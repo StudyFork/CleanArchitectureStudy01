@@ -1,14 +1,17 @@
 package com.example.data
 
-import android.util.Log
 import com.example.data.remote.GithubApi
+import com.example.data.remote.SearchRepositoriesResponses
+import com.example.domains.entities.RepositorySummaryInfo
 import com.example.domains.repositories.GithubRepository
+import io.reactivex.Single
 
 class GithubRepositoryImpl constructor(
     private val githubApi: GithubApi
 ) : GithubRepository {
 
-    override fun getRepositories(query: String) {
-        Log.i("테스트", "$query 레포지토리 검색")
+    override fun getRepositories(query: String): Single<List<RepositorySummaryInfo>> {
+        return githubApi.getRepositories(query)
+            .map(SearchRepositoriesResponses.Companion::toRepositorySummaryInfoList)
     }
 }
