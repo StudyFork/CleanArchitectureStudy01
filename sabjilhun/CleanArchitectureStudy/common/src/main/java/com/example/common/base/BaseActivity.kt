@@ -27,14 +27,7 @@ abstract class BaseActivity<B : ViewDataBinding>(
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
 
-        baseLayout = DataBindingUtil.inflate(
-            layoutInflater,
-            R.layout.base_layout,
-            binding.root as ViewGroup,
-            false
-        )
-
-        (binding.root as ViewGroup).addView(baseLayout.root)
+        baseViewSetUp()
     }
 
 
@@ -50,6 +43,17 @@ abstract class BaseActivity<B : ViewDataBinding>(
             string,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun baseViewSetUp() {
+        // Progress Bar
+        baseLayout = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.base_layout,
+            binding.root as ViewGroup,
+            false
+        )
+        (binding.root as ViewGroup).addView(baseLayout.root)
     }
 
     private fun observingBaseViewModel(baseViewModel: BaseViewModel) {
