@@ -21,7 +21,4 @@ abstract class InjectActivity : AppCompatActivity() {
         subComponent.inject(this)
         super.onCreate(savedInstanceState)
     }
-
-    protected fun <VM : ViewModel> getViewModel(clazz: KClass<VM>) =
-        ViewModelProvider(viewModelStore, viewModelFactory).get(clazz.java)
 }

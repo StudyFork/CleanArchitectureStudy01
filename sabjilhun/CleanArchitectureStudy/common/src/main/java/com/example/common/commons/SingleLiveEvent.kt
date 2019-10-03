@@ -5,16 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
+
 class SingleLiveEvent<T> : MutableLiveData<T> {
 
     constructor() : super()
 
     constructor(value: T) : super(value)
 
-    private val pendingValue = AtomicBoolean(true)
+    private val pendingValue = AtomicBoolean(false)
 
     override fun setValue(value: T) {
-        pendingValue.set(false)
+        pendingValue.set(true)
         super.setValue(value)
     }
 

@@ -21,7 +21,7 @@ class SearchViewModel @Inject constructor(
             .compose(apiLoadingTransformer())
             .subscribeBy(
                 onSuccess = _repositories::setValue,
-                onError = {}
+                onError = ::handleErrorMessage
             ).addTo(disposables)
     }
 }
