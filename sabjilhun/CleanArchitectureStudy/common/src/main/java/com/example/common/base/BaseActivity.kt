@@ -13,7 +13,6 @@ import com.example.common.databinding.BaseLayoutBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlin.reflect.KClass
 
-
 abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ) : InjectActivity() {
@@ -45,17 +44,23 @@ abstract class BaseActivity<B : ViewDataBinding>(
         return viewModel
     }
 
+    protected fun showSnackBar(string: String) {
+        Snackbar.make(
+            binding.root,
+            string,
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
+
     private fun observingBaseViewModel(baseViewModel: BaseViewModel) {
         baseViewModel.loading.observe(this, Observer {
             baseLayout.pb.visibility = if (it) View.VISIBLE else View.GONE
         })
-        baseViewModel.showErrorMessage.observe(this, Observer {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.network_fail_message),
-                Snackbar.LENGTH_SHORT
-            ).show()
+
+        baseViewModel.showApiErrorMessage.observe(this, Observer {
+            showSnackBar(getString(R.string.network_fail_message))
         })
     }
 }
+
 

@@ -17,16 +17,16 @@ abstract class BaseViewModel : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _showErrorMessage = SingleLiveEvent<Unit>()
-    val showErrorMessage: LiveData<Unit> = _showErrorMessage
+    private val _showApiErrorMessage = SingleLiveEvent<Unit>()
+    val showApiErrorMessage: LiveData<Unit> = _showApiErrorMessage
 
     override fun onCleared() {
         disposables.clear()
     }
 
-    protected fun handleErrorMessage(throwable: Throwable) {
+    protected fun handleApiErrorMessage(throwable: Throwable) {
         throwable.printStackTrace()
-        _showErrorMessage.setValue(Unit)
+        _showApiErrorMessage.setValue(Unit)
     }
 
     fun <T> apiLoadingTransformer(): SingleTransformer<T, T> {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
@@ -9,20 +10,93 @@
 			type="com.example.search.ui.SearchViewModel" />
 	</data>
 	
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:focusable="true"
+		android:focusableInTouchMode="true">
 		
-		<TextView
-			android:id="@+id/tv"
-			android:layout_width="wrap_content"
+		<com.google.android.material.appbar.AppBarLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/hello_world"
-			android:textSize="24sp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			android:fitsSystemWindows="true">
+			
+			<com.google.android.material.appbar.CollapsingToolbarLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/backgroundWhite"
+				android:fitsSystemWindows="true"
+				app:contentScrim="@color/colorWhite"
+				app:layout_scrollFlags="scroll|enterAlways">
+				
+				<LinearLayout
+					android:id="@+id/ll_search"
+					android:layout_width="match_parent"
+					android:layout_height="48dp"
+					android:layout_margin="4dp"
+					android:background="@color/backgroundWhite"
+					android:orientation="horizontal"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent">
+					
+					<EditText
+						android:id="@+id/et_search_keyword"
+						android:layout_width="0dp"
+						android:layout_height="match_parent"
+						android:layout_weight="0.8"
+						android:background="@color/transparent"
+						android:hint="@string/hint_search_keyword"
+						android:inputType="text"
+						android:paddingStart="16dp"
+						android:paddingEnd="16dp"
+						android:text="@={vm.query}"
+						android:textColor="@color/textBlack"
+						android:textColorHint="@color/textLight"
+						android:textSize="14sp"
+						android:importantForAutofill="no" />
+					
+					<ImageView
+						android:id="@+id/iv_search"
+						android:layout_width="0dp"
+						android:layout_height="match_parent"
+						android:layout_weight="0.2"
+						android:clickable="true"
+						android:focusable="true"
+						android:foreground="?android:attr/selectableItemBackgroundBorderless"
+						android:gravity="center"
+						android:onClick="@{() -> vm.searchRepositories()}"
+						android:padding="8dp"
+						android:src="@drawable/ic_search_black_24dp"
+						android:text="@string/hint_search_keyword"
+						android:textSize="14sp"
+						android:tint="@color/textBlack"
+						tools:ignore="ContentDescription" />
+				</LinearLayout>
+			
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
+		</com.google.android.material.appbar.AppBarLayout>
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/backgroundWhite"
+			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rv_searched_image"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="8dp"
+				android:background="@color/backgroundWhite"
+				app:items="@{vm.repositories}"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="parent" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
 	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

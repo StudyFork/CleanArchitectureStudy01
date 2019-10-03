@@ -16,9 +16,9 @@ data class SearchRepositoriesResponses(
         @SerializedName("id")
         val id: Int,
         @SerializedName("node_id")
-        val nodeId: String,
+        val nodeId: String?,
         @SerializedName("name")
-        val name: String,
+        val name: String?,
         @SerializedName("full_name")
         val fullName: String,
         @SerializedName("private")
@@ -26,13 +26,13 @@ data class SearchRepositoriesResponses(
         @SerializedName("owner")
         val owner: Owner,
         @SerializedName("html_url")
-        val htmlUrl: String,
+        val htmlUrl: String?,
         @SerializedName("description")
         val description: String?,
         @SerializedName("fork")
-        val fork: Boolean,
+        val fork: Boolean?,
         @SerializedName("url")
-        val url: String,
+        val url: String?,
         @SerializedName("forks_url")
         val forksUrl: String?,
         @SerializedName("keys_url")
@@ -128,7 +128,7 @@ data class SearchRepositoriesResponses(
         @SerializedName("watchers_count")
         val watchersCount: Int?,
         @SerializedName("language")
-        val language: String,
+        val language: String?,
         @SerializedName("has_issues")
         val hasIssues: Boolean?,
         @SerializedName("has_projects")
@@ -164,19 +164,19 @@ data class SearchRepositoriesResponses(
     ) {
         data class Owner(
             @SerializedName("login")
-            val login: String,
+            val login: String?,
             @SerializedName("id")
             val id: Int,
             @SerializedName("node_id")
-            val nodeId: String,
+            val nodeId: String?,
             @SerializedName("avatar_url")
-            val avatarUrl: String,
+            val avatarUrl: String?,
             @SerializedName("gravatar_id")
             val gravatarId: String,
             @SerializedName("url")
-            val url: String,
+            val url: String?,
             @SerializedName("html_url")
-            val htmlUrl: String,
+            val htmlUrl: String?,
             @SerializedName("followers_url")
             val followersUrl: String?,
             @SerializedName("following_url")
@@ -190,7 +190,7 @@ data class SearchRepositoriesResponses(
             @SerializedName("organizations_url")
             val organizationsUrl: String?,
             @SerializedName("repos_url")
-            val reposUrl: String,
+            val reposUrl: String?,
             @SerializedName("events_url")
             val eventsUrl: String?,
             @SerializedName("received_events_url")
@@ -222,13 +222,13 @@ data class SearchRepositoriesResponses(
             return searchRepositoriesResponses.items
                 .map { item ->
                     RepositorySummaryInfo(
-                        item.owner.login,
-                        item.owner.avatarUrl,
-                        item.owner.htmlUrl,
-                        item.name,
-                        item.htmlUrl,
+                        item.owner.login ?: "",
+                        item.owner.avatarUrl ?: "",
+                        item.owner.htmlUrl ?: "",
+                        item.name ?: "",
+                        item.htmlUrl ?: "",
                         item.description ?: "",
-                        item.language,
+                        item.language ?: "",
                         item.stargazersCount,
                         item.forksCount,
                         item.license?.name ?: ""
