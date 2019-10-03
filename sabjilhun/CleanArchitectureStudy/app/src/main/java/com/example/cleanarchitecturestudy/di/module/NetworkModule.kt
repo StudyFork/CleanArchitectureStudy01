@@ -14,27 +14,26 @@ class NetworkModule {
     @Provides
     @ApplicationScope
     @Named("HeaderAdded")
-    internal fun provideOkHttpClient(
+    fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         @Named("AcceptHeaderAddingInterceptor") githubAcceptHeaderAddingInterceptor: Interceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(githubAcceptHeaderAddingInterceptor)
-            .build()
-    }
+    ): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(githubAcceptHeaderAddingInterceptor)
+        .build()
 
     @Provides
     @ApplicationScope
-    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
 
     @Provides
     @ApplicationScope
     @Named("AcceptHeaderAddingInterceptor")
-    internal fun provideGithubAcceptHeaderAddingInterceptor(): Interceptor {
-        return Interceptor { chain ->
+    fun provideGithubAcceptHeaderAddingInterceptor(): Interceptor =
+        Interceptor { chain ->
             chain.proceed(
                 chain.request()
                     .newBuilder()
@@ -42,7 +41,6 @@ class NetworkModule {
                     .build()
             )
         }
-    }
 
     companion object {
         const val GITHUB_ACCEPT_HEADER = "application/vnd.github.v3+json"

@@ -23,7 +23,7 @@ dependencies {
     implementation project(Modules.domains)
 
     // features
-    implementation project(Modules.home)
+    implementation project(Modules.search)
 
 
     implementation Libraries.rxJava

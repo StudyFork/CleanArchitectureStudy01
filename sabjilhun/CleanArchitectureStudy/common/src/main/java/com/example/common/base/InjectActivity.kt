@@ -14,7 +14,7 @@ abstract class InjectActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var subComponent: AppSubComponent
+    private lateinit var subComponent: AppSubComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         subComponent = (applicationContext as SubComponentProvider).getSubComponent()

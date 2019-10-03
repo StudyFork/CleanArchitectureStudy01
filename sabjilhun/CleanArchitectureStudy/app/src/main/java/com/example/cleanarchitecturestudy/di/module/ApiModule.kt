@@ -21,27 +21,21 @@ class ApiModule {
         @Named("HeaderAdded") okHttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory,
         converterFactory: Converter.Factory
-    ): GithubApi {
-        return Retrofit.Builder()
-            .baseUrl(GITHUB_API_END_POINT)
-            .client(okHttpClient)
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(converterFactory)
-            .build()
-            .create(GithubApi::class.java)
-    }
+    ): GithubApi = Retrofit.Builder()
+        .baseUrl(GITHUB_API_END_POINT)
+        .client(okHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(converterFactory)
+        .build()
+        .create(GithubApi::class.java)
 
     @Provides
     @ApplicationScope
-    fun provideCallAdapterFactory(): CallAdapter.Factory {
-        return RxJava2CallAdapterFactory.create()
-    }
+    fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
 
     @Provides
     @ApplicationScope
-    fun provideConverterFactory(): Converter.Factory {
-        return GsonConverterFactory.create()
-    }
+    fun provideConverterFactory(): Converter.Factory = GsonConverterFactory.create()
 
     companion object {
         private const val GITHUB_API_END_POINT = "https://api.github.com/"

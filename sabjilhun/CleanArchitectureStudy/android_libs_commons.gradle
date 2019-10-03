@@ -18,7 +18,8 @@ dependencies {
     kapt Libraries.daggerAndroidAnnotation
     kapt Libraries.daggerCompiler
 
-    // RxJava
+    // Reactive
     implementation Libraries.rxJava
     implementation Libraries.rxAndroid
+    implementation Libraries.rxKotlin
 }

@@ -12,7 +12,6 @@ class ApplicationModule {
 
     @ApplicationScope
     @Provides
-    fun provideGithubRepository(githubApi: GithubApi): GithubRepository {
-        return GithubRepositoryImpl(githubApi)
-    }
+    fun provideGithubRepository(githubApi: GithubApi): GithubRepository =
+        GithubRepositoryImpl(githubApi)
 }

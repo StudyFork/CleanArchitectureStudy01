@@ -28,14 +28,12 @@ object Version {
 
 object Modules {
     const val app = ":app"
-
     const val common = ":common"
-
-    const val home = ":features:home"
-
     const val domains = ":domains"
-
     const val data = ":data"
+
+    // Features
+    const val search = ":features:search"
 }
 
 object Libraries {
@@ -43,13 +41,14 @@ object Libraries {
         const val jetpack = "1.1.0-alpha02"
         const val constraintLayout = "2.0.0-alpha3"
         const val material = "1.0.0"
-        const val retrofit = "2.6.1"
-        const val okhttp = "3.8.1"
+        const val retrofit = "2.6.2"
+        const val okhttp = "4.2.0"
         const val ktx = "1.1.0-alpha04"
         const val archLifecycle = "2.2.0-alpha04"
         const val rxJava = "2.2.9"
         const val rxAndroid = "2.1.1"
-        const val dagger = "2.23.2"
+        const val rxKotlin = "2.4.0"
+        const val dagger = "2.24"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -71,9 +70,10 @@ object Libraries {
     // For AAC
     const val archLifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.archLifecycle}"
 
-    // For RxJava
+    // For Reactive
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
 
     // For Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
