@@ -1,27 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
+		
+		<import type="com.example.common.utils.TextUtils" />
+		
+		<import type="android.view.View" />
 		
 		<variable
 			name="item"
 			type="com.example.domains.entities.RepositorySummaryInfo" />
 	</data>
 	
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<androidx.cardview.widget.CardView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="140dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="4dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginBottom="4dp"
+		app:cardCornerRadius="4dp"
+		app:cardElevation="4dp">
 		
-		<TextView
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@{item.repositoryName}"
-			android:textSize="24sp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+			android:layout_height="match_parent">
+			
+			<TextView
+				android:id="@+id/tv_repo_name"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginBottom="4dp"
+				android:text="@{@string/repo_summary_item_title(item.ownerName,item.repositoryName)}"
+				android:textColor="@color/textDark"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				app:layout_constraintBottom_toTopOf="@id/tv_repo_dec"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="sabgilhun/TestRepo" />
+			
+			<TextView
+				android:id="@+id/tv_repo_dec"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="4dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginBottom="4dp"
+				android:ellipsize="end"
+				android:maxLines="2"
+				android:text="@{item.repoDescription}"
+				android:textColor="@color/textLight"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/tv_repo_name"
+				tools:text="테스트코드를 위한 레포이지만 아닐지도 모르겠지만 맞을 수도 있고 잘모르겠어 어쩌면 맞을 수도 있고 아닐수도있어" />
+			
+			<TextView
+				android:id="@+id/tv_language"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginEnd="4dp"
+				android:text="@{item.repoMainLanguage}"
+				android:textColor="@color/textLight"
+				android:textSize="12sp"
+				android:visibility="@{TextUtils.isEmpty(item.repoMainLanguage) ? View.GONE : View.VISIBLE}"
+				app:layout_constraintBottom_toBottomOf="@id/tv_star"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="@id/tv_star"
+				tools:text="java" />
+			
+			<TextView
+				android:id="@+id/tv_star"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="4dp"
+				android:layout_marginBottom="16dp"
+				android:drawableStart="@drawable/ic_star_black_24dp"
+				android:gravity="center"
+				android:text="@{String.valueOf(item.stars)}"
+				android:textColor="@color/textLight"
+				android:textSize="12sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@id/tv_language"
+				tools:text="100" />
+			
+			<TextView
+				android:id="@+id/tv_fork"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginEnd="4dp"
+				android:drawableStart="@drawable/ic_fork_black_24"
+				android:gravity="center"
+				android:text="@{String.valueOf(item.forks)}"
+				android:textColor="@color/textLight"
+				android:textSize="12sp"
+				app:layout_constraintBottom_toBottomOf="@id/tv_star"
+				app:layout_constraintStart_toEndOf="@id/tv_star"
+				app:layout_constraintTop_toTopOf="@id/tv_star"
+				tools:text="100" />
+			
+			<TextView
+				android:id="@+id/tv_license"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginEnd="4dp"
+				android:gravity="center"
+				android:text="@{item.license}"
+				android:textColor="@color/textLight"
+				android:textSize="12sp"
+				app:layout_constraintBottom_toBottomOf="@id/tv_star"
+				app:layout_constraintStart_toEndOf="@id/tv_fork"
+				app:layout_constraintTop_toTopOf="@id/tv_star"
+				tools:text="Apache-2.0 license" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.cardview.widget.CardView>
 </layout>

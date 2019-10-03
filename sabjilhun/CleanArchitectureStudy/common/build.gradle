@@ -13,4 +13,7 @@ android {
 }
 
 dependencies {
+    // Glide
+    implementation Libraries.glide
+    kapt Libraries.glideCompiler
 }

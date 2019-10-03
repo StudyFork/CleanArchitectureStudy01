@@ -223,10 +223,7 @@ data class SearchRepositoriesResponses(
                 .map { item ->
                     RepositorySummaryInfo(
                         item.owner.login ?: "",
-                        item.owner.avatarUrl ?: "",
-                        item.owner.htmlUrl ?: "",
                         item.name ?: "",
-                        item.htmlUrl ?: "",
                         item.description ?: "",
                         item.language ?: "",
                         item.stargazersCount,

@@ -49,6 +49,7 @@ object Libraries {
         const val rxAndroid = "2.1.1"
         const val rxKotlin = "2.4.0"
         const val dagger = "2.24"
+        const val glide = "4.10.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -81,6 +82,9 @@ object Libraries {
     const val daggerAndroidAnnotation =
         "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 }
 
 object TestLibraries {
