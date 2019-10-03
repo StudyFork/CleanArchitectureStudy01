@@ -1,6 +1,7 @@
 package com.example.search.ui
 
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import com.example.common.base.BaseActivity
 import com.example.search.R
@@ -22,6 +23,13 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
 
     private fun setUpView() {
         binding.rvSearchedImage.adapter = RepositorySummaryInfoAdapter()
+        binding.etSearchKeyword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.searchRepositories()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
     }
 
     private fun observeViewModel() {

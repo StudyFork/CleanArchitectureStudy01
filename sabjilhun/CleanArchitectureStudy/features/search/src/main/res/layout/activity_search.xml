@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
 		
@@ -24,7 +24,7 @@
 			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="@color/backgroundWhite"
+				android:background="@color/backgroundPrimary"
 				android:fitsSystemWindows="true"
 				app:contentScrim="@color/colorWhite"
 				app:layout_scrollFlags="scroll|enterAlways">
@@ -34,7 +34,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="48dp"
 					android:layout_margin="4dp"
-					android:background="@color/backgroundWhite"
+					android:background="@color/backgroundPrimary"
 					android:orientation="horizontal"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
@@ -45,32 +45,34 @@
 						android:layout_width="0dp"
 						android:layout_height="match_parent"
 						android:layout_weight="0.8"
-						android:background="@color/transparent"
+						android:layout_margin="4dp"
+						android:background="@drawable/shape_round_bg_secondary_rad8"
 						android:hint="@string/hint_search_keyword"
+						android:importantForAutofill="no"
 						android:inputType="text"
 						android:paddingStart="16dp"
 						android:paddingEnd="16dp"
 						android:text="@={vm.query}"
-						android:textColor="@color/textBlack"
+						android:textColor="@color/textWhite"
 						android:textColorHint="@color/textTertiary"
-						android:textSize="14sp"
-						android:importantForAutofill="no" />
+						android:textSize="14sp" />
 					
 					<ImageView
 						android:id="@+id/iv_search"
 						android:layout_width="0dp"
 						android:layout_height="match_parent"
-						android:layout_weight="0.2"
+						android:layout_weight="0.15"
+						android:background="@color/backgroundPrimary"
 						android:clickable="true"
 						android:focusable="true"
 						android:foreground="?android:attr/selectableItemBackgroundBorderless"
 						android:gravity="center"
 						android:onClick="@{() -> vm.searchRepositories()}"
-						android:padding="8dp"
+						android:padding="10dp"
 						android:src="@drawable/ic_search_black_24dp"
 						android:text="@string/hint_search_keyword"
 						android:textSize="14sp"
-						android:tint="@color/textBlack"
+						android:tint="@color/textWhite"
 						tools:ignore="ContentDescription" />
 				</LinearLayout>
 			
