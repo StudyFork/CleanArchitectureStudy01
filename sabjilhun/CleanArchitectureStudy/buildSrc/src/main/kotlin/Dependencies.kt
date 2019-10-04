@@ -34,6 +34,7 @@ object Modules {
 
     // Features
     const val search = ":features:search"
+    const val filetree = ":features:filetree"
 }
 
 object Libraries {

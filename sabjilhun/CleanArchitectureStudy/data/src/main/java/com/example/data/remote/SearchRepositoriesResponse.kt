@@ -4,7 +4,7 @@ package com.example.data.remote
 import com.example.domains.entities.RepositorySummaryInfo
 import com.google.gson.annotations.SerializedName
 
-data class SearchRepositoriesResponses(
+data class SearchRepositoriesResponse(
     @SerializedName("total_count")
     val totalCount: Int,
     @SerializedName("incomplete_results")
@@ -217,9 +217,9 @@ data class SearchRepositoriesResponses(
 
     companion object {
         fun toRepositorySummaryInfoList(
-            searchRepositoriesResponses: SearchRepositoriesResponses
+            searchRepositoriesResponse: SearchRepositoriesResponse
         ): List<RepositorySummaryInfo> {
-            return searchRepositoriesResponses.items
+            return searchRepositoriesResponse.items
                 .map { item ->
                     RepositorySummaryInfo(
                         item.owner.login ?: "",

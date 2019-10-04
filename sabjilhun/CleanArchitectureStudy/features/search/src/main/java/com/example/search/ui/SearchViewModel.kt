@@ -29,7 +29,7 @@ class SearchViewModel @Inject constructor(
             return
         }
 
-        searchRepositoriesUseCase.getRepositories(query.value!!)
+        searchRepositoriesUseCase(query.value!!)
             .compose(apiLoadingTransformer())
             .subscribeBy(
                 onSuccess = _repositories::setValue,

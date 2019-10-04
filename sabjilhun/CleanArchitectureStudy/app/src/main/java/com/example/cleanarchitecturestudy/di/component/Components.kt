@@ -8,6 +8,8 @@ import com.example.cleanarchitecturestudy.di.module.ApplicationModule
 import com.example.cleanarchitecturestudy.di.module.NetworkModule
 import com.example.cleanarchitecturestudy.di.module.ViewModelModule
 import com.example.common.di.AppSubComponent
+import com.example.domains.usecases.GetRepositoryContentsInPathUseCase
+import com.example.domains.usecases.GetRepositoryContentsInRootUseCase
 import com.example.domains.usecases.SearchRepositoriesUseCase
 import dagger.BindsInstance
 import dagger.Component
@@ -23,7 +25,11 @@ import dagger.Component
 )
 interface ApplicationComponent {
 
-    fun getSearchRepositoriesUseCase(): SearchRepositoriesUseCase
+    fun searchRepositoriesUseCase(): SearchRepositoriesUseCase
+
+    fun getRepositoryContentsInPathUseCase(): GetRepositoryContentsInPathUseCase
+
+    fun getRepositoryContentsInRootUseCase(): GetRepositoryContentsInRootUseCase
 
     @Component.Factory
     interface Factory {
