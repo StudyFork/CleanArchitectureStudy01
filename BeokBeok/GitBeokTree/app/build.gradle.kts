@@ -16,13 +16,6 @@ android {
         }
     }
 
-    Release.run {
-        defaultConfig {
-            versionCode = VERSION_CODE
-            versionName = VERSION_NAME
-        }
-    }
-
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
