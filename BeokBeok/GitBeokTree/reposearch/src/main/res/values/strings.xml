@@ -1,4 +1,4 @@
 <resources>
 
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="hint_input_user_to_search">레파지토리를 검색할 유저명을 입력해주세요.</string>
 </resources>
