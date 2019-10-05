@@ -1,2 +1,2 @@
-include(":app", ":reposearch")
+include(":app", ":reposearch", ":navigation")
 rootProject.name = "GitBeokTree"

@@ -51,3 +51,10 @@ object LifeCycleDependencies {
     const val EXT = "androidx.lifecycle:lifecycle-extensions:$VERSION"
     const val VM_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
 }
+
+object NavigationDependencies {
+    private const val VERSION = "2.1.0"
+
+    const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
+    const val UI = "androidx.navigation:navigation-ui-ktx:$VERSION"
+}
