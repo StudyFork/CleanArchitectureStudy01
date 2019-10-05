@@ -67,4 +67,8 @@ dependencies {
     Rx.run {
         implementation(KOTLIN)
     }
+
+    Glide.run {
+        implementation(GLIDE)
+    }
 }

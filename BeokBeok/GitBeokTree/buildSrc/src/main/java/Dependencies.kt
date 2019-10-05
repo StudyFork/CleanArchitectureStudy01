@@ -88,3 +88,9 @@ object Rx {
     const val ANDROID = "io.reactivex.rxjava2:rxandroid:$ANDROID_VERSION"
     const val KOTLIN = "io.reactivex.rxjava2:rxkotlin:$KOTLIN_VERSION"
 }
+
+object Glide {
+    private const val VERSION = "4.9.0"
+
+    const val GLIDE = "com.github.bumptech.glide:glide:$VERSION"
+}
