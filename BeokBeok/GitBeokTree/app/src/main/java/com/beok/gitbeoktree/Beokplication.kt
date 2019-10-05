@@ -5,10 +5,10 @@ import com.beok.common.di.getRetrofitBasicModule
 import com.beok.reposearch.di.dataSourceModule
 import com.beok.reposearch.di.retrofitModule
 import com.beok.reposearch.di.useCaseModule
+import com.beok.reposearch.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 
 @Suppress("unused")
 class Beokplication : Application() {
@@ -18,14 +18,15 @@ class Beokplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@Beokplication)
-            module {
+            modules(
                 listOf(
+                    viewModelModule,
                     useCaseModule,
                     dataSourceModule,
                     retrofitModule,
                     getRetrofitBasicModule("https://api.github.com/")
                 )
-            }
+            )
         }
     }
 }
