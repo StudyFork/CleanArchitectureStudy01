@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    AppDependencies.run {
+    App.run {
         compileSdkVersion(COMPILE_SDK)
         buildToolsVersion(BUILD_TOOLS)
 
         defaultConfig {
             minSdkVersion(MIN_SDK)
             targetSdkVersion(TARGET_SDK)
-            testInstrumentationRunner = TestDependencies.RUNNER
+            testInstrumentationRunner = Test.RUNNER
         }
     }
 
@@ -32,23 +32,23 @@ android {
 }
 
 dependencies {
-    AppDependencies.run {
+    App.run {
         implementation(fileTree(LIB_PATH))
         implementation(KOTLIN_STDLIB_JDK)
     }
 
-    TestDependencies.run {
+    Test.run {
         implementation(JUNIT)
         implementation(ESPRESSO)
         implementation(KOTLIN_TEST_JUNIT)
     }
 
-    UiDependencies.run {
+    Ui.run {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
     }
 
-    LifeCycleDependencies.run {
+    LifeCycle.run {
         implementation(EXT)
         implementation(VM_KTX)
     }

@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        BuildScriptDependencies.run {
+        BuildScript.run {
             classpath(GRADLE)
             classpath(KOTLIN_GRADLE_PLUGIN)
         }

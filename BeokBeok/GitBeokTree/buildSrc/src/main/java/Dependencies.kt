@@ -1,4 +1,4 @@
-object BuildScriptDependencies {
+object BuildScript {
     private const val GRADLE_VERSION = "3.5.1"
     const val KOTLIN_VERSION = "1.3.50"
 
@@ -6,7 +6,7 @@ object BuildScriptDependencies {
     const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
 }
 
-object AppDependencies {
+object App {
     const val COMPILE_SDK = 29
     const val BUILD_TOOLS = "29.0.2"
     const val MIN_SDK = 23
@@ -14,7 +14,7 @@ object AppDependencies {
     const val APP_ID = "com.beok.gitbeoktree"
 
     const val KOTLIN_STDLIB_JDK =
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildScriptDependencies.KOTLIN_VERSION}"
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildScript.KOTLIN_VERSION}"
     val LIB_PATH = mapOf(
         "dir" to "libs",
         "include" to listOf("*.jar")
@@ -26,7 +26,7 @@ object Release {
     const val VERSION_NAME = "1.0"
 }
 
-object TestDependencies {
+object Test {
     private const val JUNIT_VERSION = "1.1.1"
     private const val ESPRESSO_VERSION = "3.2.0"
 
@@ -34,10 +34,10 @@ object TestDependencies {
     const val JUNIT = "androidx.test.ext:junit:$JUNIT_VERSION"
     const val ESPRESSO = "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
     const val KOTLIN_TEST_JUNIT =
-        "org.jetbrains.kotlin:kotlin-test-junit:${BuildScriptDependencies.KOTLIN_VERSION}"
+        "org.jetbrains.kotlin:kotlin-test-junit:${BuildScript.KOTLIN_VERSION}"
 }
 
-object UiDependencies {
+object Ui {
     private const val MATERIAL_VERSION = "1.0.0"
     private const val CONSTRAINT_VERSION = "1.1.3"
 
@@ -45,21 +45,21 @@ object UiDependencies {
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:$CONSTRAINT_VERSION"
 }
 
-object LifeCycleDependencies {
+object LifeCycle {
     private const val VERSION = "2.1.0"
 
     const val EXT = "androidx.lifecycle:lifecycle-extensions:$VERSION"
     const val VM_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
 }
 
-object NavigationDependencies {
+object Navigation {
     private const val VERSION = "2.1.0"
 
     const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
     const val UI = "androidx.navigation:navigation-ui-ktx:$VERSION"
 }
 
-object RetrofitDependencies {
+object Retrofit {
     private const val VERSION = "2.6.1"
     private const val LOGGING_VERSION = "3.14.2"
 

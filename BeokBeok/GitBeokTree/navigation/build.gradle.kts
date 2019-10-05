@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    AppDependencies.run {
+    App.run {
         compileSdkVersion(COMPILE_SDK)
         buildToolsVersion(BUILD_TOOLS)
 
@@ -27,7 +27,7 @@ android {
 }
 
 dependencies {
-    NavigationDependencies.run {
+    Navigation.run {
         implementation(FRAGMENT)
         implementation(UI)
     }
