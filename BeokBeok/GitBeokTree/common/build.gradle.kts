@@ -63,4 +63,8 @@ dependencies {
         implementation(KOIN)
         implementation(VIEWMODEL)
     }
+
+    Rx.run {
+        implementation(KOTLIN)
+    }
 }

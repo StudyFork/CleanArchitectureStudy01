@@ -80,3 +80,11 @@ object Coroutine {
 
     const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
 }
+
+object Rx {
+    private const val ANDROID_VERSION = "2.1.1"
+    private const val KOTLIN_VERSION = "2.4.0"
+
+    const val ANDROID = "io.reactivex.rxjava2:rxandroid:$ANDROID_VERSION"
+    const val KOTLIN = "io.reactivex.rxjava2:rxkotlin:$KOTLIN_VERSION"
+}

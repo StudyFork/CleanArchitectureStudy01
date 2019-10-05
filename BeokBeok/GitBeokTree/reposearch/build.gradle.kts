@@ -69,4 +69,9 @@ dependencies {
     Coroutine.run {
         implementation(COROUTINE)
     }
+
+    Rx.run {
+        implementation(KOTLIN)
+        implementation(ANDROID)
+    }
 }
