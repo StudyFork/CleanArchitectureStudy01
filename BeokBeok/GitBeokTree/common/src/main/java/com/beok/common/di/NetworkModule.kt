@@ -7,7 +7,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-fun getRetrofitModule(url: String) = module {
+fun getRetrofitBasicModule(url: String) = module {
     single {
         HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
