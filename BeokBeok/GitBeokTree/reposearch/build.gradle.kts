@@ -60,4 +60,8 @@ dependencies {
         implementation(KOIN)
         implementation(VIEWMODEL)
     }
+
+    Coroutine.run {
+        implementation(COROUTINE)
+    }
 }

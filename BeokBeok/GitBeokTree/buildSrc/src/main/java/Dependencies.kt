@@ -74,3 +74,9 @@ object Koin {
     const val KOIN = "org.koin:koin-android:$VERSION"
     const val VIEWMODEL = "org.koin:koin-android-viewmodel:$VERSION"
 }
+
+object Coroutine {
+    private const val VERSION = "1.2.1"
+
+    const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
+}
