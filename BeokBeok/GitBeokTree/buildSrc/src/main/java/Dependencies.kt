@@ -44,3 +44,10 @@ object UiDependencies {
     const val MATERIAL = "com.google.android.material:material:$MATERIAL_VERSION"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:$CONSTRAINT_VERSION"
 }
+
+object LifeCycleDependencies {
+    private const val VERSION = "2.1.0"
+
+    const val EXT = "androidx.lifecycle:lifecycle-extensions:$VERSION"
+    const val VM_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
+}

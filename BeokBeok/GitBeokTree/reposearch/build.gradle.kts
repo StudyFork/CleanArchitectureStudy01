@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
@@ -32,6 +33,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+
+    dataBinding {
+        isEnabled = true
     }
 }
 

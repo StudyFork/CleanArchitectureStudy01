@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
@@ -25,6 +25,10 @@ android {
             )
         }
     }
+
+    dataBinding {
+        isEnabled = true
+    }
 }
 
 dependencies {
@@ -42,5 +46,10 @@ dependencies {
     UiDependencies.run {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
+    }
+
+    LifeCycleDependencies.run {
+        implementation(EXT)
+        implementation(VM_KTX)
     }
 }
