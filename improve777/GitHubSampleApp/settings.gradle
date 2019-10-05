@@ -1,0 +1,2 @@
+include Modules.app, Modules.data, Modules.domain, Modules.common
+rootProject.name='GitHubSampleApp'
