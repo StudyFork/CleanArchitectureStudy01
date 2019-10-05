@@ -71,8 +71,8 @@ object Retrofit {
 object Koin {
     private const val VERSION = "2.0.1"
 
-    const val KOIN = "org.koin:koin-android:$VERSION"
-    const val VIEWMODEL = "org.koin:koin-android-viewmodel:$VERSION"
+    const val KOIN = "org.koin:koin-core:$VERSION"
+    const val VIEWMODEL = "org.koin:koin-androidx-viewmodel:$VERSION"
 }
 
 object Coroutine {
