@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.common.base.BaseViewModel
 import com.example.common.commons.SingleLiveEvent
-import com.example.common.ext.addTo
 import com.example.common.utils.TextUtils
 import com.example.domains.entities.RepositorySummaryInfo
 import com.example.domains.usecases.SearchRepositoriesUseCase
@@ -34,6 +33,6 @@ class SearchViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = _repositories::setValue,
                 onError = ::handleApiErrorMessage
-            ).addTo(disposables)
+            ).add()
     }
 }
