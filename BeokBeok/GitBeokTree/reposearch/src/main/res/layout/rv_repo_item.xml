@@ -69,6 +69,7 @@
 
         <ImageView
             android:id="@+id/iv_repo_star"
+            srcWithGlide="@{@string/url_star_img}"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
@@ -92,6 +93,7 @@
 
         <ImageView
             android:id="@+id/iv_repo_forks"
+            srcWithGlide="@{@string/url_fork_img}"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
@@ -115,6 +117,7 @@
 
         <ImageView
             android:id="@+id/iv_repo_license"
+            srcWithGlide="@{@string/url_license_img}"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
