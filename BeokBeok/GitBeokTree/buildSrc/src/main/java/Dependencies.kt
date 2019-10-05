@@ -67,3 +67,10 @@ object Retrofit {
     const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:$VERSION"
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$LOGGING_VERSION"
 }
+
+object Koin {
+    private const val VERSION = "2.0.1"
+
+    const val KOIN = "org.koin:koin-android:$VERSION"
+    const val VIEWMODEL = "org.koin:koin-android-viewmodel:$VERSION"
+}

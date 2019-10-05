@@ -63,4 +63,9 @@ dependencies {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
     }
+
+    Koin.run {
+        implementation(KOIN)
+        implementation(VIEWMODEL)
+    }
 }

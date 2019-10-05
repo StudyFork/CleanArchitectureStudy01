@@ -52,4 +52,15 @@ dependencies {
         implementation(EXT)
         implementation(VM_KTX)
     }
+
+    Retrofit.run {
+        implementation(RETROFIT)
+        implementation(CONVERTER_GSON)
+        implementation(LOGGING_INTERCEPTOR)
+    }
+
+    Koin.run {
+        implementation(KOIN)
+        implementation(VIEWMODEL)
+    }
 }
