@@ -50,6 +50,11 @@ dependencies {
         implementation(CONSTRAINT_LAYOUT)
     }
 
+    LifeCycle.run {
+        implementation(EXT)
+        implementation(VM_KTX)
+    }
+
     Retrofit.run {
         implementation(RETROFIT)
         implementation(CONVERTER_GSON)
