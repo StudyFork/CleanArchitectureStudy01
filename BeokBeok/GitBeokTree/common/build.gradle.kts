@@ -32,8 +32,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":common"))
-
     AppDependencies.run {
         implementation(fileTree(LIB_PATH))
         implementation(KOTLIN_STDLIB_JDK)
@@ -50,9 +48,8 @@ dependencies {
         implementation(CONSTRAINT_LAYOUT)
     }
 
-    RetrofitDependencies.run {
-        implementation(RETROFIT)
-        implementation(CONVERTER_GSON)
-        implementation(LOGGING_INTERCEPTOR)
+    LifeCycleDependencies.run {
+        implementation(EXT)
+        implementation(VM_KTX)
     }
 }

@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
 }
@@ -10,9 +10,17 @@ android {
         buildToolsVersion(BUILD_TOOLS)
 
         defaultConfig {
+            applicationId = APP_ID
             minSdkVersion(MIN_SDK)
             targetSdkVersion(TARGET_SDK)
             testInstrumentationRunner = TestDependencies.RUNNER
+        }
+    }
+
+    Release.run {
+        defaultConfig {
+            versionCode = VERSION_CODE
+            versionName = VERSION_NAME
         }
     }
 
@@ -29,9 +37,17 @@ android {
     dataBinding {
         isEnabled = true
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    implementation(project(":common"))
+    implementation(project(":reposearch"))
+
     AppDependencies.run {
         implementation(fileTree(LIB_PATH))
         implementation(KOTLIN_STDLIB_JDK)
@@ -46,10 +62,5 @@ dependencies {
     UiDependencies.run {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
-    }
-
-    LifeCycleDependencies.run {
-        implementation(EXT)
-        implementation(VM_KTX)
     }
 }

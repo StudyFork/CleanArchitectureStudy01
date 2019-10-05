@@ -1,4 +1,4 @@
-package com.beok.gitbeoktree.base
+package com.beok.common.base
 
 import androidx.lifecycle.ViewModel
 

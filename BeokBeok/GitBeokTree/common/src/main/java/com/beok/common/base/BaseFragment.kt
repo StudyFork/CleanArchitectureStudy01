@@ -1,4 +1,4 @@
-package com.beok.gitbeoktree.base
+package com.beok.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
