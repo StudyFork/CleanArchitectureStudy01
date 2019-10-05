@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
 }
@@ -10,6 +10,7 @@ android {
         buildToolsVersion(BUILD_TOOLS)
 
         defaultConfig {
+            applicationId = APP_ID
             minSdkVersion(MIN_SDK)
             targetSdkVersion(TARGET_SDK)
             testInstrumentationRunner = TestDependencies.RUNNER
@@ -35,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":app"))
+
     AppDependencies.run {
         implementation(fileTree(LIB_PATH))
         implementation(KOTLIN_STDLIB_JDK)
