@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 
@@ -57,5 +56,11 @@ dependencies {
     UiDependencies.run {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
+    }
+
+    RetrofitDependencies.run {
+        implementation(RETROFIT)
+        implementation(CONVERTER_GSON)
+        implementation(LOGGING_INTERCEPTOR)
     }
 }

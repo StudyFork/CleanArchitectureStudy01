@@ -58,3 +58,12 @@ object NavigationDependencies {
     const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
     const val UI = "androidx.navigation:navigation-ui-ktx:$VERSION"
 }
+
+object RetrofitDependencies {
+    private const val VERSION = "2.6.1"
+    private const val LOGGING_VERSION = "3.14.2"
+
+    const val RETROFIT = "com.squareup.retrofit2:retrofit:$VERSION"
+    const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:$VERSION"
+    const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$LOGGING_VERSION"
+}
