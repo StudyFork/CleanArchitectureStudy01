@@ -18,7 +18,7 @@ android {
 
 dependencies {
     implementation project(Modules.common)
-
+    implementation project(Modules.navigator)
     implementation project(Modules.data)
     implementation project(Modules.domains)
 

@@ -1,13 +1,13 @@
 package com.example.cleanarchitecturestudy
 
+import android.app.Activity
 import android.app.Application
-import com.example.cleanarchitecturestudy.di.component.ApplicationComponent
-import com.example.cleanarchitecturestudy.di.component.DaggerActivityComponent
-import com.example.cleanarchitecturestudy.di.component.DaggerApplicationComponent
-import com.example.common.di.AppSubComponent
-import com.example.common.di.SubComponentProvider
+import com.example.cleanarchitecturestudy.di.ApplicationComponent
+import com.example.cleanarchitecturestudy.di.DaggerApplicationComponent
+import com.example.cleanarchitecturestudy.di.InjectorImpl
+import com.example.common.Injector
 
-class App : Application(), SubComponentProvider {
+class App : Application(), Injector.Provider {
 
     private lateinit var applicationComponent: ApplicationComponent
 
@@ -16,9 +16,6 @@ class App : Application(), SubComponentProvider {
         super.onCreate()
     }
 
-    override fun getSubComponent(): AppSubComponent =
-        (DaggerActivityComponent.builder()
-            .applicationComponent(applicationComponent)
-            .build())
-            .getAppSubComponent()
+    override fun provide(activity: Activity): Injector =
+        InjectorImpl(applicationComponent.activityComponentFactory.create(activity))
 }

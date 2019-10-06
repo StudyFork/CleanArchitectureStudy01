@@ -1,2 +1,2 @@
-include ':app', ':features:search', ':common', ':domains', ':data', 'features:filetree'
+include ':app', ':features:search', ':common', ':domains', ':data', ':navigator', 'features:filetree'
 rootProject.name='CleanArchitectureStudy'

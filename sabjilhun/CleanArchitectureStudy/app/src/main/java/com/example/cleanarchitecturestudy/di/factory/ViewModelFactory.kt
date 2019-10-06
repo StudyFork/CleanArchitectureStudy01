@@ -8,6 +8,7 @@ import javax.inject.Provider
 class ViewModelFactory @Inject constructor(
     private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         var creator: Provider<out ViewModel>? = creators[modelClass]
         if (creator == null) {
@@ -18,9 +19,8 @@ class ViewModelFactory @Inject constructor(
                 }
             }
         }
-        if (creator == null) {
-            throw IllegalArgumentException("Unknown model class: $modelClass")
-        }
+        requireNotNull(creator) { "Unknown model class: $modelClass" }
+
         try {
             @Suppress("UNCHECKED_CAST")
             return creator.get() as T

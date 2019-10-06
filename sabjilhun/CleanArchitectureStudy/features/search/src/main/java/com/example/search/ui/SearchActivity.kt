@@ -24,11 +24,12 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
     private fun setUpView() {
         binding.rvSearchedImage.adapter = RepositorySummaryInfoAdapter()
         binding.etSearchKeyword.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.searchRepositories()
-                return@setOnEditorActionListener true
+                true
+            } else {
+                false
             }
-            return@setOnEditorActionListener false
         }
     }
 

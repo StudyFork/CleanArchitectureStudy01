@@ -30,6 +30,7 @@ object Modules {
     const val app = ":app"
     const val common = ":common"
     const val domains = ":domains"
+    const val navigator = ":navigator"
     const val data = ":data"
 
     // Features

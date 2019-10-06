@@ -1,6 +1,6 @@
 package com.example.cleanarchitecturestudy.di.module
 
-import com.example.cleanarchitecturestudy.di.annotation.ApplicationScope
+import com.example.cleanarchitecturestudy.di.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

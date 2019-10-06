@@ -1,4 +1,4 @@
-package com.example.cleanarchitecturestudy.di.annotation
+package com.example.cleanarchitecturestudy.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
