@@ -46,7 +46,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":reposearch"))
+    implementation(project(":repoSearch"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
