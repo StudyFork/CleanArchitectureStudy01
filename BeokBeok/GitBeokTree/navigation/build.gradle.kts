@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":repoSearch"))
+
     Navigation.run {
         implementation(FRAGMENT)
         implementation(UI)
