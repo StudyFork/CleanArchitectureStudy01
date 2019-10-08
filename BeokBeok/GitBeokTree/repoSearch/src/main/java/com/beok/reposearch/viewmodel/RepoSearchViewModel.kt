@@ -28,6 +28,7 @@ class RepoSearchViewModel(
         if (remoteRepos.succeeded) {
             _repoList.value = (remoteRepos as Result.Success).data
         } else {
+            _repoList.value = listOf()
             _errMsg.value =
                 (remoteRepos as? Result.Error)?.exception ?: IllegalStateException("Data is null")
         }
