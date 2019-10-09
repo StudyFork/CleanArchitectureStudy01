@@ -11,4 +11,10 @@ interface GithubSearchRemoteDataSource{
             perPage: String
     ): Single<GithubSearchDto>
 
+    fun getAccessToken(
+        clientId: String ,
+        clientSecret: String ,
+        code: String
+    ): Single<String>
+
 }

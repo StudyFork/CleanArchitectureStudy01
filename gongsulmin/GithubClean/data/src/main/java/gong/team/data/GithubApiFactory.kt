@@ -9,18 +9,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 object GithubApiFactory {
 
     // DI 작업
-    fun providerGithubApi(baseUrl: String): GithubApi {
-
+    inline fun <reified T> providerGithubApi(baseUrl: String): T {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(providerOkhttpClient())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(GithubApi::class.java)
+            .create(T::class.java)
     }
 
-    private fun providerOkhttpClient() =
+    fun providerOkhttpClient() =
         OkHttpClient.Builder()
                     .addInterceptor(
                         HttpLoggingInterceptor().apply {

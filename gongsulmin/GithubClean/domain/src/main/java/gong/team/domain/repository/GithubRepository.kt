@@ -9,4 +9,10 @@ interface GithubRepository {
         page: String ,
         per_page: String
     ): Single<List<GithubSearchResultModel>>
+
+    fun getAccessToken(
+        clientId: String ,
+        clientSecret: String ,
+        code: String
+    ): Single<String>
 }

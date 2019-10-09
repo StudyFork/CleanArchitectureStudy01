@@ -6,10 +6,22 @@ import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.repository.GithubRepository
 import io.reactivex.Single
 
-class GithubRepositoryImpl(
+class GithubSearchRepositoryImpl(
     private val githubRemoteDataSource: GithubSearchRemoteDataSource,
     private val githubSearchItemMapper: GithubSearchItemMapper
 ): GithubRepository {
+
+    override fun getAccessToken(
+        clientId: String,
+        clientSecret: String,
+        code: String
+    ): Single<String> {
+        return githubRemoteDataSource.getAccessToken(
+                clientId ,
+                clientSecret ,
+                code
+            )
+    }
 
     override fun getGithubSearchResult(
         query: String,
