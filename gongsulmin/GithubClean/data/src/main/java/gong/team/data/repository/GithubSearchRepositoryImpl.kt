@@ -1,6 +1,6 @@
 package gong.team.data.repository
 
-import gong.team.data.datasource.GithubSearchRemoteDataSource
+import gong.team.data.datasource.remote.GithubSearchRemoteDataSource
 import gong.team.data.mapper.GithubSearchItemMapper
 import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.repository.GithubRepository
@@ -32,12 +32,12 @@ class GithubSearchRepositoryImpl(
             query ,
             page ,
             per_page
-        ).flatMap {
+        ).map {
             val list = mutableListOf<GithubSearchResultModel>()
             it.githubSearchItemEntities.map {
                 list.add(githubSearchItemMapper.mapFrom(it))
             }
-            return@flatMap Single.just(list)
+           list
         }
     }
 

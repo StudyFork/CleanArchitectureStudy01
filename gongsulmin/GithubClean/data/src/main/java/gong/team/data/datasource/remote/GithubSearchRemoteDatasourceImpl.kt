@@ -1,4 +1,4 @@
-package gong.team.data.datasource
+package gong.team.data.datasource.remote
 
 import gong.team.data.GithubApi
 import gong.team.data.GithubLoginApi
@@ -8,8 +8,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class GithubSearchRemoteDatasourceImpl(
-    val githubApi: GithubApi ,
-    val githubLoginApi: GithubLoginApi
+    private val githubApi: GithubApi ,
+    private val githubLoginApi: GithubLoginApi
 ): GithubSearchRemoteDataSource {
 
     override fun getAccessToken(
