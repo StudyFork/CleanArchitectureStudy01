@@ -23,7 +23,7 @@ class RepoSearchViewModel(
     val isLoading: LiveData<Boolean> get() = _isLoading
 
     fun searchUserRepo(user: String) = viewModelScope.launch {
-        _isLoading.value = true
+        setProgressBarState(true)
         val remoteRepos = userRepoSearchUseCase(user)
         if (remoteRepos.succeeded) {
             _repoList.value = (remoteRepos as Result.Success).data
@@ -32,6 +32,10 @@ class RepoSearchViewModel(
             _errMsg.value =
                 (remoteRepos as? Result.Error)?.exception ?: IllegalStateException("Data is null")
         }
-        _isLoading.value = false
+        setProgressBarState(false)
+    }
+
+    private fun setProgressBarState(state: Boolean) {
+        _isLoading.value = state
     }
 }
