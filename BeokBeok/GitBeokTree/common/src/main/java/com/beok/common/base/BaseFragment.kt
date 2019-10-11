@@ -64,9 +64,10 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
         viewModel.navigation.observe(
             this,
             Observer {
-                when (it) {
-                    is NavigationCommand.To -> findNavController().navigate(it.directions)
-                    is NavigationCommand.Back -> findNavController().navigateUp()
+                it.getContentIfNotHandled()?.let { command ->
+                    if (command is NavigationCommand.To) {
+                        findNavController().navigate(command.directions)
+                    }
                 }
             }
         )
