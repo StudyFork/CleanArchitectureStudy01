@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -29,10 +31,17 @@ android {
     dataBinding {
         isEnabled = true
     }
+
+    // cannot inline bytecode built with jvm target 1.8 into bytecode
+    // that is being built with jvm target 1.6
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
+    }
 }
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":navigation"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
@@ -68,5 +77,10 @@ dependencies {
 
     Coroutine.run {
         implementation(COROUTINE)
+    }
+
+    Navigation.run {
+        implementation(FRAGMENT)
+        implementation(UI)
     }
 }

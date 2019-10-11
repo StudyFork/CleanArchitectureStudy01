@@ -48,8 +48,8 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":navigation"))
     implementation(project(":repoSearch"))
+    implementation(project(":repoBrowse"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
