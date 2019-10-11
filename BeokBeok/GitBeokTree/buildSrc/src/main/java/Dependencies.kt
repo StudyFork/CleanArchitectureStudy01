@@ -1,9 +1,11 @@
 object BuildScript {
     private const val GRADLE_VERSION = "3.5.1"
     const val KOTLIN_VERSION = "1.3.50"
+    const val NAV_VERSION = "2.1.0"
 
     const val GRADLE = "com.android.tools.build:gradle:$GRADLE_VERSION"
     const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+    const val NAV_SAFE_ARG = "androidx.navigation:navigation-safe-args-gradle-plugin:$NAV_VERSION"
 }
 
 object App {
@@ -53,10 +55,9 @@ object LifeCycle {
 }
 
 object Navigation {
-    private const val VERSION = "2.1.0"
-
-    const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
-    const val UI = "androidx.navigation:navigation-ui-ktx:$VERSION"
+    const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${BuildScript.NAV_VERSION}"
+    const val UI = "androidx.navigation:navigation-ui-ktx:${BuildScript.NAV_VERSION}"
+    const val SAFEARGS = "androidx.navigation.safeargs.kotlin"
 }
 
 object Retrofit {

@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":navigation"))
+
     App.run {
         implementation(fileTree(LIB_PATH))
         implementation(KOTLIN_STDLIB_JDK)
@@ -70,5 +72,10 @@ dependencies {
 
     Glide.run {
         implementation(GLIDE)
+    }
+
+    Navigation.run {
+        implementation(FRAGMENT)
+        implementation(UI)
     }
 }

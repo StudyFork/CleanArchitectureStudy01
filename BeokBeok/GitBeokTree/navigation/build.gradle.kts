@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id(Navigation.SAFEARGS)
 }
 
 android {
@@ -27,8 +28,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":repoSearch"))
-
     Navigation.run {
         implementation(FRAGMENT)
         implementation(UI)

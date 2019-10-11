@@ -8,6 +8,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.beok.navigation.NavigationCommand
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -34,6 +37,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
             false
         )
         binding.lifecycleOwner = this
+        observeNavigation()
         return binding.root
     }
 
@@ -54,5 +58,17 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
             msg ?: "",
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun observeNavigation() {
+        viewModel.navigation.observe(
+            this,
+            Observer {
+                when (it) {
+                    is NavigationCommand.To -> findNavController().navigate(it.directions)
+                    is NavigationCommand.Back -> findNavController().navigateUp()
+                }
+            }
+        )
     }
 }
