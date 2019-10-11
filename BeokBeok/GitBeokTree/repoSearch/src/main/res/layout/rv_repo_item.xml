@@ -10,6 +10,10 @@
         <variable
             name="githubRepo"
             type="com.beok.reposearch.entity.GithubRepoResEntity" />
+
+        <variable
+            name="vm"
+            type="com.beok.reposearch.viewmodel.RepoSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +22,7 @@
         android:layout_margin="4dp"
         android:background="@android:color/darker_gray"
         android:paddingStart="10dp"
+        android:onClick="@{() -> vm.showRepo(githubRepo.name)}"
         android:paddingEnd="10dp">
 
         <TextView

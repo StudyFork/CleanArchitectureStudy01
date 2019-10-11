@@ -8,6 +8,7 @@ import com.beok.common.base.BaseViewModel
 import com.beok.common.succeeded
 import com.beok.reposearch.entity.GithubRepoResEntity
 import com.beok.reposearch.usecase.UserRepoSearchUseCase
+import com.beok.reposearch.view.RepoSearchFragmentDirections
 import kotlinx.coroutines.launch
 
 class RepoSearchViewModel(
@@ -33,6 +34,10 @@ class RepoSearchViewModel(
                 (remoteRepos as? Result.Error)?.exception ?: IllegalStateException("Data is null")
         }
         setProgressBarState(false)
+    }
+
+    fun showRepo(repoName: String) {
+        navigate(RepoSearchFragmentDirections.actionReposearchToRepobrowse(repoName))
     }
 
     private fun setProgressBarState(state: Boolean) {

@@ -5,7 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.lifecycle.Observer
 import com.beok.common.base.BaseFragment
-import com.beok.common.base.BaseRecyclerView
 import com.beok.reposearch.BR
 import com.beok.reposearch.R
 import com.beok.reposearch.databinding.FragmentRepoSearchBinding
@@ -39,10 +38,11 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
         binding.rvContents.run {
             setHasFixedSize(true)
             adapter =
-                object : BaseRecyclerView.Adapter<List<GithubRepoResEntity>, RvRepoItemBinding>(
+                RepoSearchAdapter<List<GithubRepoResEntity>, RvRepoItemBinding>(
                     R.layout.rv_repo_item,
-                    BR.githubRepo
-                ) {}
+                    BR.githubRepo,
+                    viewModel
+                )
         }
     }
 

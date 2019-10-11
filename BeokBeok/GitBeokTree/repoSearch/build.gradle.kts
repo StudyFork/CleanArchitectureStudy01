@@ -33,6 +33,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":navigation"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
@@ -73,5 +74,10 @@ dependencies {
     Rx.run {
         implementation(KOTLIN)
         implementation(ANDROID)
+    }
+
+    Navigation.run {
+        implementation(FRAGMENT)
+        implementation(UI)
     }
 }
