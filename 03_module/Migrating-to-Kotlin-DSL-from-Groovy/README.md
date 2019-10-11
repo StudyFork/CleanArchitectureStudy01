@@ -7,13 +7,9 @@ Gradle 공식 홈페이지에 나와 있는 마이그레이션 방법
 
 ## STEP1: 마이그레이션 사전준비
 
-- Gradle 버전 최신화
+- 5.0 버전부터 지원 [링크](https://docs.gradle.org/5.0/release-notes.html)
 
-  Gradle 최신화와 안드로이드의 경우 Gradle Plugin 최신화를 해야한다고 합니다.
-
-  Gradle 최신 버전 확인하는 곳 [링크](https://gradle.org/releases/)
-
-  Android Gradle Plugin 최신 버전 확인하는 곳 [링크](https://developer.android.com/studio/releases/gradle-plugin)
+  Android Gradle Plugin 버전 확인하는 곳 [링크](https://developer.android.com/studio/releases/gradle-plugin)
   
   - Android Studio에서 Gradle, Gralde Plugin 버전 설정 방법
   
@@ -120,5 +116,6 @@ Kotlin DSL은 Groovy에 비해서 엄격한 문법을 갖기 때문에 '.kts' �
   }
   ```
 - Dependencies.kt에 버전 정보 넣어서 다른 kts에서 사용
+  - 반드시 src/main/java 폴더에 생성
 
 참고: [Write your Gradle scripts using Kotlin Dsl](https://ayusch.com/writing-your-gradle-scripts-in-kotlin-with-kotlin-dsl/)
