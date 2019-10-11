@@ -14,16 +14,16 @@ import retrofit2.Retrofit
 object RepoSearchDI {
 
     private val retrofitModule = module {
-        single { get<Retrofit>().create(RepoSearchService::class.java) }
+        factory { get<Retrofit>().create(RepoSearchService::class.java) }
     }
 
     private val dataSourceModule = module {
-        single<RepoSearchDataSource>(named("repoSearchRepository")) { RepoSearchRepository(get()) }
-        single<RepoSearchDataSource> { RepoSearchDataSourceImpl(get()) }
+        factory<RepoSearchDataSource>(named("repoSearchRepository")) { RepoSearchRepository(get()) }
+        factory<RepoSearchDataSource> { RepoSearchDataSourceImpl(get()) }
     }
 
     private val useCaseModule = module {
-        single { UserRepoSearchUseCase(get(named("repoSearchRepository"))) }
+        factory { UserRepoSearchUseCase(get(named("repoSearchRepository"))) }
     }
 
     private val viewModelModule = module {
