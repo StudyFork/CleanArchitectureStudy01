@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class UserRepoSearchUseCase(
+class UserRepoSearchUsecase(
     private val repoSearchRepository: RepoSearchRepository,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {

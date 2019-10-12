@@ -15,6 +15,9 @@
             android:id="@+id/action_reposearch_to_repobrowse"
             app:destination="@id/fg_repo_browse">
             <argument
+                android:name="user"
+                app:argType="string" />
+            <argument
                 android:name="repoName"
                 app:argType="string" />
         </action>
@@ -24,6 +27,9 @@
         android:id="@+id/fg_repo_browse"
         android:name="com.beok.repobrowse.view.RepoBrowseFragment"
         android:label="RepoBrowseFragment">
+        <argument
+            android:name="user"
+            app:argType="string" />
         <argument
             android:name="repoName"
             app:argType="string" />

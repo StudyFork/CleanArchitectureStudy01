@@ -4,7 +4,7 @@ import com.beok.reposearch.repository.RepoSearchRepository
 import com.beok.reposearch.repository.data.RepoSearchDataSource
 import com.beok.reposearch.repository.data.RepoSearchDataSourceImpl
 import com.beok.reposearch.repository.service.RepoSearchService
-import com.beok.reposearch.usecase.UserRepoSearchUseCase
+import com.beok.reposearch.usecase.UserRepoSearchUsecase
 import com.beok.reposearch.viewmodel.RepoSearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -22,8 +22,8 @@ object RepoSearchDI {
         factory<RepoSearchDataSource> { RepoSearchDataSourceImpl(get()) }
     }
 
-    private val useCaseModule = module {
-        factory { UserRepoSearchUseCase(get(named("repoSearchRepository"))) }
+    private val usecaseModule = module {
+        factory { UserRepoSearchUsecase(get(named("repoSearchRepository"))) }
     }
 
     private val viewModelModule = module {
@@ -32,7 +32,7 @@ object RepoSearchDI {
 
     val repoSearchModule = listOf(
         viewModelModule,
-        useCaseModule,
+        usecaseModule,
         dataSourceModule,
         retrofitModule
     )
