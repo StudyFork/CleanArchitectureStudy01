@@ -2,7 +2,7 @@ package com.beok.reposearch.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class GithubRepoResEntity(
+data class RepoResEntity(
 
     @SerializedName("name")
     val name: String,

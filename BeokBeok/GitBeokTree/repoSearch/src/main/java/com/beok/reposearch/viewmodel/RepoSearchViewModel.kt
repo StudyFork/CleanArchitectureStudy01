@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.beok.common.Result
 import com.beok.common.base.BaseViewModel
 import com.beok.common.succeeded
-import com.beok.reposearch.entity.GithubRepoResEntity
+import com.beok.reposearch.entity.RepoResEntity
 import com.beok.reposearch.usecase.UserRepoSearchUseCase
 import com.beok.reposearch.view.RepoSearchFragmentDirections
 import kotlinx.coroutines.launch
@@ -15,11 +15,11 @@ class RepoSearchViewModel(
     private val userRepoSearchUseCase: UserRepoSearchUseCase
 ) : BaseViewModel() {
 
-    private val _repoList = MutableLiveData<List<GithubRepoResEntity>>()
+    private val _repoList = MutableLiveData<List<RepoResEntity>>()
     private val _errMsg = MutableLiveData<Throwable>()
     private val _isLoading = MutableLiveData<Boolean>(false)
 
-    val repoList: LiveData<List<GithubRepoResEntity>> get() = _repoList
+    val repoList: LiveData<List<RepoResEntity>> get() = _repoList
     val errMsg: LiveData<Throwable> get() = _errMsg
     val isLoading: LiveData<Boolean> get() = _isLoading
 

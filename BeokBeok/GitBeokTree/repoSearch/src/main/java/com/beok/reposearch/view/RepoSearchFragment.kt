@@ -9,7 +9,7 @@ import com.beok.reposearch.BR
 import com.beok.reposearch.R
 import com.beok.reposearch.databinding.FragmentRepoSearchBinding
 import com.beok.reposearch.databinding.RvRepoItemBinding
-import com.beok.reposearch.entity.GithubRepoResEntity
+import com.beok.reposearch.entity.RepoResEntity
 import com.beok.reposearch.viewmodel.RepoSearchViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,9 +38,9 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
         binding.rvContents.run {
             setHasFixedSize(true)
             adapter =
-                RepoSearchAdapter<List<GithubRepoResEntity>, RvRepoItemBinding>(
+                RepoSearchAdapter<List<RepoResEntity>, RvRepoItemBinding>(
                     R.layout.rv_repo_item,
-                    BR.githubRepo,
+                    BR.repo,
                     viewModel
                 )
         }
