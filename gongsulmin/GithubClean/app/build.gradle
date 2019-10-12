@@ -54,6 +54,9 @@ dependencies {
     implementation libs.koin_test
     implementation libs.glide
     annotationProcessor libs.glide_kapt
+    implementation  libs.room
+    annotationProcessor  libs.room_annotation
+    implementation  libs.room_rxjava
 
 
 }

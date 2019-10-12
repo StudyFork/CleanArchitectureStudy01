@@ -42,4 +42,7 @@ dependencies {
     implementation  libs.rxjava
     implementation  libs.rxkotlin
     implementation  libs.rxandroid
+    implementation  libs.room
+    annotationProcessor  libs.room_annotation
+    implementation  libs.room_rxjava
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="loginVM"
+                type="gong.team.githubclean.ui.login.LoginViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:id="@+id/et_login_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={loginVM.loginId}"
+                android:hint="아이디"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/et_login_passowrd"
+                />
+
+        <EditText
+                android:id="@+id/et_login_passowrd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호"
+                android:text="@={loginVM.loginPassword}"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_login_id"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        <Button
+                android:id="@+id/btn_get_token"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{loginVM::onClickGetToken}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="1"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

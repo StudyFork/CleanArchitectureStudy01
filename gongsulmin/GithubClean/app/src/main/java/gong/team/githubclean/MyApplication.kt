@@ -20,7 +20,8 @@ class MyApplication: Application() {
                     repositoryModule ,
                     mapperModule ,
                     viewmodelModule ,
-                    userCaseModule
+                    userCaseModule ,
+                    roomModule
                 )
             )
         }
