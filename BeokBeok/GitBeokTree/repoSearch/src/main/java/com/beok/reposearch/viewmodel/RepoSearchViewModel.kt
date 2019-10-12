@@ -26,16 +26,21 @@ class RepoSearchViewModel(
     val userName: LiveData<String> get() = _userName
 
     fun searchUserRepo(user: String) = viewModelScope.launch {
+        if (_userName.value == user) return@launch
         showProgressBar()
         val remoteRepos = userRepoSearchUsecase(user)
         if (remoteRepos.succeeded) {
-            _userName.value = user
-            _repoList.value = (remoteRepos as Result.Success).data
+            setRepoSearchData(
+                userName = user,
+                repoList = (remoteRepos as Result.Success).data
+            )
         } else {
-            _userName.value = ""
-            _repoList.value = listOf()
-            _errMsg.value =
-                (remoteRepos as? Result.Error)?.exception ?: IllegalStateException("Data is null")
+            setRepoSearchData(
+                userName = "",
+                repoList = listOf(),
+                err = (remoteRepos as? Result.Error)?.exception
+                    ?: IllegalStateException("Data is null")
+            )
         }
         hideProgressBar()
     }
@@ -58,4 +63,13 @@ class RepoSearchViewModel(
         _isLoading.value = false
     }
 
+    private fun setRepoSearchData(
+        userName: String,
+        repoList: List<RepoResEntity>,
+        err: Throwable = IllegalStateException("")
+    ) {
+        _userName.value = userName
+        _repoList.value = repoList
+        if (!err.message.isNullOrEmpty()) _errMsg.value = err
+    }
 }
