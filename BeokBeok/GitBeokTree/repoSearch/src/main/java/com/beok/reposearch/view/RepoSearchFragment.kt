@@ -13,6 +13,7 @@ import com.beok.reposearch.entity.RepoResEntity
 import com.beok.reposearch.viewmodel.RepoSearchViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
@@ -74,11 +75,14 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
                 })
             }.debounce(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    binding.vm?.searchUserRepo(it.toString())
-                }, {
-                    showSnackBar(it.message)
-                })
+                .subscribeBy(
+                    onNext = {
+                        binding.vm?.searchUserRepo(it.toString())
+                    },
+                    onError = {
+                        showSnackBar(it.message)
+                    }
+                )
         )
     }
 
