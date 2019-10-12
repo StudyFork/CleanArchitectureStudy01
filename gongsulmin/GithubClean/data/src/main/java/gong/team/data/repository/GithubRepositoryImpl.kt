@@ -6,14 +6,16 @@ import gong.team.data.datasource.remote.GithubSearchRemoteDataSource
 import gong.team.data.datasource.remote.GithubUserInfoRemoteDataSource
 import gong.team.data.mapper.GithubSearchItemMapper
 import gong.team.data.mapper.toDomain
+import gong.team.data.response.GithubUserInfo
+import gong.team.data.response.GithubUserReposReponse
+import gong.team.data.response.GithubUserResponse
+import gong.team.domain.entity.GithubFollowEntity
 import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.entity.GithubTokenEntity
-import gong.team.domain.entity.GithubUserEntity
+import gong.team.domain.entity.GithubUserInfoEntity
 import gong.team.domain.repository.GithubRepository
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.functions.BiFunction
 
 class GithubRepositoryImpl(
     private val githubRemoteDataSource: GithubSearchRemoteDataSource,
@@ -22,10 +24,21 @@ class GithubRepositoryImpl(
     private val githubSearchItemMapper: GithubSearchItemMapper
 ): GithubRepository {
 
-    override fun getUserInfo(): Single<GithubUserEntity> {
+    override fun getFollowUser(name: String, isFollowing: Boolean): Single<List<GithubFollowEntity>> {
+        return githubUserInfoRemoteDataSource.getFollowUser(name , isFollowing)
+            .map {
+                it.toDomain()
+            }
+    }
+
+    override fun getUserInfo(): Single<GithubUserInfoEntity> {
         return githubUserLocalDataSource.selectToken()
             .flatMap {
-                githubUserInfoRemoteDataSource.getUserInfo(it.first().token)
+                Single.zip<GithubUserResponse , List<GithubUserReposReponse> , GithubUserInfo>(
+                    githubUserInfoRemoteDataSource.getUserInfo(it.last().token),
+                    githubUserInfoRemoteDataSource.getUserRepos(it.last().token) ,
+                    BiFunction<GithubUserResponse , List<GithubUserReposReponse> , GithubUserInfo>{user , userRepos -> GithubUserInfo(user , userRepos)}
+                )
             }
             .map {
                 it.toDomain()
@@ -36,7 +49,7 @@ class GithubRepositoryImpl(
 
         return githubUserInfoRemoteDataSource.getAccessToken(header)
             .map {
-                githubUserLocalDataSource.insertToken(Token(it.id ,it.token))
+                githubUserLocalDataSource.insertToken(Token(0 ,it.token))
                     .subscribe()
                 it.toDomain()
             }

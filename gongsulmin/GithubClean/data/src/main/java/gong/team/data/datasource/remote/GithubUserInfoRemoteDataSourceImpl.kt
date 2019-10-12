@@ -4,6 +4,7 @@ import gong.team.data.GithubApi
 import gong.team.data.request.GithubTokenRequest
 import gong.team.data.response.GithubFollowUserResponse
 import gong.team.data.response.GithubTokenResponse
+import gong.team.data.response.GithubUserReposReponse
 import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,6 +14,29 @@ class GithubUserInfoRemoteDataSourceImpl(
     private val githubApi: GithubApi
 )
     : GithubUserInfoRemoteDataSource  {
+
+    override fun getFollowUser(
+        name: String,
+        isFollowing: Boolean
+    ): Single<List<GithubFollowUserResponse>> {
+        return if (isFollowing) {
+            githubApi.getGithubFollowerUser(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        }else {
+            githubApi.getGithubFollowingUser(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
+    override fun getUserRepos(token: String): Single<List<GithubUserReposReponse>> {
+        return githubApi.getGithubUserRepos(
+            token.toToken()
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 
     override fun getAccessToken(header: String): Single<GithubTokenResponse> {
         val tokenRequest =
@@ -28,12 +52,13 @@ class GithubUserInfoRemoteDataSourceImpl(
     }
 
     override fun getUserInfo(token: String): Single<GithubUserResponse> {
-        val tokenString = "token $token"
          return githubApi.getGithubUser(
-             tokenString
+             token.toToken()
             )
              .subscribeOn(Schedulers.io())
              .observeOn(AndroidSchedulers.mainThread())
     }
+
+    fun String.toToken() = "token $this"
 
 }

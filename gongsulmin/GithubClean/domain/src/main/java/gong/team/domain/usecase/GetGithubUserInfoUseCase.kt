@@ -1,7 +1,6 @@
 package gong.team.domain.usecase
 
-import gong.team.domain.entity.GithubTokenEntity
-import gong.team.domain.entity.GithubUserEntity
+import gong.team.domain.entity.GithubUserInfoEntity
 import gong.team.domain.repository.GithubRepository
 import io.reactivex.Single
 
@@ -20,7 +19,7 @@ import io.reactivex.Single
 class GetGithubUserInfoUseCase (
     private val repository: GithubRepository
 ) {
-    operator fun invoke(): Single<GithubUserEntity> {
+    operator fun invoke(): Single<GithubUserInfoEntity> {
         return repository.getUserInfo()
     }
 }

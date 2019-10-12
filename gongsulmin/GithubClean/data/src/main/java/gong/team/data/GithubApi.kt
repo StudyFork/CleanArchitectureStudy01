@@ -4,6 +4,7 @@ import gong.team.data.entity.GithubSearchDto
 import gong.team.data.request.GithubTokenRequest
 import gong.team.data.response.GithubFollowUserResponse
 import gong.team.data.response.GithubTokenResponse
+import gong.team.data.response.GithubUserReposReponse
 import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
 import retrofit2.http.*
@@ -22,15 +23,20 @@ interface GithubApi {
         @Header("Authorization") token: String
     ): Single<GithubUserResponse>
 
+    @GET("user/repos")
+    fun getGithubUserRepos(
+        @Header("Authorization") token: String
+    ): Single<List<GithubUserReposReponse>>
+
     @GET("users/{name}/followers")
     fun getGithubFollowerUser(
         @Path("name") name: String
-    ): Single<GithubFollowUserResponse>
+    ): Single<List<GithubFollowUserResponse>>
 
     @GET("users/{name}/following")
     fun getGithubFollowingUser(
         @Path("name") name: String
-    ): Single<GithubFollowUserResponse>
+    ): Single<List<GithubFollowUserResponse>>
 
     @POST("authorizations")
     fun getGithubToken(

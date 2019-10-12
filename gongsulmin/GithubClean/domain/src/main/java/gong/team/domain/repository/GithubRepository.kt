@@ -1,8 +1,9 @@
 package gong.team.domain.repository
 
+import gong.team.domain.entity.GithubFollowEntity
 import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.entity.GithubTokenEntity
-import gong.team.domain.entity.GithubUserEntity
+import gong.team.domain.entity.GithubUserInfoEntity
 import io.reactivex.Single
 
 interface GithubRepository {
@@ -18,6 +19,12 @@ interface GithubRepository {
     ): Single<GithubTokenEntity>
 
     fun getUserInfo(
-    ): Single<GithubUserEntity>
+    ): Single<GithubUserInfoEntity>
+
+    fun getFollowUser(
+        name: String ,
+        isFollowing: Boolean
+    ): Single<List<GithubFollowEntity>>
+
 //
 }
