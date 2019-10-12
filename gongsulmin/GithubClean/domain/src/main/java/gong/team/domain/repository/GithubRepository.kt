@@ -2,6 +2,7 @@ package gong.team.domain.repository
 
 import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.entity.GithubTokenEntity
+import gong.team.domain.entity.GithubUserEntity
 import io.reactivex.Single
 
 interface GithubRepository {
@@ -16,8 +17,7 @@ interface GithubRepository {
         header: String
     ): Single<GithubTokenEntity>
 
-//    fun getUserInfo(
-//        token: String
-//    ): Single<GithubUserEntity>
+    fun getUserInfo(
+    ): Single<GithubUserEntity>
 //
 }
