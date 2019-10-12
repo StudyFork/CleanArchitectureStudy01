@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domains.entities.RepositorySummaryInfo
+import com.example.domain.entities.RepositorySummaryInfo
 import com.example.search.R
 import com.example.search.databinding.ItemRepositorySummaryInfoBinding
 

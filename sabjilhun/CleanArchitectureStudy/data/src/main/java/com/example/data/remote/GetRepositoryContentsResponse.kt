@@ -1,7 +1,7 @@
 package com.example.data.remote
 
 
-import com.example.domains.entities.RepositoryFile
+import com.example.domain.entities.RepositoryFile
 import com.google.gson.annotations.SerializedName
 
 data class GetRepositoryContentsResponse(

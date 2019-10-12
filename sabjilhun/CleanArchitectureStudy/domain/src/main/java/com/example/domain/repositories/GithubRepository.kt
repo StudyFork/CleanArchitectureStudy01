@@ -1,7 +1,7 @@
-package com.example.domains.repositories
+package com.example.domain.repositories
 
-import com.example.domains.entities.RepositoryFile
-import com.example.domains.entities.RepositorySummaryInfo
+import com.example.domain.entities.RepositoryFile
+import com.example.domain.entities.RepositorySummaryInfo
 import io.reactivex.Single
 
 interface GithubRepository {

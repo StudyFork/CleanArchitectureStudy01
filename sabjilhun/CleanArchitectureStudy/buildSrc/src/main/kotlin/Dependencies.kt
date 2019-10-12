@@ -29,7 +29,7 @@ object Version {
 object Modules {
     const val app = ":app"
     const val common = ":common"
-    const val domains = ":domains"
+    const val domain = ":domain"
     const val navigator = ":navigator"
     const val data = ":data"
 

@@ -1,8 +1,8 @@
 package com.example.filetree
 
 import com.example.common.base.BaseViewModel
-import com.example.domains.usecases.GetRepositoryContentsInPathUseCase
-import com.example.domains.usecases.GetRepositoryContentsInRootUseCase
+import com.example.domain.usecases.GetRepositoryContentsInPathUseCase
+import com.example.domain.usecases.GetRepositoryContentsInRootUseCase
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 

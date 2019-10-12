@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.common.base.BaseViewModel
 import com.example.common.commons.SingleLiveEvent
 import com.example.common.utils.TextUtils
-import com.example.domains.entities.RepositorySummaryInfo
-import com.example.domains.usecases.SearchRepositoriesUseCase
+import com.example.domain.entities.RepositorySummaryInfo
+import com.example.domain.usecases.SearchRepositoriesUseCase
 import com.example.navigator.FileTreeNavigator
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject

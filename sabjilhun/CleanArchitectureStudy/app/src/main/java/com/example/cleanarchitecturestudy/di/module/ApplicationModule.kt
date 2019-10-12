@@ -3,7 +3,7 @@ package com.example.cleanarchitecturestudy.di.module
 import com.example.cleanarchitecturestudy.di.ApplicationScope
 import com.example.data.GithubRepositoryImpl
 import com.example.data.remote.GithubApi
-import com.example.domains.repositories.GithubRepository
+import com.example.domain.repositories.GithubRepository
 import dagger.Module
 import dagger.Provides
 

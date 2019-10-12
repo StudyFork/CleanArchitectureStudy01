@@ -1,8 +1,8 @@
-package com.example.domains.usecases
+package com.example.domain.usecases
 
-import com.example.domains.entities.RepositoryFile
-import com.example.domains.entities.RepositorySummaryInfo
-import com.example.domains.repositories.GithubRepository
+import com.example.domain.entities.RepositoryFile
+import com.example.domain.entities.RepositorySummaryInfo
+import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

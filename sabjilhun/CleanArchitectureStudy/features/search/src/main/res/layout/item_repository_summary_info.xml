@@ -11,7 +11,7 @@
 		
 		<variable
 			name="item"
-			type="com.example.domains.entities.RepositorySummaryInfo" />
+			type="com.example.domain.entities.RepositorySummaryInfo" />
 	</data>
 	
 	<androidx.cardview.widget.CardView

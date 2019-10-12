@@ -1,4 +1,4 @@
-package com.example.domains.entities
+package com.example.domain.entities
 
 data class RepositoryFile(
     val type: FileType,

@@ -1,4 +1,4 @@
-package com.example.domains.entities
+package com.example.domain.entities
 
 data class RepositorySummaryInfo(
     val ownerName: String,

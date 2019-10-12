@@ -3,9 +3,9 @@ package com.example.data
 import com.example.data.remote.GetRepositoryContentsResponse
 import com.example.data.remote.GithubApi
 import com.example.data.remote.SearchRepositoriesResponse
-import com.example.domains.entities.RepositoryFile
-import com.example.domains.entities.RepositorySummaryInfo
-import com.example.domains.repositories.GithubRepository
+import com.example.domain.entities.RepositoryFile
+import com.example.domain.entities.RepositorySummaryInfo
+import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 
 class GithubRepositoryImpl constructor(

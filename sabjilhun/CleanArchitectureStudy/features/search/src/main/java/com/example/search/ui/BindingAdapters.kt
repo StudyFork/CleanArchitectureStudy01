@@ -2,9 +2,8 @@ package com.example.search.ui
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domains.entities.RepositorySummaryInfo
+import com.example.domain.entities.RepositorySummaryInfo
 import com.example.search.ui.adapter.RepositorySummaryInfoAdapter
-
 
 @BindingAdapter("items")
 fun RecyclerView.setRepositorySummaryInfoList(
