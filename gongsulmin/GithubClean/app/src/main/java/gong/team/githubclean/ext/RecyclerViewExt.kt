@@ -2,15 +2,29 @@ package gong.team.githubclean.ext
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import gong.team.domain.entity.GithubFollowEntity
 import gong.team.domain.entity.GithubSearchResultModel
+import gong.team.domain.entity.GithubUserInfoEntity
 import gong.team.githubclean.adapter.MainAdapter
+import gong.team.githubclean.ui.follow.FollowAdapter
+import gong.team.githubclean.ui.profile.ReposAdapter
 
 
 @BindingAdapter("setItems")
 fun <T> RecyclerView.setItems(items: T) {
 
     if (items != null){
-        (adapter as MainAdapter).loadData(items as List<GithubSearchResultModel>)
+        when (adapter) {
+            is MainAdapter -> (adapter as MainAdapter).loadData(items as List<GithubSearchResultModel>)
+            is ReposAdapter -> {
+                (adapter as ReposAdapter).loadData(items as List<GithubUserInfoEntity.GithubUserRepoEntity>)
+            }
+            is FollowAdapter -> {
+                (adapter as FollowAdapter).loadData(items as List<GithubFollowEntity>)
+            }
+            else -> {
+            }
+        }
     }
 
 }
