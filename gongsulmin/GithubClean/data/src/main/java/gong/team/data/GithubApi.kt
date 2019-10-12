@@ -1,13 +1,12 @@
 package gong.team.data
 
 import gong.team.data.entity.GithubSearchDto
+import gong.team.data.request.GithubTokenRequest
 import gong.team.data.response.GithubFollowUserResponse
+import gong.team.data.response.GithubTokenResponse
 import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface GithubApi {
 
@@ -32,6 +31,12 @@ interface GithubApi {
     fun getGithubFollowingUser(
         @Path("name") name: String
     ): Single<GithubFollowUserResponse>
+
+    @POST("authorizations")
+    fun getGithubToken(
+        @Header("Authorization") header: String ,
+        @Body tokenRequest: GithubTokenRequest
+    ): Single<GithubTokenResponse>
 
     companion object {
         val BASE_URL = "https://api.github.com/"
