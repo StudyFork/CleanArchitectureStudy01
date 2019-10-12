@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">repoBrowse</string>
+    <string name="url_folder_img">https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA3iGpSqpJYijbgwe9RmpI-0Gy7k-sWUoIpCGBd3F24l4iAUGm</string>
+    <string name="url_file_img">https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfeFDyG6zvUk1z98TlaPOW82B9LOwQLGbRl0qE0wQFN_7DAF9</string>
 </resources>
