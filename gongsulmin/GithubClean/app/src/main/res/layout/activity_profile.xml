@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+        <variable
+                name="profileVM"
+                type="gong.team.githubclean.ui.profile.ProfileVIewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_repo_count"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.2"
+                />
+
+        <TextView
+                android:id="@+id/txt_repo_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                app:layout_constraintStart_toEndOf="@+id/img_profile"
+                app:layout_constraintEnd_toStartOf="@+id/txt_follower_count"
+                app:layout_constraintTop_toTopOf="@+id/img_profile"
+                app:layout_constraintBottom_toTopOf="@+id/txt_repo_count_title"
+                app:layout_constraintVertical_chainStyle="packed"
+                />
+
+        <TextView
+                android:id="@+id/txt_repo_count_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="repo"
+                app:layout_constraintStart_toStartOf="@+id/txt_repo_count"
+                app:layout_constraintEnd_toEndOf="@+id/txt_repo_count"
+                app:layout_constraintTop_toBottomOf="@+id/txt_repo_count"
+                app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+                />
+
+        <TextView
+                android:id="@+id/txt_follower_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(profileVM.userInfo.followersCount)}"
+                app:layout_constraintStart_toEndOf="@+id/txt_repo_count"
+                app:layout_constraintEnd_toStartOf="@+id/txt_following_count"
+                app:layout_constraintTop_toTopOf="@+id/txt_repo_count"
+                />
+
+        <TextView
+                android:id="@+id/txt_follower_count_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="팔로워"
+                app:layout_constraintStart_toStartOf="@+id/txt_follower_count"
+                app:layout_constraintEnd_toEndOf="@+id/txt_follower_count"
+                app:layout_constraintTop_toTopOf="@+id/txt_repo_count_title"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_repo_count_title"
+                />
+
+        <TextView
+                android:id="@+id/txt_following_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(profileVM.userInfo.followingCount)}"
+                app:layout_constraintStart_toEndOf="@+id/txt_follower_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_repo_count"
+                />
+
+        <TextView
+                android:id="@+id/txt_following_count_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="팔로잉"
+                app:layout_constraintStart_toStartOf="@+id/txt_following_count"
+                app:layout_constraintEnd_toEndOf="@+id/txt_following_count"
+                app:layout_constraintTop_toTopOf="@+id/txt_repo_count_title"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_repo_count_title"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
