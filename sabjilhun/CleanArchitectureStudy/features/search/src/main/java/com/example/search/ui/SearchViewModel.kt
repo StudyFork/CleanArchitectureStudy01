@@ -37,4 +37,11 @@ class SearchViewModel @Inject constructor(
                 onError = ::handleApiErrorMessage
             ).add()
     }
+
+    fun openFileTreeOfRepository(repositorySummaryInfo: RepositorySummaryInfo) {
+        fileTreeNavigator.startFileTree(
+            repositorySummaryInfo.ownerName,
+            repositorySummaryInfo.repositoryName
+        )
+    }
 }

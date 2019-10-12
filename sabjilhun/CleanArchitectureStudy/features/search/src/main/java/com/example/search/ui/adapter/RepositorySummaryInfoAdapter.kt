@@ -14,6 +14,8 @@ class RepositorySummaryInfoAdapter :
 
     private var items: List<RepositorySummaryInfo> = emptyList()
 
+    var onClickListener: ((repositorySummaryInfo: RepositorySummaryInfo) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,7 +25,14 @@ class RepositorySummaryInfoAdapter :
             parent,
             false
         )
-    )
+    ).apply {
+        binding.root.setOnClickListener {
+            onClickListener?.let {
+                it(items[adapterPosition])
+            }
+        }
+    }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.item = items[position]

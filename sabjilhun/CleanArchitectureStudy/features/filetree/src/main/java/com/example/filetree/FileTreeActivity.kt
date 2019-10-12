@@ -13,8 +13,13 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
 
     private lateinit var viewModel: FileTreeViewModel
 
+    private lateinit var owner: String
+    private lateinit var repoName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setUpExtra()
+
         viewModel = getViewModel(FileTreeViewModel::class)
         binding.vm = viewModel
 
@@ -22,7 +27,16 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
         observeViewModel()
     }
 
+    private fun setUpExtra() {
+        intent?.run {
+            this@FileTreeActivity.owner = getStringExtra(FileTreeNavigatorConstants.OWNER)
+            this@FileTreeActivity.repoName =
+                getStringExtra(FileTreeNavigatorConstants.REPOSITORY_NAME)
+        }
+    }
+
     private fun setUpView() {
+        viewModel.getContentsInRoot(owner, repoName)
     }
 
     private fun observeViewModel() {

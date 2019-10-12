@@ -22,7 +22,10 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
     }
 
     private fun setUpView() {
-        binding.rvSearchedImage.adapter = RepositorySummaryInfoAdapter()
+        binding.rvSearchedImage.adapter = RepositorySummaryInfoAdapter().apply {
+            onClickListener = viewModel::openFileTreeOfRepository
+        }
+
         binding.etSearchKeyword.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.searchRepositories()
