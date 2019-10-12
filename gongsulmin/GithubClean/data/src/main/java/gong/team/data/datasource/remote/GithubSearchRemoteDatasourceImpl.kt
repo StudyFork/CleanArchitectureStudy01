@@ -7,24 +7,11 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class GithubSearchRemoteDatasourceImpl(
+class GithubSearchRemoteDatasourceImpl
+    (
     private val githubApi: GithubApi ,
     private val githubLoginApi: GithubLoginApi
 ): GithubSearchRemoteDataSource {
-
-    override fun getAccessToken(
-        clientId: String,
-        clientSecret: String,
-        code: String
-    ): Single<String> {
-        return githubLoginApi.getAccessToken(
-            clientId ,
-            clientSecret ,
-            code
-        )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
 
     override fun getGithubSearchResult(
         q: String,
