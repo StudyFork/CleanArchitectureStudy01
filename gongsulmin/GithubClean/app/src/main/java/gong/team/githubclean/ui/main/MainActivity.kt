@@ -3,7 +3,6 @@ package gong.team.githubclean.ui.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import gong.team.githubclean.R
 import gong.team.githubclean.adapter.MainAdapter
@@ -54,10 +53,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //                }
 //            ).addTo(CompositeDisposable())
 
-            Log.e(TAG , "${uri.queryParameterNames}")
 //            startActivity(Intent(Intent.ACTION_VIEW , Uri.parse("https://github.com/login/oauth/access_token?client_id=95afcb4b4c096edece62&client_secret=ef428364a8a1013ece84970eb7ece4e3f47cadbb&redirect_uri=gong://tokencallback&code="+"wwwww")))
             // 이코드를 통해서 access token 값을 얻어옴
-            Log.e(TAG , "${uri.getQueryParameter("code")}")
         }
 
     }
