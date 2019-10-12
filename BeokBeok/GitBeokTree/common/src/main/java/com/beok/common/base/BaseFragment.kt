@@ -41,9 +41,11 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
         return binding.root
     }
 
-    override fun onDestroyView() {
-        if (!compositeDisposable.isDisposed) compositeDisposable.dispose()
-        super.onDestroyView()
+    override fun onDestroy() {
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.dispose()
+        }
+        super.onDestroy()
     }
 
     protected abstract fun initBinding()
