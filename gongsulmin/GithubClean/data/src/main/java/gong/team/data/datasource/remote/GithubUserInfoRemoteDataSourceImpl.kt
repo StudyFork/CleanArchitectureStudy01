@@ -4,6 +4,7 @@ import gong.team.data.GithubApi
 import gong.team.data.request.GithubTokenRequest
 import gong.team.data.response.GithubFollowUserResponse
 import gong.team.data.response.GithubTokenResponse
+import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -26,15 +27,13 @@ class GithubUserInfoRemoteDataSourceImpl(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getUserInfo(token: String): Single<GithubFollowUserResponse> {
-
+    override fun getUserInfo(token: String): Single<GithubUserResponse> {
+        val tokenString = "token $token"
          return githubApi.getGithubUser(
-                token
+             tokenString
             )
-             .flatMap {
-                 githubApi.getGithubFollowerUser(it.login)
-             }
-            .subscribeOn(Schedulers.io())
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
     }
 
 }

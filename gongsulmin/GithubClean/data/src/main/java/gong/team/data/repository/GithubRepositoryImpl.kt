@@ -1,6 +1,5 @@
 package gong.team.data.repository
 
-import android.util.Log
 import gong.team.data.datasource.local.GithubUserLocalDataSource
 import gong.team.data.datasource.local.entity.Token
 import gong.team.data.datasource.remote.GithubSearchRemoteDataSource
@@ -9,7 +8,10 @@ import gong.team.data.mapper.GithubSearchItemMapper
 import gong.team.data.mapper.toDomain
 import gong.team.domain.entity.GithubSearchResultModel
 import gong.team.domain.entity.GithubTokenEntity
+import gong.team.domain.entity.GithubUserEntity
 import gong.team.domain.repository.GithubRepository
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -20,19 +22,22 @@ class GithubRepositoryImpl(
     private val githubSearchItemMapper: GithubSearchItemMapper
 ): GithubRepository {
 
+    override fun getUserInfo(): Single<GithubUserEntity> {
+        return githubUserLocalDataSource.selectToken()
+            .flatMap {
+                githubUserInfoRemoteDataSource.getUserInfo(it.first().token)
+            }
+            .map {
+                it.toDomain()
+            }
+    }
+
     override fun getAccessToken(header: String): Single<GithubTokenEntity> {
+
         return githubUserInfoRemoteDataSource.getAccessToken(header)
             .map {
-                githubUserLocalDataSource.insertToken(Token(it.token))
-                githubUserLocalDataSource.selectToken()
-                    .subscribeBy (
-                        onError =  {
-                            Log.e("로컬" , "it")
-                        } ,
-                        onSuccess =  {
-                            Log.e("로컬" , "$it")
-                        }
-                    )
+                githubUserLocalDataSource.insertToken(Token(it.id ,it.token))
+                    .subscribe()
                 it.toDomain()
             }
     }

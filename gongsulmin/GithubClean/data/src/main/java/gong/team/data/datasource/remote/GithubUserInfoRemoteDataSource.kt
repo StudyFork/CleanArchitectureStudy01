@@ -2,6 +2,7 @@ package gong.team.data.datasource.remote
 
 import gong.team.data.response.GithubFollowUserResponse
 import gong.team.data.response.GithubTokenResponse
+import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
 
 interface GithubUserInfoRemoteDataSource  {
@@ -12,5 +13,5 @@ interface GithubUserInfoRemoteDataSource  {
 
     fun getUserInfo(
         token: String
-    ): Single<GithubFollowUserResponse>
+    ): Single<GithubUserResponse>
 }
