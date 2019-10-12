@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="repoFileTree"
@@ -12,32 +15,30 @@
             type="com.beok.repobrowse.viewmodel.RepoBrowseViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginStart="4dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_browse_indicator"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@null" />
+        android:layout_marginStart="4dp">
 
         <ImageView
             android:id="@+id/iv_type"
             srcWithGlide="@{repoFileTree.type.equals(`dir`) ? @string/url_folder_img : @string/url_file_img}"
             android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@null" />
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@{repoFileTree.name}" />
+            android:text="@{repoFileTree.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_type"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
