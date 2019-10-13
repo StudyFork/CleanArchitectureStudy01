@@ -8,6 +8,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.beok.navigation.NavigationCommand
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -34,12 +37,15 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
             false
         )
         binding.lifecycleOwner = this
+        observeNavigation()
         return binding.root
     }
 
-    override fun onDestroyView() {
-        if (!compositeDisposable.isDisposed) compositeDisposable.dispose()
-        super.onDestroyView()
+    override fun onDestroy() {
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.dispose()
+        }
+        super.onDestroy()
     }
 
     protected abstract fun initBinding()
@@ -54,5 +60,18 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
             msg ?: "",
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun observeNavigation() {
+        viewModel.navigation.observe(
+            this,
+            Observer {
+                it.getContentIfNotHandled()?.let { command ->
+                    if (command is NavigationCommand.To) {
+                        findNavController().navigate(command.directions)
+                    }
+                }
+            }
+        )
     }
 }

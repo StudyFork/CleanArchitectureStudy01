@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 fun getRetrofitBasicModule(url: String) = module {
-    single {
+    factory {
         HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
@@ -17,12 +17,12 @@ fun getRetrofitBasicModule(url: String) = module {
             }
         }
     }
-    single {
+    factory {
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>())
             .build()
     }
-    single { GsonConverterFactory.create() }
+    factory { GsonConverterFactory.create() }
     single {
         Retrofit.Builder()
             .baseUrl(url)

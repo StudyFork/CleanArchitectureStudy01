@@ -23,9 +23,9 @@ abstract class BaseRecyclerView {
             )
     ) {
 
-        private val binding: VDB = DataBindingUtil.bind(itemView)!!
+        protected val binding: VDB = DataBindingUtil.bind(itemView)!!
 
-        fun onBindViewHolder(item: Any?) {
+        open fun onBindViewHolder(item: Any?) {
             if (bindingId == null) return
             if (item == null) return
 

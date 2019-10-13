@@ -38,6 +38,8 @@ android {
         isEnabled = true
     }
 
+    // Static interface methods are only supported starting with Android N (--min-api 24)
+    // https://github.com/JakeWharton/butterknife/issues/1416#issuecomment-444164629
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -46,7 +48,8 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":reposearch"))
+    implementation(project(":repoSearch"))
+    implementation(project(":repoBrowse"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
@@ -67,5 +70,10 @@ dependencies {
     Koin.run {
         implementation(KOIN)
         implementation(VIEWMODEL)
+    }
+
+    Navigation.run {
+        implementation(FRAGMENT)
+        implementation(UI)
     }
 }
