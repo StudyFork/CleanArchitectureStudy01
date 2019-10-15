@@ -16,6 +16,7 @@ class RepoBrowseViewModel(
 
     private val _repoFileTree = MutableLiveData<List<RepoFileTreeEntity>>()
     private val _errMsg = MutableLiveData<Throwable>()
+
     private lateinit var userName: String
     private lateinit var repoName: String
 
@@ -26,20 +27,35 @@ class RepoBrowseViewModel(
         userName: String,
         repoName: String
     ) = viewModelScope.launch {
-        val remoteRepoFileTree = userRepoBrowseUsecase(
-            userName,
-            repoName
+        getRepoFileTree(
+            userRepoBrowseUsecase(
+                userName,
+                repoName
+            )
         )
-        if (!remoteRepoFileTree.succeeded) {
+        setUserAndRepoName(userName, repoName)
+    }
+
+    fun showSpecificDir(detail: String) = viewModelScope.launch {
+        getRepoFileTree(
+            userRepoBrowseUsecase(
+                userName,
+                repoName,
+                detail
+            )
+        )
+    }
+
+    private fun getRepoFileTree(repoFileTreeList: Result<List<RepoFileTreeEntity>>) {
+        if (!repoFileTreeList.succeeded) {
             setRepoBrowseData(
-                err = (remoteRepoFileTree as? Result.Error)?.exception
+                err = (repoFileTreeList as? Result.Error)?.exception
                     ?: IllegalStateException("Data is null")
             )
-            return@launch
+            return
         }
-        setUserAndRepoName(userName, repoName)
         setRepoBrowseData(
-            repoFileTree = (remoteRepoFileTree as Result.Success).data
+            repoFileTree = (repoFileTreeList as Result.Success).data
                 .asSequence()
                 .sortedWith(
                     compareBy(
