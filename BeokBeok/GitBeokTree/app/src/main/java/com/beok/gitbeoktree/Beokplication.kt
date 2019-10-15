@@ -17,18 +17,18 @@ class Beokplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@Beokplication)
-            modules(getKoinModules())
+            modules(
+                getKoinModules(
+                    RepoSearchDI.repoSearchModule,
+                    RepoBrowseDI.repoBrowseModule
+                )
+            )
         }
     }
 
-    private fun getKoinModules(): List<Module> {
+    private fun getKoinModules(vararg modules: List<Module>): List<Module> {
         val koinModules = mutableListOf<Module>()
-        RepoSearchDI.repoSearchModule.forEach { module ->
-            koinModules.add(module)
-        }
-        RepoBrowseDI.repoBrowseModule.forEach { module ->
-            koinModules.add(module)
-        }
+        koinModules.addAll(modules.toMutableList().flatten())
         koinModules.add(getRetrofitBasicModule("https://api.github.com/"))
         return koinModules
     }
