@@ -30,6 +30,14 @@ class RepoBrowseViewModel(
         )
         if (remoteRepoFileTree.succeeded) {
             _repoFileTree.value = (remoteRepoFileTree as Result.Success).data
+                .asSequence()
+                .sortedWith(
+                    compareBy(
+                        RepoFileTreeEntity::type,
+                        RepoFileTreeEntity::path
+                    )
+                )
+                .toList()
         } else {
             _errMsg.value = (remoteRepoFileTree as? Result.Error)?.exception
                 ?: IllegalStateException("Data is null")
