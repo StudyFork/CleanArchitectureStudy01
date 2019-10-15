@@ -1,7 +1,7 @@
-package com.beok.repobrowse.repository.data
+package com.beok.repobrowse.data.source
 
 import com.beok.common.Result
-import com.beok.repobrowse.entity.RepoFileTreeResEntity
+import com.beok.repobrowse.domain.entity.RepoFileTreeEntity
 
 interface RepoBrowseDataSource {
 
@@ -9,5 +9,5 @@ interface RepoBrowseDataSource {
         user: String,
         repoName: String,
         detail: String
-    ): Result<List<RepoFileTreeResEntity>>
+    ): Result<List<RepoFileTreeEntity>>
 }

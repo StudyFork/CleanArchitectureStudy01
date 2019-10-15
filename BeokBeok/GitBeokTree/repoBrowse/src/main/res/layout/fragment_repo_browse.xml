@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.beok.repobrowse.viewmodel.RepoBrowseViewModel" />
+            type="com.beok.repobrowse.presenter.RepoBrowseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

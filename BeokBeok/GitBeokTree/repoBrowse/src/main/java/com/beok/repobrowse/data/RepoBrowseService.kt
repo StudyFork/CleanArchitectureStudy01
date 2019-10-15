@@ -1,6 +1,6 @@
-package com.beok.repobrowse.repository.service
+package com.beok.repobrowse.data
 
-import com.beok.repobrowse.entity.RepoFileTreeResEntity
+import com.beok.repobrowse.data.model.RepoFileTree
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -14,5 +14,5 @@ interface RepoBrowseService {
         repoName: String,
         @Path("detail")
         detail: String
-    ): List<RepoFileTreeResEntity>
+    ): List<RepoFileTree>
 }

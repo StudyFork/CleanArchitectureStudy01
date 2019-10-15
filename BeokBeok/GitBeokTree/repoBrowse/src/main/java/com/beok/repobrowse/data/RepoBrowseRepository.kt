@@ -1,8 +1,8 @@
-package com.beok.repobrowse.repository
+package com.beok.repobrowse.data
 
 import com.beok.common.Result
-import com.beok.repobrowse.entity.RepoFileTreeResEntity
-import com.beok.repobrowse.repository.data.RepoBrowseDataSource
+import com.beok.repobrowse.data.source.RepoBrowseDataSource
+import com.beok.repobrowse.domain.entity.RepoFileTreeEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,7 +16,7 @@ class RepoBrowseRepository(
         user: String,
         repoName: String,
         detail: String
-    ): Result<List<RepoFileTreeResEntity>> = withContext(ioDispatcher) {
+    ): Result<List<RepoFileTreeEntity>> = withContext(ioDispatcher) {
         repoBrowseDataSource.getRepoFileTree(
             user,
             repoName,

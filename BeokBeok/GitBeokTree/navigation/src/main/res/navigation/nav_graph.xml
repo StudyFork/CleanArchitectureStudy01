@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/fg_repo_browse"
-        android:name="com.beok.repobrowse.view.RepoBrowseFragment"
+        android:name="com.beok.repobrowse.presenter.RepoBrowseFragment"
         android:label="RepoBrowseFragment">
         <argument
             android:name="user"

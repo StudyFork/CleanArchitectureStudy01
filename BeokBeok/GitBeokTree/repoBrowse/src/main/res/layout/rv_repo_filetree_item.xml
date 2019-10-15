@@ -8,11 +8,11 @@
 
         <variable
             name="repoFileTree"
-            type="com.beok.repobrowse.entity.RepoFileTreeResEntity" />
+            type="com.beok.repobrowse.domain.entity.RepoFileTreeEntity" />
 
         <variable
             name="vm"
-            type="com.beok.repobrowse.viewmodel.RepoBrowseViewModel" />
+            type="com.beok.repobrowse.presenter.RepoBrowseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

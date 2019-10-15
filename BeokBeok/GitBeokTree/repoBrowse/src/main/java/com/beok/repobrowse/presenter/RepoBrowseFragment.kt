@@ -1,4 +1,4 @@
-package com.beok.repobrowse.view
+package com.beok.repobrowse.presenter
 
 
 import android.os.Bundle
@@ -9,8 +9,7 @@ import com.beok.repobrowse.BR
 import com.beok.repobrowse.R
 import com.beok.repobrowse.databinding.FragmentRepoBrowseBinding
 import com.beok.repobrowse.databinding.RvRepoFiletreeItemBinding
-import com.beok.repobrowse.entity.RepoFileTreeResEntity
-import com.beok.repobrowse.viewmodel.RepoBrowseViewModel
+import com.beok.repobrowse.domain.entity.RepoFileTreeEntity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepoBrowseFragment : BaseFragment<FragmentRepoBrowseBinding, RepoBrowseViewModel>(
@@ -34,11 +33,12 @@ class RepoBrowseFragment : BaseFragment<FragmentRepoBrowseBinding, RepoBrowseVie
     private fun initRecyclerView() {
         binding.rvFiletree.run {
             setHasFixedSize(true)
-            adapter = RepoBrowseAdapter<List<RepoFileTreeResEntity>, RvRepoFiletreeItemBinding>(
-                R.layout.rv_repo_filetree_item,
-                BR.repoFileTree,
-                viewModel
-            )
+            adapter =
+                RepoBrowseAdapter<List<RepoFileTreeEntity>, RvRepoFiletreeItemBinding>(
+                    R.layout.rv_repo_filetree_item,
+                    BR.repoFileTree,
+                    viewModel
+                )
         }
     }
 
