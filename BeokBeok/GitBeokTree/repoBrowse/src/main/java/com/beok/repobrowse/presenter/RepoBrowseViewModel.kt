@@ -20,7 +20,7 @@ class RepoBrowseViewModel(
     val repoFileTree: LiveData<List<RepoFileTreeEntity>> get() = _repoFileTree
     val errMsg: LiveData<Throwable> get() = _errMsg
 
-    fun getRepoFileTree(
+    fun showRepoFileTree(
         user: String,
         repoName: String
     ) = viewModelScope.launch {
