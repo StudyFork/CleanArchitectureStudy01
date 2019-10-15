@@ -9,13 +9,13 @@
 
         <variable
             name="vm"
-            type="com.beok.reposearch.viewmodel.RepoSearchViewModel" />
+            type="com.beok.reposearch.presenter.RepoSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.RepoSearchFragment">
+        tools:context=".presenter.RepoSearchFragment">
 
         <EditText
             android:id="@+id/et_search"

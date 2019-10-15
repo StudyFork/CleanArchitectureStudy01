@@ -1,11 +1,10 @@
-package com.beok.reposearch.view
+package com.beok.reposearch.presenter
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.beok.common.base.BaseRecyclerView
 import com.beok.reposearch.databinding.RvRepoItemBinding
-import com.beok.reposearch.viewmodel.RepoSearchViewModel
 
 class RepoSearchAdapter<A : Any, VDB : ViewDataBinding>(
     @LayoutRes

@@ -1,4 +1,4 @@
-package com.beok.reposearch.view
+package com.beok.reposearch.presenter
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +9,7 @@ import com.beok.reposearch.BR
 import com.beok.reposearch.R
 import com.beok.reposearch.databinding.FragmentRepoSearchBinding
 import com.beok.reposearch.databinding.RvRepoItemBinding
-import com.beok.reposearch.entity.RepoResEntity
-import com.beok.reposearch.viewmodel.RepoSearchViewModel
+import com.beok.reposearch.domain.entity.ReposEntity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -39,7 +38,7 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
         binding.rvContents.run {
             setHasFixedSize(true)
             adapter =
-                RepoSearchAdapter<List<RepoResEntity>, RvRepoItemBinding>(
+                RepoSearchAdapter<List<ReposEntity>, RvRepoItemBinding>(
                     R.layout.rv_repo_item,
                     BR.repo,
                     viewModel

@@ -1,6 +1,6 @@
-package com.beok.reposearch.usecase
+package com.beok.reposearch.domain.usecase
 
-import com.beok.reposearch.repository.RepoSearchRepository
+import com.beok.reposearch.data.RepoSearchRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
