@@ -51,7 +51,7 @@ class RepoBrowseFragment : BaseFragment<FragmentRepoBrowseBinding, RepoBrowseVie
 
     private fun setObserve() {
         viewModel.errMsg.observe(
-            this,
+            viewLifecycleOwner,
             Observer {
                 showSnackBar(it.message ?: "")
             }

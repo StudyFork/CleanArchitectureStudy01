@@ -87,7 +87,7 @@ class RepoSearchFragment : BaseFragment<FragmentRepoSearchBinding, RepoSearchVie
 
     private fun setObserve() {
         binding.vm?.errMsg?.observe(
-            this,
+            viewLifecycleOwner,
             Observer {
                 showSnackBar(it.message)
             }
