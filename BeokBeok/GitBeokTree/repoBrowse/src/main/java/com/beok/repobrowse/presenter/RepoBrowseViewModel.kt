@@ -28,7 +28,7 @@ class RepoBrowseViewModel(
         repoName: String
     ) = viewModelScope.launch {
         getRepoFileTree(
-            userRepoBrowseUsecase(
+            repoFileTreeList = userRepoBrowseUsecase(
                 userName,
                 repoName
             )
@@ -38,7 +38,7 @@ class RepoBrowseViewModel(
 
     fun showSpecificDir(detail: String) = viewModelScope.launch {
         getRepoFileTree(
-            userRepoBrowseUsecase(
+            repoFileTreeList = userRepoBrowseUsecase(
                 userName,
                 repoName,
                 detail
@@ -71,8 +71,10 @@ class RepoBrowseViewModel(
         userName: String,
         repoName: String
     ) {
-        this@RepoBrowseViewModel.userName = userName
-        this@RepoBrowseViewModel.repoName = repoName
+        this@RepoBrowseViewModel.let {
+            it.userName = userName
+            it.repoName = repoName
+        }
     }
 
     private fun setRepoBrowseData(
