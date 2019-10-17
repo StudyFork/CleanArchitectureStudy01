@@ -36,14 +36,35 @@ class RepoBrowseViewModel(
         setUserAndRepoName(userName, repoName)
     }
 
-    fun showSpecificDir(detail: String) = viewModelScope.launch {
-        updateRepoFileTree(
-            repoFileTreeList = userRepoBrowseUsecase(
-                userName,
-                repoName,
-                detail
-            )
-        )
+    fun clickSpecificDir(selectedItem: RepoFileTreeEntity) = viewModelScope.launch {
+        if (selectedItem.type == "dir") {
+            if (selectedItem.expandable) {
+                updateRepoFileTree(
+                    repoFileTreeList = userRepoBrowseUsecase(
+                        userName,
+                        repoName,
+                        selectedItem.path
+                    )
+                )
+            } else {
+                val updatedRepoFileTreeItem = mutableListOf<RepoFileTreeEntity>()
+                _repoFileTree.value?.let {
+                    updatedRepoFileTreeItem.addAll(it)
+                } ?: return@launch
+
+                setRepoBrowseData(
+                    repoFileTree = updatedRepoFileTreeItem.asSequence()
+                        .filterNot {
+                            it.path.startsWith(selectedItem.path.plus("/"))
+                        }
+                        .toList()
+                )
+                updatedRepoFileTreeItem.asSequence()
+                    .filter { it.path == selectedItem.path }
+                    .toList()[0]
+                    .expandable = true
+            }
+        }
     }
 
     private fun updateRepoFileTree(repoFileTreeList: Result<List<RepoFileTreeEntity>>) {
@@ -55,15 +76,18 @@ class RepoBrowseViewModel(
             return
         }
         setRepoBrowseData(
-            repoFileTree = (repoFileTreeList as Result.Success).data
-                .asSequence()
-                .sortedWith(
-                    compareBy(
-                        RepoFileTreeEntity::type,
-                        RepoFileTreeEntity::path
+            repoFileTree = getRepoFileTreeItem(
+                (repoFileTreeList as Result.Success).data
+                    .asSequence()
+                    .sortedWith(
+                        compareBy(
+                            RepoFileTreeEntity::type,
+                            RepoFileTreeEntity::path
+                        )
                     )
-                )
-                .toList()
+                    .toList()
+            )
+
         )
     }
 
@@ -81,7 +105,7 @@ class RepoBrowseViewModel(
         repoFileTree: List<RepoFileTreeEntity> = emptyList(),
         err: Throwable = IllegalStateException("")
     ) {
-        _repoFileTree.value = getRepoFileTreeItem(repoFileTree)
+        _repoFileTree.value = repoFileTree
         if (!err.message.isNullOrEmpty()) _errMsg.value = err
     }
 
@@ -102,6 +126,7 @@ class RepoBrowseViewModel(
         )
         if (parentIndex >= 0) {
             updatedRepoFileTreeItem.addAll(parentIndex + 1, repoFileTreeItem)
+            updatedRepoFileTreeItem[parentIndex].expandable = false
         }
         return updatedRepoFileTreeItem
     }
