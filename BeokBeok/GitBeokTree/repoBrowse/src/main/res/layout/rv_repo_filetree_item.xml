@@ -16,9 +16,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        marginStartForFileTreeItem="@{repoFileTree.depth}"
+        marginUnit="@{@dimen/item_file_tree_margin_unit}"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginStart="4dp"
         android:onClick="@{() -> vm.showSpecificDir(repoFileTree.path)}">
 
         <ImageView
@@ -26,7 +27,7 @@
             srcWithGlide="@{repoFileTree.type.equals(`dir`) ? @string/url_folder_img : @string/url_file_img}"
             android:layout_width="20dp"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="4dp"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
