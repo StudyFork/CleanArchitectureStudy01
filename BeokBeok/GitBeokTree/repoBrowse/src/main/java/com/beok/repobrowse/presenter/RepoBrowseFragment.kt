@@ -43,7 +43,7 @@ class RepoBrowseFragment : BaseFragment<FragmentRepoBrowseBinding, RepoBrowseVie
     }
 
     private fun showContents() {
-        viewModel.showRepoFileTree(
+        viewModel.showRepoBrowser(
             args.user,
             args.repoName
         )
