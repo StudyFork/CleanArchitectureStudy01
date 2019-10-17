@@ -27,7 +27,7 @@ class RepoBrowseViewModel(
         userName: String,
         repoName: String
     ) = viewModelScope.launch {
-        getRepoFileTree(
+        updateRepoFileTree(
             repoFileTreeList = userRepoBrowseUsecase(
                 userName,
                 repoName
@@ -37,7 +37,7 @@ class RepoBrowseViewModel(
     }
 
     fun showSpecificDir(detail: String) = viewModelScope.launch {
-        getRepoFileTree(
+        updateRepoFileTree(
             repoFileTreeList = userRepoBrowseUsecase(
                 userName,
                 repoName,
@@ -46,7 +46,7 @@ class RepoBrowseViewModel(
         )
     }
 
-    private fun getRepoFileTree(repoFileTreeList: Result<List<RepoFileTreeEntity>>) {
+    private fun updateRepoFileTree(repoFileTreeList: Result<List<RepoFileTreeEntity>>) {
         if (!repoFileTreeList.succeeded) {
             setRepoBrowseData(
                 err = (repoFileTreeList as? Result.Error)?.exception
@@ -78,10 +78,44 @@ class RepoBrowseViewModel(
     }
 
     private fun setRepoBrowseData(
-        repoFileTree: List<RepoFileTreeEntity> = listOf(),
+        repoFileTree: List<RepoFileTreeEntity> = emptyList(),
         err: Throwable = IllegalStateException("")
     ) {
-        _repoFileTree.value = repoFileTree
+        _repoFileTree.value = getRepoFileTreeItem(repoFileTree)
         if (!err.message.isNullOrEmpty()) _errMsg.value = err
+    }
+
+    private fun getRepoFileTreeItem(
+        repoFileTreeItem: List<RepoFileTreeEntity>
+    ): List<RepoFileTreeEntity> {
+        val updatedRepoFileTreeItem = mutableListOf<RepoFileTreeEntity>()
+        _repoFileTree.value?.let {
+            updatedRepoFileTreeItem.addAll(it)
+        } ?: run {
+            updatedRepoFileTreeItem.addAll(repoFileTreeItem)
+            return updatedRepoFileTreeItem
+        }
+
+        val parentIndex = getParentIndex(
+            allFileTree = updatedRepoFileTreeItem,
+            childFileTree = repoFileTreeItem
+        )
+        if (parentIndex >= 0) {
+            updatedRepoFileTreeItem.addAll(parentIndex + 1, repoFileTreeItem)
+        }
+        return updatedRepoFileTreeItem
+    }
+
+    private fun getParentIndex(
+        allFileTree: List<RepoFileTreeEntity>,
+        childFileTree: List<RepoFileTreeEntity>
+    ): Int {
+        val parentElement = allFileTree.asSequence()
+            .find { it.path.plus("/${childFileTree[0].name}") == childFileTree[0].path }
+        return if (parentElement != null) {
+            allFileTree.indexOf(parentElement)
+        } else {
+            -1
+        }
     }
 }
