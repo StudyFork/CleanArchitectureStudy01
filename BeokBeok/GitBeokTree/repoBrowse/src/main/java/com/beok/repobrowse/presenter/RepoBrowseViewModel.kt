@@ -16,17 +16,20 @@ class RepoBrowseViewModel(
 
     private val _repoFileTree = MutableLiveData<List<RepoFileTreeEntity>>()
     private val _errMsg = MutableLiveData<Throwable>()
+    private val _isLoading = MutableLiveData<Boolean>()
 
     private lateinit var userName: String
     private lateinit var repoName: String
 
     val repoFileTree: LiveData<List<RepoFileTreeEntity>> get() = _repoFileTree
     val errMsg: LiveData<Throwable> get() = _errMsg
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     fun showRepoBrowser(
         userName: String,
         repoName: String
     ) = viewModelScope.launch {
+        showProgressBar()
         addRepoFileTree(
             repoFileTreeItems = userRepoBrowseUsecase(
                 userName,
@@ -34,6 +37,7 @@ class RepoBrowseViewModel(
             )
         )
         setUserAndRepoName(userName, repoName)
+        hideProgressBar()
     }
 
     fun clickSpecificItem(selectedItem: RepoFileTreeEntity) = viewModelScope.launch {
@@ -144,5 +148,13 @@ class RepoBrowseViewModel(
                 }
                 .toList()
         )
+    }
+
+    private fun showProgressBar() {
+        _isLoading.value = true
+    }
+
+    private fun hideProgressBar() {
+        _isLoading.value = false
     }
 }
