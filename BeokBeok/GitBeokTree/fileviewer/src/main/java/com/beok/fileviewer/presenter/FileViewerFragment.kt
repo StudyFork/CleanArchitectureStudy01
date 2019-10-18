@@ -3,6 +3,8 @@ package com.beok.fileviewer.presenter
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -21,15 +23,11 @@ class FileViewerFragment : BaseFragment<FragmentFileViewerBinding, FileViewerVie
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initWebView()
-    }
-
-    override fun initBinding() {
-        // NO OP
+        initBinding()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun initWebView() {
+    override fun initBinding() {
         binding.wvFileViewer.run {
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
@@ -40,10 +38,25 @@ class FileViewerFragment : BaseFragment<FragmentFileViewerBinding, FileViewerVie
                     return true
                 }
             }
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                    super.onProgressChanged(
+                        view,
+                        newProgress
+                    )
+                    binding.pbLoading.run {
+                        if (newProgress == 100) {
+                            visibility = View.GONE
+                        }
+                        progress = newProgress
+                    }
+                }
+            }
             settings.javaScriptEnabled = true
             post {
                 loadUrl(args.downloadUrl)
             }
         }
     }
+
 }
