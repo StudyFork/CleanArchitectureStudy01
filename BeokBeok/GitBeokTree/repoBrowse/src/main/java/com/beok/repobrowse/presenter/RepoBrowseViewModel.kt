@@ -49,8 +49,13 @@ class RepoBrowseViewModel(
             } else {
                 removeRepoFileTree(selectedItem)
             }
+        } else {
+            clickFileItem(selectedItemUrl = selectedItem.downloadUrl)
         }
     }
+
+    private fun clickFileItem(selectedItemUrl: String) =
+        navigate(RepoBrowseFragmentDirections.actionRepobrowseToFileviewer(selectedItemUrl))
 
     private fun addRepoFileTree(repoFileTreeItems: Result<List<RepoFileTreeEntity>>) {
         if (!repoFileTreeItems.succeeded) {

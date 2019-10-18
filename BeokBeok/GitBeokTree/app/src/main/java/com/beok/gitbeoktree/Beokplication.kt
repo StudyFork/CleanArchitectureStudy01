@@ -2,6 +2,7 @@ package com.beok.gitbeoktree
 
 import android.app.Application
 import com.beok.common.di.getRetrofitBasicModule
+import com.beok.fileviewer.di.FileViewerDI
 import com.beok.repobrowse.di.RepoBrowseDI
 import com.beok.reposearch.di.RepoSearchDI
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +21,8 @@ class Beokplication : Application() {
             modules(
                 getKoinModules(
                     RepoSearchDI.repoSearchModule,
-                    RepoBrowseDI.repoBrowseModule
+                    RepoBrowseDI.repoBrowseModule,
+                    FileViewerDI.fileViewModules
                 )
             )
         }

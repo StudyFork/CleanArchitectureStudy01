@@ -7,21 +7,18 @@
 
         <variable
             name="vm"
-            type="com.beok.repobrowse.presenter.RepoBrowseViewModel" />
+            type="com.beok.fileviewer.presenter.FileViewerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presenter.RepoBrowseFragment">
+        tools:context=".presenter.FileViewerFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_filetree"
-            replaceItems="@{vm.repoFileTree}"
+        <WebView
+            android:id="@+id/wv_file_viewer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

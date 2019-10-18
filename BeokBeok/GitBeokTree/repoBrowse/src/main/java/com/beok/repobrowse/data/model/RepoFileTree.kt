@@ -40,5 +40,6 @@ fun RepoFileTree.mappingToDomain(): RepoFileTreeEntity =
     RepoFileTreeEntity(
         name = name ?: "",
         path = path ?: "",
-        type = type ?: ""
+        type = type ?: "",
+        downloadUrl = downloadUrl ?: ""
     )
