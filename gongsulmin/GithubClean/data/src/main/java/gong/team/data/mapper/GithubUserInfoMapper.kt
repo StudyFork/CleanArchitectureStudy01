@@ -2,7 +2,20 @@ package gong.team.data.mapper
 
 import gong.team.data.response.GithubUserInfo
 import gong.team.data.response.GithubUserReposReponse
+import gong.team.data.response.GithubUserResponse
 import gong.team.domain.entity.GithubUserInfoEntity
+import gong.team.domain.entity.GithubUserRepoEntity
+
+fun GithubUserResponse.toDomain() =
+    GithubUserInfoEntity (
+        login = login ,
+        profileUrl = avatarUrl ,
+        htmlUrl = htmlUrl ,
+        followersCount = followers ,
+        followingCount = following ,
+        createdAt = createdAt ,
+        updatedAt = updatedAt
+    )
 
 
 fun GithubUserInfo.toDomain() =
@@ -20,7 +33,7 @@ fun GithubUserInfo.toDomain() =
 
 fun List<GithubUserReposReponse>.toDomain() =
                 this.map {
-                    GithubUserInfoEntity.GithubUserRepoEntity(
+                    GithubUserRepoEntity(
                         id = it.id ,
                         name = it.name ,
                         fullName = it.fullName ,

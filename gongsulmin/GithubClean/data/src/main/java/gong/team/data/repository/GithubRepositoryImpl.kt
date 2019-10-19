@@ -6,16 +6,14 @@ import gong.team.data.datasource.remote.GithubSearchRemoteDataSource
 import gong.team.data.datasource.remote.GithubUserInfoRemoteDataSource
 import gong.team.data.mapper.GithubSearchItemMapper
 import gong.team.data.mapper.toDomain
-import gong.team.data.response.GithubUserInfo
+import gong.team.data.response.GithubFollowUserResponse
+import gong.team.data.response.GithubTokenResponse
 import gong.team.data.response.GithubUserReposReponse
 import gong.team.data.response.GithubUserResponse
-import gong.team.domain.entity.GithubFollowEntity
-import gong.team.domain.entity.GithubSearchResultModel
-import gong.team.domain.entity.GithubTokenEntity
-import gong.team.domain.entity.GithubUserInfoEntity
+import gong.team.domain.entity.*
 import gong.team.domain.repository.GithubRepository
+import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 
 class GithubRepositoryImpl(
     private val githubRemoteDataSource: GithubSearchRemoteDataSource,
@@ -24,35 +22,33 @@ class GithubRepositoryImpl(
     private val githubSearchItemMapper: GithubSearchItemMapper
 ): GithubRepository {
 
-    override fun getFollowUser(name: String, isFollowing: Boolean): Single<List<GithubFollowEntity>> {
-        return githubUserInfoRemoteDataSource.getFollowUser(name , isFollowing)
-            .map {
-                it.toDomain()
-            }
+    override fun saveToken(token: String): Completable {
+        return githubUserLocalDataSource.insertToken(Token(0 ,token))
     }
 
-    override fun getUserInfo(): Single<GithubUserInfoEntity> {
+    override fun getSelectToken(): Single<GithubTokenEntity> {
         return githubUserLocalDataSource.selectToken()
-            .flatMap {
-                Single.zip<GithubUserResponse , List<GithubUserReposReponse> , GithubUserInfo>(
-                    githubUserInfoRemoteDataSource.getUserInfo(it.last().token),
-                    githubUserInfoRemoteDataSource.getUserRepos(it.last().token) ,
-                    BiFunction<GithubUserResponse , List<GithubUserReposReponse> , GithubUserInfo>{user , userRepos -> GithubUserInfo(user , userRepos)}
-                )
-            }
-            .map {
-                it.toDomain()
-            }
+                .map(List<Token>::toDomain)
+    }
+
+    override fun getUserRepos(token: String): Single<List<GithubUserRepoEntity>> {
+        return githubUserInfoRemoteDataSource.getUserRepos(token)
+                .map (List<GithubUserReposReponse>::toDomain)
+    }
+
+    override fun getUserInfo(token: String): Single<GithubUserInfoEntity> {
+        return githubUserInfoRemoteDataSource.getUserInfo(token)
+                .map (GithubUserResponse::toDomain)
+    }
+
+    override fun getFollowUser(name: String, isFollowing: Boolean): Single<List<GithubFollowEntity>> {
+        return githubUserInfoRemoteDataSource.getFollowUser(name , isFollowing)
+                .map (List<GithubFollowUserResponse>::toDomain)
     }
 
     override fun getAccessToken(header: String): Single<GithubTokenEntity> {
-
         return githubUserInfoRemoteDataSource.getAccessToken(header)
-            .map {
-                githubUserLocalDataSource.insertToken(Token(0 ,it.token))
-                    .subscribe()
-                it.toDomain()
-            }
+                .map(GithubTokenResponse::toDomain)
     }
 
     override fun getGithubSearchResult(

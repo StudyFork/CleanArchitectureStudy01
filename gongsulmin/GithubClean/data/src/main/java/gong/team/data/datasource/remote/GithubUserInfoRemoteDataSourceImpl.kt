@@ -7,8 +7,6 @@ import gong.team.data.response.GithubTokenResponse
 import gong.team.data.response.GithubUserReposReponse
 import gong.team.data.response.GithubUserResponse
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class GithubUserInfoRemoteDataSourceImpl(
     private val githubApi: GithubApi
@@ -21,12 +19,8 @@ class GithubUserInfoRemoteDataSourceImpl(
     ): Single<List<GithubFollowUserResponse>> {
         return if (isFollowing) {
             githubApi.getGithubFollowerUser(name)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
         }else {
             githubApi.getGithubFollowingUser(name)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
         }
     }
 
@@ -34,8 +28,6 @@ class GithubUserInfoRemoteDataSourceImpl(
         return githubApi.getGithubUserRepos(
             token.toToken()
         )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun getAccessToken(header: String): Single<GithubTokenResponse> {
@@ -47,16 +39,12 @@ class GithubUserInfoRemoteDataSourceImpl(
                 scopes = listOf("repo")
             )
         return githubApi.getGithubToken(header , tokenRequest)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun getUserInfo(token: String): Single<GithubUserResponse> {
          return githubApi.getGithubUser(
              token.toToken()
             )
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun String.toToken() = "token $this"
