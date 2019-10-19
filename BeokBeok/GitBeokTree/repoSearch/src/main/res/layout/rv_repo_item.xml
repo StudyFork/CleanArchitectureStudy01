@@ -9,11 +9,11 @@
 
         <variable
             name="repo"
-            type="com.beok.reposearch.entity.RepoResEntity" />
+            type="com.beok.reposearch.domain.entity.ReposEntity" />
 
         <variable
             name="vm"
-            type="com.beok.reposearch.viewmodel.RepoSearchViewModel" />
+            type="com.beok.reposearch.presenter.RepoSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

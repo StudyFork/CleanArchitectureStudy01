@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
 }
@@ -10,17 +12,9 @@ android {
         buildToolsVersion(BUILD_TOOLS)
 
         defaultConfig {
-            applicationId = APP_ID
             minSdkVersion(MIN_SDK)
             targetSdkVersion(TARGET_SDK)
             testInstrumentationRunner = Test.RUNNER
-        }
-    }
-
-    Release.run {
-        defaultConfig {
-            versionCode = VERSION_CODE
-            versionName = VERSION_NAME
         }
     }
 
@@ -38,19 +32,16 @@ android {
         isEnabled = true
     }
 
-    // Static interface methods are only supported starting with Android N (--min-api 24)
-    // https://github.com/JakeWharton/butterknife/issues/1416#issuecomment-444164629
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    // cannot inline bytecode built with jvm target 1.8 into bytecode
+    // that is being built with jvm target 1.6
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
     }
 }
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":repoSearch"))
-    implementation(project(":repoBrowse"))
-    implementation(project(":fileViewer"))
+    implementation(project(":navigation"))
 
     App.run {
         implementation(fileTree(LIB_PATH))
@@ -66,6 +57,11 @@ dependencies {
     Ui.run {
         implementation(MATERIAL)
         implementation(CONSTRAINT_LAYOUT)
+    }
+
+    LifeCycle.run {
+        implementation(EXT)
+        implementation(VM_KTX)
     }
 
     Koin.run {

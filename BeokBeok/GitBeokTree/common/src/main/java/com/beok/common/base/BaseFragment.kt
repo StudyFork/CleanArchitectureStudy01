@@ -36,7 +36,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
             container,
             false
         )
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         observeNavigation()
         return binding.root
     }

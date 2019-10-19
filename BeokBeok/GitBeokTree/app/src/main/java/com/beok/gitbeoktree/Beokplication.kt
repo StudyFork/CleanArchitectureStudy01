@@ -2,6 +2,7 @@ package com.beok.gitbeoktree
 
 import android.app.Application
 import com.beok.common.di.getRetrofitBasicModule
+import com.beok.fileviewer.di.FileViewerDI
 import com.beok.repobrowse.di.RepoBrowseDI
 import com.beok.reposearch.di.RepoSearchDI
 import org.koin.android.ext.koin.androidContext
@@ -17,18 +18,19 @@ class Beokplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@Beokplication)
-            modules(getKoinModules())
+            modules(
+                getKoinModules(
+                    RepoSearchDI.repoSearchModule,
+                    RepoBrowseDI.repoBrowseModule,
+                    FileViewerDI.fileViewModules
+                )
+            )
         }
     }
 
-    private fun getKoinModules(): List<Module> {
+    private fun getKoinModules(vararg modules: List<Module>): List<Module> {
         val koinModules = mutableListOf<Module>()
-        RepoSearchDI.repoSearchModule.forEach { module ->
-            koinModules.add(module)
-        }
-        RepoBrowseDI.repoBrowseModule.forEach { module ->
-            koinModules.add(module)
-        }
+        koinModules.addAll(modules.toMutableList().flatten())
         koinModules.add(getRetrofitBasicModule("https://api.github.com/"))
         return koinModules
     }

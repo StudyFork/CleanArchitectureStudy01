@@ -1,11 +1,11 @@
 package com.beok.reposearch.di
 
-import com.beok.reposearch.repository.RepoSearchRepository
-import com.beok.reposearch.repository.data.RepoSearchDataSource
-import com.beok.reposearch.repository.data.RepoSearchDataSourceImpl
-import com.beok.reposearch.repository.service.RepoSearchService
-import com.beok.reposearch.usecase.UserRepoSearchUsecase
-import com.beok.reposearch.viewmodel.RepoSearchViewModel
+import com.beok.reposearch.data.RepoSearchRepository
+import com.beok.reposearch.data.RepoSearchService
+import com.beok.reposearch.data.source.RepoSearchDataSource
+import com.beok.reposearch.data.source.RepoSearchDataSourceImpl
+import com.beok.reposearch.domain.usecase.UserRepoSearchUsecase
+import com.beok.reposearch.presenter.RepoSearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -18,8 +18,16 @@ object RepoSearchDI {
     }
 
     private val dataSourceModule = module {
-        factory<RepoSearchDataSource>(named("repoSearchRepository")) { RepoSearchRepository(get()) }
-        factory<RepoSearchDataSource> { RepoSearchDataSourceImpl(get()) }
+        factory<RepoSearchDataSource>(named("repoSearchRepository")) {
+            RepoSearchRepository(
+                get()
+            )
+        }
+        factory<RepoSearchDataSource> {
+            RepoSearchDataSourceImpl(
+                get()
+            )
+        }
     }
 
     private val usecaseModule = module {

@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fg_repo_search"
-        android:name="com.beok.reposearch.view.RepoSearchFragment"
+        android:name="com.beok.reposearch.presenter.RepoSearchFragment"
         android:label="RepoSearch">
         <action
             android:id="@+id/action_reposearch_to_repobrowse"
@@ -25,13 +25,29 @@
 
     <fragment
         android:id="@+id/fg_repo_browse"
-        android:name="com.beok.repobrowse.view.RepoBrowseFragment"
+        android:name="com.beok.repobrowse.presenter.RepoBrowseFragment"
         android:label="RepoBrowseFragment">
         <argument
             android:name="user"
             app:argType="string" />
         <argument
             android:name="repoName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_repobrowse_to_fileviewer"
+            app:destination="@id/fg_file_viewer">
+            <argument
+                android:name="downloadUrl"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fg_file_viewer"
+        android:name="com.beok.fileviewer.presenter.FileViewerFragment"
+        android:label="FileViewerFragment">
+        <argument
+            android:name="downloadUrl"
             app:argType="string" />
     </fragment>
 </navigation>

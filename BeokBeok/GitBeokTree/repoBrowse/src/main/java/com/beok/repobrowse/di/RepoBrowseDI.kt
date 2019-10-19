@@ -1,11 +1,11 @@
 package com.beok.repobrowse.di
 
-import com.beok.repobrowse.repository.RepoBrowseRepository
-import com.beok.repobrowse.repository.data.RepoBrowseDataSource
-import com.beok.repobrowse.repository.data.RepoBrowseDataSourceImpl
-import com.beok.repobrowse.repository.service.RepoBrowseService
-import com.beok.repobrowse.usecase.UserRepoBrowseUsecase
-import com.beok.repobrowse.viewmodel.RepoBrowseViewModel
+import com.beok.repobrowse.data.RepoBrowseRepository
+import com.beok.repobrowse.data.RepoBrowseService
+import com.beok.repobrowse.data.source.RepoBrowseDataSource
+import com.beok.repobrowse.data.source.RepoBrowseDataSourceImpl
+import com.beok.repobrowse.domain.usecase.UserRepoBrowseUsecase
+import com.beok.repobrowse.presenter.RepoBrowseViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -18,8 +18,16 @@ object RepoBrowseDI {
     }
 
     private val dataSourceModule = module {
-        factory<RepoBrowseDataSource>(named("repoBrowseRepository")) { RepoBrowseRepository(get()) }
-        factory<RepoBrowseDataSource> { RepoBrowseDataSourceImpl(get()) }
+        factory<RepoBrowseDataSource>(named("repoBrowseRepository")) {
+            RepoBrowseRepository(
+                get()
+            )
+        }
+        factory<RepoBrowseDataSource> {
+            RepoBrowseDataSourceImpl(
+                get()
+            )
+        }
     }
 
     private val usecaseModule = module {
