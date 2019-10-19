@@ -4,7 +4,6 @@ apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation Libraries.kotlinStdLib
 
     // Dagger

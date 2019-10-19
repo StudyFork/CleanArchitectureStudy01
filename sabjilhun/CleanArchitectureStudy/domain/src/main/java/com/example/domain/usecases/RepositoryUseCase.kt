@@ -1,5 +1,7 @@
 package com.example.domain.usecases
 
+import com.example.domain.datastructure.Node
+import com.example.domain.datastructure.Tree
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
 import com.example.domain.repositories.GithubRepository
@@ -33,10 +35,19 @@ class GetRepositoryContentsInPathUseCase @Inject constructor(
     operator fun invoke(
         owner: String,
         repository: String,
-        path: String
-    ): Single<List<RepositoryFile>> = githubRepository.getRepositoryContent(
-        owner,
-        repository,
-        path
-    )
+        node: Node<RepositoryFile>,
+        fileTree: Tree<RepositoryFile>
+    ): Single<List<RepositoryFile>> {
+        val path = StringBuilder().apply {
+            fileTree.depthForEach(node) {
+                this.append(it.element.name + "/")
+            }
+        }.toString()
+
+        return githubRepository.getRepositoryContent(
+            owner,
+            repository,
+            path
+        )
+    }
 }
