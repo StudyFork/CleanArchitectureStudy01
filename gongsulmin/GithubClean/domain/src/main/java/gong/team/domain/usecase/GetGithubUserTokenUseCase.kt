@@ -1,7 +1,7 @@
 package gong.team.domain.usecase
 
 import gong.team.domain.entity.GithubTokenEntity
-import gong.team.domain.repository.GithubRepository
+import gong.team.domain.service.ServiceRepository
 import io.reactivex.Single
 
 /**
@@ -17,7 +17,7 @@ import io.reactivex.Single
  */
 
 class GetGithubUserTokenUseCase (
-    private val repository: GithubRepository
+    private val repository: ServiceRepository
 ) {
     operator fun invoke(header: String): Single<GithubTokenEntity> {
         return repository.getAccessToken(header)
