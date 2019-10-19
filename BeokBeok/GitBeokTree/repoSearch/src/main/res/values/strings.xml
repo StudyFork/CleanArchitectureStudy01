@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="hint_input_user_to_search">레파지토리를 검색할 유저명을 입력해주세요.</string>
-    <string name="url_star_img">https://kids-code-games.github.io/variables-war/images/star.png</string>
-    <string name="url_fork_img">https://cdn0.iconfinder.com/data/icons/hippicons-technology/64/code-fork-512.png</string>
-    <string name="url_license_img">https://png.pngtree.com/svg/20150916/license_92605.png</string>
-    <string name="msg_updated_date">Updated %s</string>
-</resources>
