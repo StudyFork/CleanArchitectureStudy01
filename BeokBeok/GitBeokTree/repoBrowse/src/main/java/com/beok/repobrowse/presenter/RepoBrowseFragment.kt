@@ -36,7 +36,7 @@ class RepoBrowseFragment : BaseFragment<FragmentRepoBrowseBinding, RepoBrowseVie
             adapter =
                 RepoBrowseAdapter<List<RepoFileTreeEntity>, RvRepoFiletreeItemBinding>(
                     R.layout.rv_repo_filetree_item,
-                    BR.repoFileTree,
+                    BR.repoFileTreeItem,
                     viewModel
                 )
         }

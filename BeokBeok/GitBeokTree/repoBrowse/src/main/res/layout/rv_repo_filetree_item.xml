@@ -7,8 +7,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="repoFileTree"
-            type="com.beok.repobrowse.domain.entity.RepoFileTreeEntity" />
+            name="repoFileTreeItem"
+            type="com.beok.repobrowse.presenter.RepoFileTreeItem" />
 
         <variable
             name="vm"
@@ -16,15 +16,15 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        marginStartForFileTreeItem="@{repoFileTree.depth}"
+        marginStartForFileTreeItem="@{repoFileTreeItem.depth}"
         marginUnit="@{@dimen/item_file_tree_margin_unit}"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:onClick="@{() -> vm.clickSpecificItem(repoFileTree)}">
+        android:onClick="@{() -> vm.clickSpecificItem(repoFileTreeItem)}">
 
         <ImageView
             android:id="@+id/iv_type"
-            srcWithGlide="@{repoFileTree.type.equals(`dir`) ? @string/url_folder_img : @string/url_file_img}"
+            srcWithGlide="@{repoFileTreeItem.type.equals(`dir`) ? @string/url_folder_img : @string/url_file_img}"
             android:layout_width="20dp"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@{repoFileTree.name}"
+            android:text="@{repoFileTreeItem.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_type"
             app:layout_constraintTop_toTopOf="parent" />
