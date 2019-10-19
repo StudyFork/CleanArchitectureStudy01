@@ -23,7 +23,8 @@ class MyApplication: Application() {
                     repositoryModule ,
                     mapperModule ,
                     userCaseModule  ,
-                    viewmodelModule
+                    viewmodelModule ,
+                    serviceModule
                 )
             )
         }

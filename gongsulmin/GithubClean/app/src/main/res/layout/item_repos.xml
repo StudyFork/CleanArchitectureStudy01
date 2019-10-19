@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
         <variable
                 name="item"
-                type="gong.team.domain.entity.GithubUserInfoEntity.GithubUserRepoEntity"/>
+                type="gong.team.domain.entity.GithubUserRepoEntity"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

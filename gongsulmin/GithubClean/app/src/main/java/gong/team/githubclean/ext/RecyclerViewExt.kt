@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import gong.team.domain.entity.GithubFollowEntity
 import gong.team.domain.entity.GithubSearchResultModel
-import gong.team.domain.entity.GithubUserInfoEntity
+import gong.team.domain.entity.GithubUserRepoEntity
 import gong.team.githubclean.adapter.MainAdapter
 import gong.team.githubclean.ui.follow.FollowAdapter
 import gong.team.githubclean.ui.profile.ReposAdapter
@@ -17,7 +17,7 @@ fun <T> RecyclerView.setItems(items: T) {
         when (adapter) {
             is MainAdapter -> (adapter as MainAdapter).loadData(items as List<GithubSearchResultModel>)
             is ReposAdapter -> {
-                (adapter as ReposAdapter).loadData(items as List<GithubUserInfoEntity.GithubUserRepoEntity>)
+                (adapter as ReposAdapter).loadData(items as List<GithubUserRepoEntity>)
             }
             is FollowAdapter -> {
                 (adapter as FollowAdapter).loadData(items as List<GithubFollowEntity>)

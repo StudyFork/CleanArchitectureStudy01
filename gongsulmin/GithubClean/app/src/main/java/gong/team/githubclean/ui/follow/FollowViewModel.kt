@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import gong.team.domain.entity.GithubFollowEntity
 import gong.team.domain.usecase.GetGithubFollowerUseCase
 import gong.team.githubclean.ui.base.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 class FollowViewModel(
     private val getGithubFollowerUseCase: GetGithubFollowerUseCase ,
@@ -20,6 +22,8 @@ class FollowViewModel(
 
     init {
         getGithubFollowerUseCase.invoke(name , isFollowing)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess =  {
                     _followInfo.value = it

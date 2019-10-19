@@ -6,8 +6,10 @@ import gong.team.domain.entity.GithubUserInfoEntity
 import gong.team.domain.usecase.GetGithubUserInfoUseCase
 import gong.team.githubclean.ui.Event
 import gong.team.githubclean.ui.base.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 class ProfileVIewModel(
     getGithubUserInfoUseCase: GetGithubUserInfoUseCase
@@ -23,6 +25,8 @@ class ProfileVIewModel(
 
     init {
         getGithubUserInfoUseCase.invoke()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
                     _userInfo.value = it

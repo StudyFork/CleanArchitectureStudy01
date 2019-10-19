@@ -7,8 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import gong.team.domain.usecase.GetGithubUserTokenUseCase
 import gong.team.githubclean.ui.Event
 import gong.team.githubclean.ui.base.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel(
     private val getGithubUserTokenUseCase: GetGithubUserTokenUseCase
@@ -27,6 +29,8 @@ class LoginViewModel(
 
     fun onClickGetToken(view: View) {
         getGithubUserTokenUseCase.invoke(getHeader(loginId.value!! , loginPassword.value!!))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
                     _navigateToMain.value = Event(true)

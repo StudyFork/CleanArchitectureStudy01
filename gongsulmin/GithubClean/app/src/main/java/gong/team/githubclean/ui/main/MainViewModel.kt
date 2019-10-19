@@ -38,7 +38,8 @@ class MainViewModel(
             .subscribeBy {
                 getGithubSearchListUsecase
                     .invoke(it , "1 " , "10")
-
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribeBy(
                         {
                             _progressBarVisible.postValue(false)
