@@ -17,5 +17,5 @@ dependencies {
     implementation project(Modules.navigator)
     implementation project(Modules.domain)
 
-    implementation 'com.github.bmelnychuk:atv:1.2.9'
+    implementation Libraries.spinner
 }

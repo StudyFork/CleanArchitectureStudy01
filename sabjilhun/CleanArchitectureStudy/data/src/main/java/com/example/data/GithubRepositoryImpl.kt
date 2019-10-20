@@ -1,10 +1,12 @@
 package com.example.data
 
-import com.example.data.remote.GetRepositoryTreeResponse
 import com.example.data.remote.GithubApi
-import com.example.data.remote.SearchRepositoriesResponse
+import com.example.data.remote.response.GetRepositoryBranchResponse
+import com.example.data.remote.response.GetRepositoryTreeResponse
+import com.example.data.remote.response.SearchRepositoriesResponse
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
+import com.example.domain.entities.RepositoyBranch
 import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 
@@ -23,5 +25,13 @@ class GithubRepositoryImpl constructor(
     ): Single<List<RepositoryFile>> {
         return githubApi.gerRepositoryTree(owner, repository)
             .map(GetRepositoryTreeResponse.Companion::toRepositoryFileList)
+    }
+
+    override fun getRepositoyBranchList(
+        owner: String,
+        repository: String
+    ): Single<List<RepositoyBranch>> {
+        return githubApi.gerBranchList(owner, repository)
+            .map(GetRepositoryBranchResponse.Companion::toRepositoryBranchList)
     }
 }

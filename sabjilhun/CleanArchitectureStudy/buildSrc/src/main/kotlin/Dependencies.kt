@@ -52,6 +52,8 @@ object Libraries {
         const val rxKotlin = "2.4.0"
         const val dagger = "2.24"
         const val glide = "4.10.0"
+
+        const val spinner = "1.1.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -87,6 +89,9 @@ object Libraries {
 
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+    // For View
+    const val spinner = "com.weiwangcn.betterspinner:library:${Versions.spinner}"
 }
 
 object TestLibraries {
