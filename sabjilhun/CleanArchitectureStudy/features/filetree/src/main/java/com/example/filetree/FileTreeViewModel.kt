@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.common.base.BaseViewModel
 import com.example.domain.datastructure.Tree
 import com.example.domain.entities.RepositoryFile
-import com.example.domain.usecases.GetRepositoryTree
+import com.example.domain.entities.RepositoyBranch
+import com.example.domain.usecases.GetRepositoryBranchListUseCase
+import com.example.domain.usecases.GetRepositoryTreeUseCase
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class FileTreeViewModel @Inject constructor(
-    private val getRepositoryTree: GetRepositoryTree
+    private val getRepositoryFileTreeUseCase: GetRepositoryTreeUseCase,
+    private val getRepositoryBranchListUseCase: GetRepositoryBranchListUseCase
 ) : BaseViewModel() {
 
     private val _title: MutableLiveData<Pair<String, String>> = MutableLiveData()
@@ -18,6 +21,9 @@ class FileTreeViewModel @Inject constructor(
 
     private val _fileTree: MutableLiveData<Tree<RepositoryFile>> = MutableLiveData()
     val fileTree: LiveData<Tree<RepositoryFile>> = _fileTree
+
+    private val _repositoryBranch: MutableLiveData<List<RepositoyBranch>> = MutableLiveData()
+    val repositoyBranch: LiveData<List<RepositoyBranch>> = _repositoryBranch
 
     fun setRepoTitle(owner: String, repositoryName: String) {
         _title.value = Pair(owner, repositoryName)
@@ -27,10 +33,22 @@ class FileTreeViewModel @Inject constructor(
         owner: String,
         repositoryName: String
     ) {
-        getRepositoryTree(owner, repositoryName)
+        getRepositoryFileTreeUseCase(owner, repositoryName)
             .compose(apiLoadingTransformer())
             .subscribeBy(
                 onSuccess = _fileTree::setValue,
+                onError = ::handleApiErrorMessage
+            ).add()
+    }
+
+    fun getRepositoryBranchList(
+        owner: String,
+        repositoryName: String
+    ) {
+        this.getRepositoryBranchListUseCase(owner, repositoryName)
+            .compose(apiLoadingTransformer())
+            .subscribeBy(
+                onSuccess = _repositoryBranch::setValue,
                 onError = ::handleApiErrorMessage
             ).add()
     }
