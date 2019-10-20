@@ -10,9 +10,8 @@ interface GithubRepository {
         query: String
     ): Single<List<RepositorySummaryInfo>>
 
-    fun getRepositoryContent(
+    fun getRepositoryTree(
         owner: String,
-        repository: String,
-        path: String
+        repository: String
     ): Single<List<RepositoryFile>>
 }

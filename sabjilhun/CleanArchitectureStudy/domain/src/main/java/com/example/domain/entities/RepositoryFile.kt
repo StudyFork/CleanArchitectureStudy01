@@ -1,9 +1,10 @@
 package com.example.domain.entities
 
 data class RepositoryFile(
-    val type: FileType,
     val name: String,
+    val path: String,
     val size: Int,
+    val type: FileType,
     val url: String
 ) {
     enum class FileType {

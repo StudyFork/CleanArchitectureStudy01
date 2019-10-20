@@ -18,7 +18,7 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
     private lateinit var owner: String
     private lateinit var repoName: String
 
-    private var fileTreeAdapter: FileTreeAdapter? = null
+    private lateinit var fileTreeAdapter: FileTreeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,24 +40,14 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
     }
 
     private fun setUpView() {
+        fileTreeAdapter = FileTreeAdapter()
+        binding.rvFileTree.adapter = fileTreeAdapter
         viewModel.setRepoTitle(owner, repoName)
-        viewModel.getContentsInRoot(owner, repoName)
+        viewModel.getRepositoryFileTree(owner, repoName)
     }
 
     private fun observeViewModel() {
-        viewModel.fileTree.observe(this, Observer {
-            if (it == null) {
-                return@Observer
-            }
-
-            if (fileTreeAdapter == null) {
-                fileTreeAdapter = FileTreeAdapter(it.second)
-                binding.rvFileTree.adapter = fileTreeAdapter
-            }
-
-            fileTreeAdapter!!.treeNode = it.second
-            fileTreeAdapter!!.expendFolder(it.first)
-        })
+        viewModel.fileTree.observe(this, Observer(fileTreeAdapter::updateFileTree))
     }
 }
 

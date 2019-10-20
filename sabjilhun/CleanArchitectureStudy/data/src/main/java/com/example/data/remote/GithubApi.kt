@@ -12,10 +12,10 @@ interface GithubApi {
         @Query(value = "q", encoded = true) query: String
     ): Single<SearchRepositoriesResponse>
 
-    @GET(value = "repos/{owner}/{repo}/contents/{path}")
-    fun getRepositoryContens(
+    @GET(value = "repos/{owner}/{repo}/git/trees/{branch}?recursive=1")
+    fun gerRepositoryTree(
         @Path(value = "owner", encoded = true) owner: String,
         @Path(value = "repo", encoded = true) repo: String,
-        @Path(value = "path", encoded = true) path: String
-    ): Single<List<GetRepositoryContentsResponse>>
+        @Path(value = "branch", encoded = true) path: String = "master"
+    ): Single<GetRepositoryTreeResponse>
 }

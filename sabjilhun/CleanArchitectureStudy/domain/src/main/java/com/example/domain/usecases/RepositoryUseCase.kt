@@ -1,6 +1,5 @@
 package com.example.domain.usecases
 
-import com.example.domain.datastructure.Node
 import com.example.domain.datastructure.Tree
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
@@ -16,38 +15,31 @@ class SearchRepositoriesUseCase @Inject constructor(
     ): Single<List<RepositorySummaryInfo>> = githubRepository.getRepositories(query)
 }
 
-class GetRepositoryContentsInRootUseCase @Inject constructor(
+class GetRepositoryTree @Inject constructor(
     private val githubRepository: GithubRepository
 ) {
     operator fun invoke(
         owner: String,
         repository: String
-    ): Single<List<RepositoryFile>> = githubRepository.getRepositoryContent(
-        owner,
-        repository,
-        ""
-    )
-}
-
-class GetRepositoryContentsInPathUseCase @Inject constructor(
-    private val githubRepository: GithubRepository
-) {
-    operator fun invoke(
-        owner: String,
-        repository: String,
-        node: Node<RepositoryFile>,
-        fileTree: Tree<RepositoryFile>
-    ): Single<List<RepositoryFile>> {
-        val path = StringBuilder().apply {
-            fileTree.depthForEach(node) {
-                this.append(it.element.name + "/")
-            }
-        }.toString()
-
-        return githubRepository.getRepositoryContent(
+    ): Single<Tree<RepositoryFile>> {
+        return githubRepository.getRepositoryTree(
             owner,
-            repository,
-            path
-        )
+            repository
+        ).map { Tree<RepositoryFile>().addWithFilePath(it) }
+    }
+
+    private fun Tree<RepositoryFile>.addWithFilePath(
+        fileList: List<RepositoryFile>
+    ): Tree<RepositoryFile> {
+        fileList.map { file ->
+            file.path.substringBeforeLast('/').let { parentPath ->
+                if (parentPath == file.path) {
+                    addChild(null, file)
+                } else {
+                    addChild(file) { parentPath == it.path }
+                }
+            }
+        }
+        return this
     }
 }

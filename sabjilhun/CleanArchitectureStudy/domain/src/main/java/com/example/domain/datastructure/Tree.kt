@@ -1,19 +1,16 @@
 package com.example.domain.datastructure
 
 class Tree<T> {
-    private val queue = mutableListOf<Node<T>>()
     @Suppress("UNCHECKED_CAST")
-    val root: Node<T> = Node(Any() as T)
+    private val root: Node<T> = Node(Any() as T)
 
-    private fun searchNode(target: Node<T>): Node<T>? {
-        if (root == target) {
-            return root
-        }
+    private fun searchNode(target: T): Node<T>? {
+        val queue = mutableListOf<Node<T>>()
 
         queue.addAll(root.childNodes)
         while (queue.isNotEmpty()) {
             queue.removeAt(0).also {
-                if (it == target) {
+                if (it.element == target) {
                     queue.clear()
                     return it
                 }
@@ -23,43 +20,73 @@ class Tree<T> {
         return null
     }
 
-    fun depthForEach(target: Node<T>, consumer: (Node<T>) -> Unit) {
-        if (root == target) {
-            return
-        }
+    private fun searchNode(isParent: (T) -> Boolean): Node<T>? {
+        val queue = mutableListOf<Node<T>>()
 
         queue.addAll(root.childNodes)
         while (queue.isNotEmpty()) {
             queue.removeAt(0).also {
-                if (it == target) {
+                if (isParent(it.element)) {
                     queue.clear()
-                    return
+                    return it
                 }
-                consumer(it)
                 queue.addAll(it.childNodes)
             }
         }
-        return
+        return null
     }
 
-    fun setChildNodes(target: Node<T>, childNodes: List<Node<T>>): Boolean {
-        searchNode(target)?.apply {
-            replaceAll(childNodes)
+    fun addChild(child: T, isParent: (T) -> Boolean): Boolean {
+        searchNode(isParent)?.let {
+            it.childNodes.add(Node(child))
             return true
         }
         return false
     }
-}
 
-class Node<T> constructor(
-    val element: T
-) {
-    val childNodes: MutableList<Node<T>> = mutableListOf()
-
-    fun replaceAll(childNodes: List<Node<T>>) {
-        this.childNodes.apply {
-            clear()
-            addAll(childNodes)
+    fun addChild(target: T?, child: T): Boolean {
+        if (target == null) {
+            root.childNodes.add(Node(child))
+            return true
         }
+
+        searchNode(target)?.let {
+            it.childNodes.add(Node(child))
+            return true
+        }
+        return false
+    }
+
+    fun clearChildNode(target: T) {
+        searchNode(target)?.childNodes?.clear()
+    }
+
+    fun getRootChild(): List<T> {
+        return root.childNodes.map(Node<T>::element)
+    }
+
+    fun getChild(target: T): List<T> {
+        return searchNode(target)?.childNodes?.map(Node<T>::element) ?: emptyList()
+    }
+
+    fun getAllChild(target: T): List<T> {
+        val queue = mutableListOf<Node<T>>()
+        var index = 0
+
+        queue.addAll(searchNode(target)?.childNodes ?: emptyList())
+        while (index < queue.size) {
+            queue.addAll(queue[index].childNodes)
+            index++
+        }
+
+        return queue.map(Node<T>::element)
+    }
+
+
+    private class Node<T> constructor(
+        val element: T
+    ) {
+        val childNodes: MutableList<Node<T>> = mutableListOf()
     }
 }
+

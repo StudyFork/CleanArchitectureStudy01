@@ -1,6 +1,6 @@
 package com.example.data
 
-import com.example.data.remote.GetRepositoryContentsResponse
+import com.example.data.remote.GetRepositoryTreeResponse
 import com.example.data.remote.GithubApi
 import com.example.data.remote.SearchRepositoriesResponse
 import com.example.domain.entities.RepositoryFile
@@ -17,12 +17,11 @@ class GithubRepositoryImpl constructor(
             .map(SearchRepositoriesResponse.Companion::toRepositorySummaryInfoList)
     }
 
-    override fun getRepositoryContent(
+    override fun getRepositoryTree(
         owner: String,
-        repository: String,
-        path: String
+        repository: String
     ): Single<List<RepositoryFile>> {
-        return githubApi.getRepositoryContens(owner, repository, path)
-            .map(GetRepositoryContentsResponse.Companion::toRepositoryFileList)
+        return githubApi.gerRepositoryTree(owner, repository)
+            .map(GetRepositoryTreeResponse.Companion::toRepositoryFileList)
     }
 }
