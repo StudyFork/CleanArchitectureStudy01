@@ -47,6 +47,7 @@ data class GetRepositoryTreeResponse(
                             when (type) {
                                 "tree" -> return@let RepositoryFile.FileType.DIRECTORY
                                 "blob" -> return@let RepositoryFile.FileType.FILE
+                                "commit" -> return@let RepositoryFile.FileType.COMMIT
                                 else -> throw IllegalArgumentException()
                             }
                         },

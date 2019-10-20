@@ -35,25 +35,50 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
 
     private fun setUpExtra() {
         intent?.apply {
-            this@FileTreeActivity.owner = getStringExtra(FileTreeNavigatorConstants.OWNER)
-            this@FileTreeActivity.repoName =
-                getStringExtra(FileTreeNavigatorConstants.REPOSITORY_NAME)
+            owner = getStringExtra(FileTreeNavigatorConstants.OWNER)
+            repoName = getStringExtra(FileTreeNavigatorConstants.REPOSITORY_NAME)
         }
     }
 
     private fun setUpView() {
         fileTreeAdapter = FileTreeAdapter()
         binding.rvFileTree.adapter = fileTreeAdapter
+        binding.wiBranchSpinner.setOnSpinnerItemSelectedListener { parent, _, _, _ ->
+            viewModel.getRepositoryFileTree(
+                owner,
+                repoName,
+                parent.selectedItem as RepositoryBranch
+            )
+        }
         viewModel.setRepoTitle(owner, repoName)
-        viewModel.getRepositoryFileTree(owner, repoName)
         viewModel.getRepositoryBranchList(owner, repoName)
     }
 
     private fun observeViewModel() {
         viewModel.fileTree.observe(this, Observer(fileTreeAdapter::updateFileTree))
-        viewModel.repositoryBranch.observe(this, Observer {
-            binding.wiBranchSpinner.attachDataSource(it.map(RepositoryBranch::branchName))
-        })
+
+        viewModel.repositoryBranch.observe(this, Observer(this::handleRepositoryBranchList))
+    }
+
+    private fun handleRepositoryBranchList(repositoryBranchList: List<RepositoryBranch>) {
+        binding.wiBranchSpinner.attachDataSource(repositoryBranchList)
+        repositoryBranchList.indexOfFirst { repoBranch -> repoBranch.branchName == "master" }
+            .let { index ->
+                if (index != -1) {
+                    binding.wiBranchSpinner.selectedIndex = index
+                    viewModel.getRepositoryFileTree(
+                        owner,
+                        repoName,
+                        repositoryBranchList[index]
+                    )
+                } else {
+                    viewModel.getRepositoryFileTree(
+                        owner,
+                        repoName,
+                        repositoryBranchList[binding.wiBranchSpinner.selectedIndex]
+                    )
+                }
+            }
     }
 }
 

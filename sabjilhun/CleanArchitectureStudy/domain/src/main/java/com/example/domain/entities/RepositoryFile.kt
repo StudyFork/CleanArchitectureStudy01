@@ -8,6 +8,6 @@ data class RepositoryFile(
     val url: String
 ) {
     enum class FileType {
-        FILE, DIRECTORY
+        FILE, DIRECTORY, COMMIT
     }
 }

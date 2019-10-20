@@ -55,9 +55,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_marginTop="12dp"
-			android:paddingBottom="52dp"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-			app:layout_constraintTop_toBottomOf="@id/wi_branchSpinner" />
-	
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/wi_branchSpinner"
+			tools:listitem="@layout/item_file_tree" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

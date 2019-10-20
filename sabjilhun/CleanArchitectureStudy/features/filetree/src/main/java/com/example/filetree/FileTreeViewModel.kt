@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.common.base.BaseViewModel
 import com.example.domain.datastructure.Tree
-import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositoryBranch
+import com.example.domain.entities.RepositoryFile
 import com.example.domain.usecases.GetRepositoryBranchListUseCase
 import com.example.domain.usecases.GetRepositoryTreeUseCase
 import io.reactivex.rxkotlin.subscribeBy
@@ -31,9 +31,10 @@ class FileTreeViewModel @Inject constructor(
 
     fun getRepositoryFileTree(
         owner: String,
-        repositoryName: String
+        repositoryName: String,
+        branch: RepositoryBranch
     ) {
-        getRepositoryFileTreeUseCase(owner, repositoryName)
+        getRepositoryFileTreeUseCase(owner, repositoryName, branch)
             .compose(apiLoadingTransformer())
             .subscribeBy(
                 onSuccess = _fileTree::setValue,

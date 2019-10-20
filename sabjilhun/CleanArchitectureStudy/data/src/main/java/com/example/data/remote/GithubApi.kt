@@ -19,7 +19,7 @@ interface GithubApi {
     fun gerRepositoryTree(
         @Path(value = "owner", encoded = true) owner: String,
         @Path(value = "repo", encoded = true) repo: String,
-        @Path(value = "branch", encoded = true) path: String = "master"
+        @Path(value = "branch", encoded = true) path: String
     ): Single<GetRepositoryTreeResponse>
 
     @GET(value = "repos/{owner}/{repo}/branches")

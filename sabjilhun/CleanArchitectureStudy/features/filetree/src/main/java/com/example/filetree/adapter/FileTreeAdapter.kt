@@ -26,7 +26,7 @@ class FileTreeAdapter :
         viewHolder.binding.root.setOnClickListener {
             val fileDataHolder = flattenTree[viewHolder.adapterPosition]
 
-            if (fileDataHolder.data.type == RepositoryFile.FileType.FILE) {
+            if (fileDataHolder.data.type != RepositoryFile.FileType.DIRECTORY) {
                 return@setOnClickListener
             }
 
@@ -46,7 +46,7 @@ class FileTreeAdapter :
 
         if (fileDataHolder.data.type == RepositoryFile.FileType.FILE) {
             holder.binding.ivFileIcon.setImageResource(R.drawable.ic_file_primary_24dp)
-        } else {
+        } else if (fileDataHolder.data.type == RepositoryFile.FileType.DIRECTORY) {
             if (fileDataHolder.isExpended) {
                 holder.binding.ivFileIcon.setImageResource(R.drawable.ic_folder_open_primary_24dp)
             } else {

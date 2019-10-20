@@ -1,9 +1,9 @@
 package com.example.domain.usecases
 
 import com.example.domain.datastructure.Tree
+import com.example.domain.entities.RepositoryBranch
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
-import com.example.domain.entities.RepositoryBranch
 import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -21,11 +21,13 @@ class GetRepositoryTreeUseCase @Inject constructor(
 ) {
     operator fun invoke(
         owner: String,
-        repository: String
+        repository: String,
+        branch: RepositoryBranch
     ): Single<Tree<RepositoryFile>> {
         return githubRepository.getRepositoryTree(
             owner,
-            repository
+            repository,
+            branch
         ).map { Tree<RepositoryFile>().addWithFilePath(it) }
     }
 
@@ -51,7 +53,7 @@ class GetRepositoryBranchListUseCase @Inject constructor(
     operator fun invoke(
         owner: String,
         repository: String
-    ): Single<List<RepositoryBranch>> = githubRepository.getRepositoyBranchList(
+    ): Single<List<RepositoryBranch>> = githubRepository.getRepositoryBranchList(
         owner,
         repository
     )

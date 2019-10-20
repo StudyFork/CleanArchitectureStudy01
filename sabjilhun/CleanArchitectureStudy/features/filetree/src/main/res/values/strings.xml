@@ -1,3 +1,5 @@
 <resources>
 	<string name="repo_file_tree_title">%s/%s</string>
+	<string name="repo_file_size">%d Bytes</string>
+	<string name="repo_commit">commit: %s</string>
 </resources>
