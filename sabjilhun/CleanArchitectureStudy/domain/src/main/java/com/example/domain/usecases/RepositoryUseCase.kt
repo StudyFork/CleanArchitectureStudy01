@@ -3,7 +3,7 @@ package com.example.domain.usecases
 import com.example.domain.datastructure.Tree
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
-import com.example.domain.entities.RepositoyBranch
+import com.example.domain.entities.RepositoryBranch
 import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -51,7 +51,7 @@ class GetRepositoryBranchListUseCase @Inject constructor(
     operator fun invoke(
         owner: String,
         repository: String
-    ): Single<List<RepositoyBranch>> = githubRepository.getRepositoyBranchList(
+    ): Single<List<RepositoryBranch>> = githubRepository.getRepositoyBranchList(
         owner,
         repository
     )

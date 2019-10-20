@@ -2,7 +2,7 @@ package com.example.domain.repositories
 
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
-import com.example.domain.entities.RepositoyBranch
+import com.example.domain.entities.RepositoryBranch
 import io.reactivex.Single
 
 interface GithubRepository {
@@ -19,5 +19,5 @@ interface GithubRepository {
     fun getRepositoyBranchList(
         owner: String,
         repository: String
-    ): Single<List<RepositoyBranch>>
+    ): Single<List<RepositoryBranch>>
 }

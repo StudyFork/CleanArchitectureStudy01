@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.common.base.BaseViewModel
 import com.example.domain.datastructure.Tree
 import com.example.domain.entities.RepositoryFile
-import com.example.domain.entities.RepositoyBranch
+import com.example.domain.entities.RepositoryBranch
 import com.example.domain.usecases.GetRepositoryBranchListUseCase
 import com.example.domain.usecases.GetRepositoryTreeUseCase
 import io.reactivex.rxkotlin.subscribeBy
@@ -22,8 +22,8 @@ class FileTreeViewModel @Inject constructor(
     private val _fileTree: MutableLiveData<Tree<RepositoryFile>> = MutableLiveData()
     val fileTree: LiveData<Tree<RepositoryFile>> = _fileTree
 
-    private val _repositoryBranch: MutableLiveData<List<RepositoyBranch>> = MutableLiveData()
-    val repositoyBranch: LiveData<List<RepositoyBranch>> = _repositoryBranch
+    private val _repositoryBranch: MutableLiveData<List<RepositoryBranch>> = MutableLiveData()
+    val repositoryBranch: LiveData<List<RepositoryBranch>> = _repositoryBranch
 
     fun setRepoTitle(owner: String, repositoryName: String) {
         _title.value = Pair(owner, repositoryName)

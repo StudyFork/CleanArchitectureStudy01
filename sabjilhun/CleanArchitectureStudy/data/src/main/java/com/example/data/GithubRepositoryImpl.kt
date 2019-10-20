@@ -6,7 +6,7 @@ import com.example.data.remote.response.GetRepositoryTreeResponse
 import com.example.data.remote.response.SearchRepositoriesResponse
 import com.example.domain.entities.RepositoryFile
 import com.example.domain.entities.RepositorySummaryInfo
-import com.example.domain.entities.RepositoyBranch
+import com.example.domain.entities.RepositoryBranch
 import com.example.domain.repositories.GithubRepository
 import io.reactivex.Single
 
@@ -30,7 +30,7 @@ class GithubRepositoryImpl constructor(
     override fun getRepositoyBranchList(
         owner: String,
         repository: String
-    ): Single<List<RepositoyBranch>> {
+    ): Single<List<RepositoryBranch>> {
         return githubApi.gerBranchList(owner, repository)
             .map(GetRepositoryBranchResponse.Companion::toRepositoryBranchList)
     }

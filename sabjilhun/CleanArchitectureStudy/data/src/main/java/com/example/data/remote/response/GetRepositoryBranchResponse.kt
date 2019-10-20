@@ -1,7 +1,7 @@
 package com.example.data.remote.response
 
 
-import com.example.domain.entities.RepositoyBranch
+import com.example.domain.entities.RepositoryBranch
 import com.google.gson.annotations.SerializedName
 
 data class GetRepositoryBranchResponse(
@@ -22,12 +22,12 @@ data class GetRepositoryBranchResponse(
     companion object {
         fun toRepositoryBranchList(
             getRepositoryBranchResponse: List<GetRepositoryBranchResponse>
-        ): List<RepositoyBranch> {
+        ): List<RepositoryBranch> {
             return getRepositoryBranchResponse.mapNotNull {
                 if (it.name == null) {
                     return@mapNotNull null
                 } else {
-                    return@mapNotNull RepositoyBranch(it.name)
+                    return@mapNotNull RepositoryBranch(it.name)
                 }
             }
         }

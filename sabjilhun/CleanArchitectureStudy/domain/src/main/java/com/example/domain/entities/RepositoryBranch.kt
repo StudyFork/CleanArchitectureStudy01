@@ -1,5 +1,5 @@
 package com.example.domain.entities
 
-data class RepositoyBranch(
+data class RepositoryBranch(
     val branchName: String
 )

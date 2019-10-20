@@ -3,9 +3,9 @@ package com.example.filetree
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.example.common.base.BaseActivity
+import com.example.domain.entities.RepositoryBranch
 import com.example.filetree.adapter.FileTreeAdapter
 import com.example.filetree.databinding.ActivityFileTreeBinding
 import com.example.navigator.FileTreeNavigator
@@ -46,17 +46,14 @@ class FileTreeActivity : BaseActivity<ActivityFileTreeBinding>(R.layout.activity
         binding.rvFileTree.adapter = fileTreeAdapter
         viewModel.setRepoTitle(owner, repoName)
         viewModel.getRepositoryFileTree(owner, repoName)
-
-//        binding.wiBranchSpinner.setAdapter(
-//            ArrayAdapter<String>(
-//                this, android.R.layout.simple_dropdown_item_1line,
-//                listOf("master", "master2", "master3", "master4")
-//            )
-//        )
+        viewModel.getRepositoryBranchList(owner, repoName)
     }
 
     private fun observeViewModel() {
         viewModel.fileTree.observe(this, Observer(fileTreeAdapter::updateFileTree))
+        viewModel.repositoryBranch.observe(this, Observer {
+            binding.wiBranchSpinner.attachDataSource(it.map(RepositoryBranch::branchName))
+        })
     }
 }
 
