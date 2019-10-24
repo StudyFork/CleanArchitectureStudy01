@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="primary">@color/colorGithubPrimary</color>
+	<color name="primaryDark">@color/colorGithubSecondary</color>
+	<color name="accent">@color/colorGithubTertiary</color>
+	
+	<color name="backgroundWhite">@color/colorWhite</color>
+	<color name="backgroundBlack">@color/colorBlack</color>
+	<color name="backgroundPrimary">@color/colorGithubPrimary</color>
+	<color name="backgroundSecondary">@color/colorGithubSecondary</color>
+	<color name="backgroundTertiary">@color/colorGithubTertiary</color>
+	<color name="backgroundBlackTransparent">@color/colorBlackTransparent</color>
+	
+	<color name="textWhite">@color/colorWhite</color>
+	<color name="textBlack">@color/colorBlack</color>
+	<color name="textPrimary">@color/colorGithubPrimary</color>
+	<color name="textSecondary">@color/colorGithubSecondary</color>
+	<color name="textTertiary">@color/colorGithubTertiary</color>
+	
+	<!--palette-->
+	<color name="colorWhite">#FFFFFF</color>
+	<color name="colorBlack">#000000</color>
+	
+	<color name="colorBlackTransparent">#AA000000</color>
+	<color name="transparent">@android:color/transparent</color>
+	
+	<color name="colorGithubPrimary">#25292D</color>
+	<color name="colorGithubSecondary">#404447</color>
+	<color name="colorGithubTertiary">#5B626A</color>
+</resources>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="network_fail_message">데이터를 받아오지 못하였습니다. 네트워크 상태을 확인하세요.</string>
+</resources>

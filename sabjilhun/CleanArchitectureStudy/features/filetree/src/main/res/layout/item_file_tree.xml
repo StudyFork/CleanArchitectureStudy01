@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<import type="com.example.common.utils.TextUtils" />
+		
+		<import type="android.view.View" />
+		
+		<import type="com.example.domain.entities.RepositoryFile" />
+		
+		<variable
+			name="repositoryFile"
+			type="com.example.domain.entities.RepositoryFile" />
+	</data>
+	
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		<ImageView
+			android:id="@+id/iv_fileIcon"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginStart="4dp"
+			android:scaleType="fitCenter"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="ContentDescription"
+			tools:src="@drawable/ic_folder_open_primary_24dp" />
+		
+		<TextView
+			android:id="@+id/tv_fileName"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="4dp"
+			android:layout_marginBottom="4dp"
+			android:ellipsize="end"
+			android:text="@{repositoryFile.type == RepositoryFile.FileType.COMMIT ? @string/repo_commit(repositoryFile.name) :repositoryFile.name}"
+			android:textColor="@color/textPrimary"
+			android:textSize="14sp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/tv_fileSize"
+			app:layout_constraintStart_toEndOf="@id/iv_fileIcon"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="File.file" />
+		
+		<TextView
+			android:id="@+id/tv_fileSize"
+			android:layout_width="80dp"
+			android:layout_height="wrap_content"
+			android:ellipsize="end"
+			android:text="@{@string/repo_file_size(repositoryFile.size)}"
+			android:textColor="@color/textSecondary"
+			android:textSize="12sp"
+			android:visibility="@{repositoryFile.type == RepositoryFile.FileType.FILE ? View.VISIBLE : View.GONE}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/tv_fileName"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="SmallSp" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

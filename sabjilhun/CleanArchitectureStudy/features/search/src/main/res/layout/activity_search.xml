@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="vm"
+			type="com.example.search.ui.SearchViewModel" />
+	</data>
+	
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:focusable="true"
+		android:focusableInTouchMode="true">
+		
+		<com.google.android.material.appbar.AppBarLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fitsSystemWindows="true">
+			
+			<com.google.android.material.appbar.CollapsingToolbarLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/backgroundPrimary"
+				android:fitsSystemWindows="true"
+				app:contentScrim="@color/colorWhite"
+				app:layout_scrollFlags="scroll|enterAlways">
+				
+				<LinearLayout
+					android:id="@+id/ll_search"
+					android:layout_width="match_parent"
+					android:layout_height="48dp"
+					android:layout_margin="4dp"
+					android:background="@color/backgroundPrimary"
+					android:orientation="horizontal"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent">
+					
+					<EditText
+						android:id="@+id/et_search_keyword"
+						android:layout_width="0dp"
+						android:layout_height="match_parent"
+						android:layout_margin="4dp"
+						android:layout_weight="0.8"
+						android:background="@drawable/shape_round_bg_secondary_rad8"
+						android:hint="@string/hint_search_keyword"
+						android:importantForAutofill="no"
+						android:inputType="text"
+						android:paddingStart="16dp"
+						android:paddingEnd="16dp"
+						android:text="@={vm.query}"
+						android:textColor="@color/textWhite"
+						android:textColorHint="@color/textTertiary"
+						android:textSize="14sp" />
+					
+					<ImageView
+						android:id="@+id/iv_search"
+						android:layout_width="0dp"
+						android:layout_height="match_parent"
+						android:layout_weight="0.15"
+						android:background="@color/backgroundPrimary"
+						android:clickable="true"
+						android:focusable="true"
+						android:foreground="?android:attr/selectableItemBackgroundBorderless"
+						android:gravity="center"
+						android:onClick="@{() -> vm.searchRepositories()}"
+						android:padding="10dp"
+						android:src="@drawable/ic_search_black_24dp"
+						android:text="@string/hint_search_keyword"
+						android:textSize="14sp"
+						android:tint="@color/textWhite"
+						tools:ignore="ContentDescription" />
+				</LinearLayout>
+			
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
+		</com.google.android.material.appbar.AppBarLayout>
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="4dp"
+			android:background="@color/backgroundWhite"
+			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rv_searched_image"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/backgroundWhite"
+				app:items="@{vm.repositories}"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

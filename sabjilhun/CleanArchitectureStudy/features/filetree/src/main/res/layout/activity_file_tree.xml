@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="vm"
+			type="com.example.filetree.FileTreeViewModel" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/backgroundWhite">
+		
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/tb"
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:background="@color/backgroundPrimary"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+			
+			<TextView
+				android:id="@+id/tb_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="12dp"
+				android:layout_marginEnd="12dp"
+				android:ellipsize="end"
+				android:text="@{@string/repo_file_tree_title(vm.title.first, vm.title.second)}"
+				android:textColor="@color/textWhite"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				tools:text="테스트" />
+		
+		</androidx.appcompat.widget.Toolbar>
+		
+		<org.angmarch.views.NiceSpinner
+			android:id="@+id/wi_branchSpinner"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="start"
+			android:textSize="12sp"
+			app:arrowTint="@color/backgroundSecondary"
+			app:layout_constraintTop_toBottomOf="@id/tb"
+			app:textTint="@color/textSecondary" />
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rv_fileTree"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="12dp"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/wi_branchSpinner"
+			tools:listitem="@layout/item_file_tree" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
